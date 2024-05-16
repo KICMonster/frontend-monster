@@ -11,6 +11,8 @@ import ViewPage from '../pages/VIewPage';
 import IngredientPage from '../pages/IngredientPage';
 import IndexPage from '../pages/todo/IndexPage';
 import HistoryPage from '../pages/detail/HistoryPage';
+import CraftList from '../component/list/CraftList';
+import Craft from '../pages/detail/Craft';
 
 const Loading = <div className={'bg-red-800'}>Loading...</div>
 const root = createBrowserRouter([
@@ -52,8 +54,10 @@ const root = createBrowserRouter([
     path: '/history',
     element: <Suspense fallback={Loading}><HistoryPage /></Suspense>
   },
-
-
+  {
+    path: '/craft',
+    element: <Suspense fallback={Loading} ><Craft /></Suspense>
+  },
 
 ]);
 

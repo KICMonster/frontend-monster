@@ -6,6 +6,7 @@ import ImageClicker from '../component/mian/ImageClicker';
 import InteractiveImage from '../component/mian/InteractiveImage';
 import CocktailLink from '../component/mian/CocktailLink';
 
+
 function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -53,7 +54,7 @@ function Home() {
       <InteractiveImage />
 
       <CocktailLink />
-      
+
     </BasicLayout>
   );
 }
