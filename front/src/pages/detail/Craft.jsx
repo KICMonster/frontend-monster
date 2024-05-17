@@ -3,6 +3,7 @@ import CraftList from "../../component/list/CraftList";
 import "../../component/list/CraftList.css";
 import "../detail/Craft.css"
 import { useParams } from "react-router-dom";
+import BasicLayout from "../../layouts/BasicLayout";
 function Craft() {
 
     const { key } = useParams();
@@ -36,7 +37,7 @@ function Craft() {
     }, [key]);
 
     return (
-        <>
+        <BasicLayout>
             <main className="crafts">
                 {/* 계량 */}
                 {isMensuration && (
@@ -150,8 +151,8 @@ function Craft() {
 
             <footer>
                 <CraftList />
-            </footer>   
-        </>
+            </footer>
+        </BasicLayout>
     );
 }
 

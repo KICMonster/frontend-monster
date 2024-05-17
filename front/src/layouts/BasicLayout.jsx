@@ -1,8 +1,6 @@
 // BasicLayout.js
 
 import React, { useState, useEffect } from "react";
-import BasicMenu from "../component/BasicMenu";
-import TopNavBar from "../component/mian/TopNavBar";
 import DynamicHeader from "../component/mian/DynamicHeader";
 
 

@@ -1,11 +1,11 @@
-import BasicMenu from '../../component/BasicMenu';
+
+import BasicLayout from '../../layouts/BasicLayout';
 import '../detail/history.css';
 
 function HistoryPage() {
     return (
-        <>
-            <BasicMenu />
-            <header className='historyHeader'>
+        <BasicLayout>
+            <div className='historyHeader'>
                 <div className="histoy_div1" >
                     <img src="https://kr.imboldn.com/wp-content/uploads/2022/07/image-03-12-800x450.jpg" />
                     <div className='history_name'>
@@ -15,7 +15,7 @@ function HistoryPage() {
                     </div>
                 </div>
 
-            </header>
+            </div>
             <main className='historyMain'>
                 <p className='historyCokatail'>
                     칵테일은 술과 여러 종류의 음료, 첨가물 등을 섞어 만든 혼합주를 일컫는다.
@@ -39,7 +39,7 @@ function HistoryPage() {
                 </div>
 
             </main>
-        </>
+        </BasicLayout>
     );
 }
 export default HistoryPage;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const corsAnywhere = 'https://cors-anywhere.herokuapp.com/';
 
@@ -166,6 +166,8 @@ function LoginPage() {
           <a href={KAKAO_AUTH_URL}>카카오 로그인 하기</a>
           <a href={GOOGLE_AUTH_URL}>구글 로그인</a>
           <a href={NAVER_AUTH_URL}>네이버 로그인</a>
+
+          <Link to={"/additional"}>회원가입</Link>
         </form>
     </div>
   );

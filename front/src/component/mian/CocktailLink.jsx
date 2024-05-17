@@ -8,7 +8,7 @@ const links = [
     { name: '칵테일', imageUrl: cocktail, link: '/ViewPage' },
     { name: '재료', imageUrl: material, link: '/Ingredient' },
     { name: '안주', imageUrl: food, link: '/TodayCocktail' },
-    { name: '제조법', imageUrl: make, link: '' }
+    { name: '제조법', imageUrl: make, link: '/craft/mensuration' }
   ];
   
   const CocktailLink = () => {
