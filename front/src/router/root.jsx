@@ -4,15 +4,16 @@ import LoginPage from '../pages/LoginPage';
 import LoginRouter from './LoginRouter';
 import Mypage from '../pages/Mypage';
 import JoinRouter from './JoinRouter';
-import Join from '../pages/Join';
-import AdditionalForm from '../component/AdditionalForm';
+
+import AdditionalForm from '../component/login/AdditionalForm';
 import { Suspense } from 'react';
 import ViewPage from '../pages/VIewPage';
 import IngredientPage from '../pages/IngredientPage';
 import IndexPage from '../pages/todo/IndexPage';
-import HistoryPage from '../pages/detail/HistoryPage';
-import Craft from '../pages/detail/Craft';
 import CocktailDetail from '../pages/CocktailDetail';
+import CraftPage from '../pages/aside/CraftPage';
+import HistoryPage from '../pages/aside/HistoryPage';
+import Join from '../component/login/Join';
 
 const Loading = <div className={'bg-red-800'}>Loading...</div>
 const root = createBrowserRouter([
@@ -66,7 +67,7 @@ const root = createBrowserRouter([
   },
   {
     path: '/craft/:key',
-    element: <Suspense fallback={Loading} ><Craft /></Suspense>                     //기초제조법페이지
+    element: <Suspense fallback={Loading} ><CraftPage /></Suspense>                     //기초제조법페이지
   },
 
 ]);

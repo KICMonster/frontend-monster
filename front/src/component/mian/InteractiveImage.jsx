@@ -4,8 +4,8 @@ import cocktailImage1 from '../../img/ddd.png';
 import cocktailImage2 from '../../img/sss.jpg';
 import cocktailImage3 from '../../img/aaa.jpg';
 import CraftList from '../list/CraftList';
-import HistoryPage from '../../pages/detail/HistoryPage';
 import { Link } from 'react-router-dom';
+import HistoryPage from '../../pages/aside/HistoryPage';
 
 const linksList = [
   [<Link to="/history" key="history"><HistoryPage /></Link>],

@@ -1,5 +1,5 @@
 import React from 'react';
-import EmailForm from '../component/EmailVerification';
+import EmailForm from '../component/login/EmailVerification';
 
 
 

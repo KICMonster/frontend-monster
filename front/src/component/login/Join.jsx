@@ -1,4 +1,4 @@
-import EmailForm from "../component/EmailVerification";
+import EmailForm from "../login/EmailVerification";
 
 
 function Join(){
