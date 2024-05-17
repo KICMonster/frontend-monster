@@ -15,8 +15,7 @@ function TopNavBar({ isShrunk }) {
         <Nav.Link href={'/ViewPage'} className={`nav-link ${isShrunk ? 'shrink' : 'expand'}`}>칵테일</Nav.Link>
         <Nav.Link href={'/Ingredient'} className={`nav-link ${isShrunk ? 'shrink' : 'expand'}`}>재료</Nav.Link>
         <Nav.Link href={'/TodayCocktail'} className={`nav-link ${isShrunk ? 'shrink' : 'expand'}`}>안주</Nav.Link>
-        <Nav.Link href={'/history'} className={`nav-link ${isShrunk ? 'shrink' : 'expand'}`}>역사</Nav.Link>
-        <Nav.Link href={'/craft/mensuration'} className={`nav-link ${isShrunk ? 'shrink' : 'expand'}`}>기초 제조</Nav.Link>
+        <Nav.Link href={'/#'} className={`nav-link ${isShrunk ? 'shrink' : 'expand'}`}>나만의 칵테일</Nav.Link>
         
       </Nav>
       {/* <div>

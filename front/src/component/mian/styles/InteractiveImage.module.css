@@ -24,11 +24,13 @@
   }
   
   .contentSection {
-    width: 80%; /* 리스트가 컨테이너를 꽉 채우도록 */
+    width: 90%; /* 리스트가 컨테이너를 꽉 채우도록 */
+    height: 602px;
     background: #0dabcf;
     padding: 40px;
     display: block; /* 항상 표시 */
     box-sizing: border-box; /* 패딩 포함한 전체 크기 조정 */
+    overflow: hidden;
   }
   
   .link {
