@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import BasicLayout from "../layouts/BasicLayout";
 
-function MainPage(){
+function CocktailDetail(){
     return(
         <BasicLayout>
             <div className={"Cocktail"}>
-                
+                dd
             </div>
         </BasicLayout>
     )
 
 }
 
-export default MainPage;
+export default CocktailDetail;

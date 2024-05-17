@@ -12,6 +12,7 @@ import IngredientPage from '../pages/IngredientPage';
 import IndexPage from '../pages/todo/IndexPage';
 import HistoryPage from '../pages/detail/HistoryPage';
 import Craft from '../pages/detail/Craft';
+import CocktailDetail from '../pages/CocktailDetail';
 
 const Loading = <div className={'bg-red-800'}>Loading...</div>
 const root = createBrowserRouter([
@@ -41,6 +42,15 @@ const root = createBrowserRouter([
     path: '/ViewPage',
     element: <Suspense fallback={Loading}><ViewPage /></Suspense>                  //칵테일리스트
 
+  },
+  // {
+  //   path: '/CocktailDetail',
+  //   element: <Suspense fallback={Loading}><CocktailDetail /></Suspense>                  //칵테일 상세페이지
+
+  // },
+  {
+    path: '/cocktail/martini',
+    element: <Suspense fallback={Loading}><CocktailDetail /></Suspense> // 칵테일 상세페이지(더미 데이터)
   },
   {
     path: '/Ingredient',

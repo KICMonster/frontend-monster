@@ -1,39 +1,61 @@
 import React, { useState, useEffect } from "react";
 import BasicLayout from "../layouts/BasicLayout";
+import { Link } from "react-router-dom";
 
 function ViewPage() {
   const [cocktails, setCocktails] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // 모든 칵테일 값을 불러와서 상태에 설정하는 함수
-  const fetchAllCocktails = async () => {
-    try {
-      // 칵테일 데이터를 가져올 API 엔드포인트 URL
-      const endpoint = 'http://localhost:9092/api/cocktail'; // API 엔드포인트 URL
-
-      // fetch를 사용하여 GET 요청을 보냄
-      const response = await fetch(endpoint);
-
-      // JSON 형식으로 변환하여 응답 데이터를 가져옴
-      const data = await response.json();
-
-      // 응답 데이터를 상태에 설정
-      setCocktails(data);
-    } catch (error) {
-      // 오류가 발생한 경우 오류 메시지 출력
-      console.error('Error fetching cocktails:', error);
-    }
+  const fetchAllCocktails = () => {
+    const dummyData = [
+      { id: 1, name: "마티니", ingredients: ["진", "마티니 버무스", "올리브"], image: "martini.jpg" },
+      { id: 2, name: "모히또", ingredients: ["럼", "라임 주스", "민트", "설탕", "탄산수"], image: "mojito.jpg" },
+      { id: 3, name: "칵테일3", ingredients: ["재료1", "재료2", "재료3"], image: "cocktail3.jpg" },
+      { id: 1, name: "마티니", ingredients: ["진", "마티니 버무스", "올리브"], image: "martini.jpg" },
+      { id: 2, name: "모히또", ingredients: ["럼", "라임 주스", "민트", "설탕", "탄산수"], image: "mojito.jpg" },
+      { id: 3, name: "칵테일3", ingredients: ["재료1", "재료2", "재료3"], image: "cocktail3.jpg" },
+      // 더 많은 칵테일 데이터가 있다면 여기에 추가하세요
+    ];
+    setCocktails(dummyData);
+    setLoading(false);
   };
 
   useEffect(() => {
-    fetchAllCocktails(); // 컴포넌트가 마운트되면 모든 칵테일 데이터를 불러옴
-  }, []); // 빈 배열을 전달하여 한 번만 실행되도록 설정
+    fetchAllCocktails();
+  }, []);
+
+  const groupCocktails = () => {
+    const groupedCocktails = [];
+    const size = 5;
+    for (let i = 0; i < cocktails.length; i += size) {
+      groupedCocktails.push(cocktails.slice(i, i + size));
+    }
+    return groupedCocktails;
+  };
 
   return (
     <BasicLayout>
-      {/* 모든 칵테일 데이터를 가로로 표시 */}
-      <div>
-        
-      </div>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          {groupCocktails().map((group, index) => (
+            <div key={index} style={{ display: "flex" }}>
+              {group.map(cocktail => (
+                <div key={cocktail.id} style={{ width: "200px", margin: "10px", backgroundColor: "#fff", borderRadius: "8px", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)" }}>
+                  <Link to={cocktail.name === "마티니" ? "/cocktail/martini" : "#"} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <img src={cocktail.image} alt={cocktail.name} style={{ width: "100%", borderTopLeftRadius: "8px", borderTopRightRadius: "8px" }} />
+                    <div style={{ padding: "20px" }}>
+                      <h2>{cocktail.name}</h2>
+                      <p>재료: {cocktail.ingredients.join(", ")}</p>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
     </BasicLayout>
   );
 }
