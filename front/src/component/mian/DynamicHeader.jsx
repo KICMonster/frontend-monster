@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import TopNavBar from './TopNavBar';
+import SearchBar from './SearchBar';
+import LoginButton from './LoginButton';
+
 
 function DynamicHeader() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isShrunk, setShrunk] = useState(false);
+
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -20,25 +24,16 @@ function DynamicHeader() {
     };
   }, []);
 
+ 
   return (
     <header className={isShrunk ? 'header shrink' : 'header expand'}>
-      <TopNavBar isShrunk={isShrunk} />
-       <div className={isShrunk ? 'search-bar-container shrink' : 'search-bar-container expand'}>
-        <input
-          type="text"
-          className={isShrunk ? 'search-input shrink' : 'search-input expand'}
-          value={searchTerm}
-          onChange={handleSearchChange}
-          placeholder="칵테일 뀨"
-        />
-        <button
-          className={isShrunk ? 'search-button shrink' : 'search-button expand'}
-          onClick={() => console.log("검색: ", searchTerm)}
-        >
-          검색
-        </button>
+      <div className="header-content">
+        <TopNavBar isShrunk={isShrunk} />
+        <LoginButton />
       </div>
+      <SearchBar />
     </header>
+    
   );
 }
 

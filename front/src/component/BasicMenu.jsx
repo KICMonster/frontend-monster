@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import './BasicMenu.css'
+import '../App.css'
 
 function BasicMenu() {
     return (
@@ -10,7 +11,6 @@ function BasicMenu() {
                     <li><Link to={'/ViewPage'}>칵테일</Link></li>
                     <li><Link to={'/Ingredient'}>재료</Link></li>
                     <li><Link to={'/TodayCocktail'}>안주</Link></li>
-                    <li><Link to={'/history'}>역사</Link></li>
                 </ul>
             </div>
         </nav>

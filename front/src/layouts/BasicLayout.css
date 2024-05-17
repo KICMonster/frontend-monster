@@ -1,9 +1,4 @@
 /* BasicLayout.css */
-.header {
-  background-color: #ab2d2d;
-  padding: 10px;
-  transition: all 0.3s ease; /* 스크롤 시 헤더의 변화를 부드럽게 만듭니다. */
-}
 
 .scrolled {
   position: fixed;
@@ -15,7 +10,7 @@
 }
 
 /* 검색 폼 스타일 */
-.search-form-container {
+/* .search-form-container {
   background-color: #333;
   padding: 10px 0;
   text-align: center;
@@ -42,13 +37,10 @@
 
 .search-button:hover {
   background-color: #ddd;
-}
+} */
 
-/* 상단 헤더만 빨간색으로 */
-.header ul li a {
-    color: #ffffff;
-    text-decoration: none;
-}
+
+
 
 
 
@@ -62,7 +54,7 @@
 
 /* 푸터 css */
 .footer {
-  background-color: #f0f0f0;
+  background-color: #ab2d2d;
   padding: 10px;
   text-align: center;
 }
