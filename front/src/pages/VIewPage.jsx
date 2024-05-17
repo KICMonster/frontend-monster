@@ -8,7 +8,7 @@ function ViewPage() {
   const fetchAllCocktails = async () => {
     try {
       // 칵테일 데이터를 가져올 API 엔드포인트 URL
-      const endpoint = 'http://localhost:9090/api/cocktail'; // API 엔드포인트 URL
+      const endpoint = 'http://localhost:9092/api/cocktail'; // API 엔드포인트 URL
 
       // fetch를 사용하여 GET 요청을 보냄
       const response = await fetch(endpoint);

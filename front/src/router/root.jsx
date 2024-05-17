@@ -55,7 +55,7 @@ const root = createBrowserRouter([
     element: <Suspense fallback={Loading}><HistoryPage /></Suspense>
   },
   {
-    path: '/craft',
+    path: '/craft/:key',
     element: <Suspense fallback={Loading} ><Craft /></Suspense>
   },
 
