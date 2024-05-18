@@ -20,6 +20,7 @@ function DynamicHeader() {
 
     window.addEventListener('scroll', handleScroll);
     return () => {
+      
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
@@ -28,10 +29,10 @@ function DynamicHeader() {
   return (
     <header className={isShrunk ? 'header shrink' : 'header expand'}>
       <div className="header-content">
-        <TopNavBar isShrunk={isShrunk} />
+        <TopNavBar isShrunk={isShrunk} /> 
+        <SearchBar />
         <LoginButton />
       </div>
-      <SearchBar />
     </header>
     
   );

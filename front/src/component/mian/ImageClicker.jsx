@@ -31,7 +31,7 @@ function ImageClicker() {
                 alt="Clickable"
                 style={{ width: '100%', height: 'auto', cursor: 'pointer' }}
             />
-            <div style={{ position: 'absolute', top: '50%', right: '0', transform: 'translateY(-50%)', textAlign: 'center', background: 'rgba(255, 255, 255, 0.8)', padding: '20px' }}>
+            <div >
                 <h1>{cocktails[Math.floor(Math.random() * cocktails.length)].name}</h1>
                 <p>{cocktails[Math.floor(Math.random() * cocktails.length)].description}</p>
                 <button onClick={() => window.location.href = '/ViewPage'} style={{ marginTop: '10px', marginRight: '10px' }}>마시러 가기</button>

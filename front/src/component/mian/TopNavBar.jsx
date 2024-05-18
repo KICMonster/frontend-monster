@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navbar, Nav, Button } from 'react-bootstrap';
+import { Navbar, Nav, Dropdown } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import SearchBar from './SearchBar';
 
@@ -9,23 +9,43 @@ function TopNavBar({ isShrunk }) {
   return (
     <Navbar className={isShrunk ? 'navbar shrink' : 'navbar expand'}>
       <Navbar.Brand href={'/'}>
-      <div className="logo"></div> {/* 로고 이미지를 사용하는 div */}
+        <div className="logo"></div> {/* 로고 이미지를 사용하는 div */}
       </Navbar.Brand>
       <Nav className="mr-auto">
-        <Nav.Link href={'/ViewPage'} className={`nav-link ${isShrunk ? 'shrink' : 'expand'}`}>칵테일</Nav.Link>
-        <Nav.Link href={'/Ingredient'} className={`nav-link ${isShrunk ? 'shrink' : 'expand'}`}>재료</Nav.Link>
-        <Nav.Link href={'/TodayCocktail'} className={`nav-link ${isShrunk ? 'shrink' : 'expand'}`}>안주</Nav.Link>
-        <Nav.Link href={'/#'} className={`nav-link ${isShrunk ? 'shrink' : 'expand'}`}>나만의 칵테일</Nav.Link>
-        
+        <Dropdown>
+          <Dropdown.Toggle variant="transparent" >
+            칵테일
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item href="/ViewPage">칵테일</Dropdown.Item>
+            <Dropdown.Item href="/Ingredient">재료</Dropdown.Item>
+            <Dropdown.Item href="/TodayCocktail">역사</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+        <Dropdown>
+          <Dropdown.Toggle variant="transparent" >
+            정보
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item href="/history">역사</Dropdown.Item>
+            <Dropdown.Item href="/craft/mensuration">튜토리얼</Dropdown.Item>
+            <Dropdown.Item href="/#">뉴스</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+        <Dropdown>
+          <Dropdown.Toggle variant="transparent" >
+            컨텐츠
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item href="/#">오늘의 칵테일</Dropdown.Item>
+            <Dropdown.Item href="/#">무작위 칵테일</Dropdown.Item>
+            <Dropdown.Item href="/#">취향 조사</Dropdown.Item>
+            <Dropdown.Item href="/#">칵테일 바 찾기</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </Nav>
-      {/* <div>
-        <button onClick={handleLogin} className="login-button login-button-color">
-          로그인
-        </button>
-      </div> */}
-      
     </Navbar>
-    
+
   );
 }
 
