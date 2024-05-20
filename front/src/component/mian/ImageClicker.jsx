@@ -29,7 +29,7 @@ function ImageClicker() {
             <img
                 src={images[currentIndex]}
                 alt="Clickable"
-                style={{ width: '100%', height: 'auto', cursor: 'pointer' }}
+                style={{ width: '500px', height: '200px', cursor: 'pointer' }}
             />
             <div >
                 <h1>{cocktails[Math.floor(Math.random() * cocktails.length)].name}</h1>

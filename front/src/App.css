@@ -155,7 +155,10 @@
     background-repeat: no-repeat;
   }
   
-  
+  .container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) 1.5fr 1.5fr; /* 5개의 열을 정의하고 마지막 두 열을 1.5배로 설정 */
+  }
   
   
   
