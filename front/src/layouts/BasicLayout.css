@@ -48,18 +48,14 @@
 
 
 
-.info {
-  margin: 0 10%;
-  height: 400;
-  display: grid;
-  justify-content: start;
-  padding: 0 20px 0 0;
-  grid-gap: 10px;
-}
+
 
 /* 푸터 css */
 .footer {
   background-color: #ab2d2d;
   padding: 10px;
   text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }

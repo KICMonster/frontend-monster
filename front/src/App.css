@@ -22,6 +22,10 @@
     background-color: transparent; /* 투명 배경 */
     color: white; /* 글자 색상 */
   }
+
+  .info{
+
+  }
   
   /* App.css */
   .search-bar-container {

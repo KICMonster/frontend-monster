@@ -6,7 +6,15 @@ import '../../App.css';
 function Grid() {
 
     return(
-        <>
+        <div style={{
+          margin: '0 10%',
+          height: '400px',
+          display: 'grid',
+          justifyContent: 'start',
+          padding: '0 20px 0 0',
+          gridGap: '10px',
+          
+        }}>
     <div style={{
         gridColumn: '1 / span 3',
         gridRow: '1 / span 2',
@@ -56,7 +64,7 @@ function Grid() {
       }}>
         <h1>광고</h1>
       </div>
-      </>
+      </div>
     );
 }
 
