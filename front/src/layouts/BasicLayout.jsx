@@ -1,7 +1,7 @@
 // BasicLayout.js
 
 import React, { useState, useEffect } from "react";
-import DynamicHeader from "../component/mian/DynamicHeader";
+import DynamicHeader from "../component/main/DynamicHeader";
 
 
 function BasicLayout({ children }) {

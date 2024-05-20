@@ -14,6 +14,11 @@ import CocktailDetail from '../pages/CocktailDetail';
 import CraftPage from '../pages/aside/CraftPage';
 import HistoryPage from '../pages/aside/HistoryPage';
 import Join from '../component/login/Join';
+import TrendNews from '../pages/TrendNews';
+import AnalysisComplete from '../pages/AnalysisComplete';
+import Weather from '../component/main/wheather';
+import TasteAnalysis from '../component/detail/tasteAnalysis';
+
 
 const Loading = <div className={'bg-red-800'}>Loading...</div>
 const root = createBrowserRouter([
@@ -69,7 +74,24 @@ const root = createBrowserRouter([
     path: '/craft/:key',
     element: <Suspense fallback={Loading} ><CraftPage /></Suspense>                     //기초제조법페이지
   },
-
+  {
+    path : '/taste', // 기호조사. 필요 페이지와 연결할것.지금은 home.jsx에 버튼. 회원가입 페이지와 연결할 경우 로직 수정할 필요.   
+    element : <TasteAnalysis/>, // 회원가입 로직과 연결 할 시 프론트 경로작업&비동기 통신전달값 추가 후 백엔드에 문의
+    children: [
+      {
+        path: 'complete', // '/taste'의 하위 경로로 'complete'를 정의
+        element: <AnalysisComplete/> // '/taste/complete'에 해당하는 컴포넌트
+      }
+    ]
+  },
+  {
+    path: '/trendNews',       // 뉴스 경로. 조정 필요. 
+    element: <TrendNews/>
+  },
+  {
+    path: '/weather',       
+    element: <Weather />
+  },
 ]);
 
 export default root;

@@ -28,7 +28,7 @@ function TopNavBar({ isShrunk }) {
           <Dropdown.Menu>
             <Dropdown.Item href="/history">역사</Dropdown.Item>
             <Dropdown.Item href="/craft/mensuration">튜토리얼</Dropdown.Item>
-            <Dropdown.Item href="/#">뉴스</Dropdown.Item>
+            <Dropdown.Item href="/trendNews">뉴스</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         <Dropdown>
@@ -37,8 +37,8 @@ function TopNavBar({ isShrunk }) {
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item href="/#">오늘의 칵테일</Dropdown.Item>
-            <Dropdown.Item href="/#">무작위 칵테일</Dropdown.Item>
-            <Dropdown.Item href="/#">취향 조사</Dropdown.Item>
+            <Dropdown.Item href="/weather">무작위 칵테일</Dropdown.Item>
+            <Dropdown.Item href="/taste">취향 조사</Dropdown.Item>
             <Dropdown.Item href="/#">칵테일 바 찾기</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>

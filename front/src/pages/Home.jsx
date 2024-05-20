@@ -1,9 +1,9 @@
 import BasicLayout from '../layouts/BasicLayout';
 import "../layouts/BasicLayout.css"
-import ImageClicker from '../component/mian/ImageClicker';
-import InteractiveImage from '../component/mian/InteractiveImage';
-import CocktailLink from '../component/mian/CocktailLink';
-import Grid from '../component/mian/Grid';
+import ImageClicker from '../component/main/ImageClicker';
+import InteractiveImage from '../component/main/InteractiveImage';
+import CocktailLink from '../component/main/CocktailLink';
+import Grid from '../component/main/Grid';
 import sicexam from '../img/sicexam.png';
 import MapContainer from '../component/detail/MapContainer';
 
