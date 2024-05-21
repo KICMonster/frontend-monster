@@ -1,0 +1,89 @@
+.container {
+    margin: 0 10%;
+    height: 400px;
+    display: grid;
+    justify-content: start;
+    padding: 0 20px 0 0;
+    grid-gap: 10px;
+  }
+  
+  .image-container {
+    grid-column: 1 / span 3;
+    grid-row: 1 / span 2;
+    position: relative;
+  }
+  
+  .image-container img {
+    height: 500px;
+  }
+  
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .arrow-button,
+  .random-button {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 2em;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .arrow-button.left {
+    left: 0;
+  }
+  
+  .arrow-button.right {
+    right: 0;
+  }
+  
+  .description {
+    grid-column: 4 / span 5;
+    grid-row: 1;
+  }
+  
+  .operation {
+    grid-column: 4 / span 2;
+    grid-row: 2;
+  }
+  
+  .content {
+    grid-column: 8;
+    grid-row: 2;
+  }
+  
+  .content img {
+    height: 300px;
+  }
+  
+  .advertisement {
+    grid-row: 3;
+  }
+  
+  .random-button {
+    margin-top: 10px;
+    background-color: gray;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .side-menu-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .side-menu-container img {
+    height: 150px;
+    margin: 0 10px;
+  }
+  
+  .arrow-button {
+    font-size: 1.5em;
+  }
+  
