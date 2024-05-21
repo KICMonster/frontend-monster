@@ -41,11 +41,10 @@ function LoginButton() {
 
 
     return (
-        <div>
-
+        <>
             <p>
-                Please <a href="/login" className="login-button login-button-color">login/</a>
-                <a href="/join" className="login-button login-button-color" >join</a> us!
+                <a href="/login" className="login-button login-button-color">login/</a>
+                <a href="/join" className="login-button login-button-color" >join</a>
             </p>
 
             {isLoggedIn ? (
@@ -55,7 +54,7 @@ function LoginButton() {
                 // 토큰이 없을 경우 로그인 버튼
                 <></>
             )}
-        </div>
+        </>
     );
 
 }

@@ -7,17 +7,18 @@ import JoinRouter from './JoinRouter';
 
 import AdditionalForm from '../component/login/AdditionalForm';
 import { Suspense } from 'react';
-import ViewPage from '../pages/cacktaill/VIewPage';
-import IngredientPage from '../pages/cacktaill/IngredientPage';
-import IndexPage from '../pages/todo/IndexPage';
-import CocktailDetail from '../pages/cacktaill/CocktailDetail';
+import ViewPage from '../pages/cocktail/VIewPage';
+import IngredientPage from '../pages/cocktail/IngredientPage';
+
+import CocktailDetail from '../pages/cocktail/CocktailDetail';
 import CraftPage from '../pages/information/CraftPage';
 import HistoryPage from '../pages/information/HistoryPage';
 import Join from '../component/login/Join';
 import TrendNews from '../pages/information/TrendNews';
 import AnalysisComplete from '../pages/AnalysisComplete';
-import Weather from '../component/main/wheather';
-import TasteAnalysis from '../component/detail/tasteAnalysis';
+import Weather from '../component/main/Weather';
+import TasteAnalysis from '../component/detail/TasteAnalysis';
+import IndexPage from '../pages/todo/IndexPage';
 
 
 const Loading = <div className={'bg-red-800'}>Loading...</div>

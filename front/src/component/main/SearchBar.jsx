@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import { FaSearch } from "react-icons/fa";
 function SearchBar() {
     const [searchQuery, setSearchQuery] = useState(""); // 검색어 상태 추가
     
@@ -26,7 +26,7 @@ function SearchBar() {
                 placeholder="검색어를 입력하세요..."
                 className="search-input"
                 />
-            <button type="submit" className="search-button">검색</button>
+            <button type="submit" className="search-button"><FaSearch /></button>
             </form>
         </div>
     );

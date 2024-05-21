@@ -44,7 +44,6 @@ function Grid() {
         gridColumn: '1 / span 3',
         gridRow: '1 / span 2',
       }}>
-        <h1>이미지</h1>
         {randomCocktailImage && (
           <img src={randomCocktailImage} style={{ height: '500px' }} alt="Random Cocktail" />
         )}
@@ -54,7 +53,7 @@ function Grid() {
         gridColumn: '4 / span 5',
         gridRow: '1',
       }}>
-        <h1>설명</h1>
+        <h1>칵테일 이름 </h1>
         <p className='historyCokatail'>
           칵테일은 술과 여러 종류의 음료, 첨가물 등을 섞어 만든 혼합주를 일컫는다.
           다만, 무알콜 칵테일도 있으며 이들은 목테일(Mocktail, Mock과 Cocktail의 합성어)
