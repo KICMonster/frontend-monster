@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import BasicLayout from '../layouts/BasicLayout';
+import BasicLayout from '../../layouts/BasicLayout';
 
 function CocktailDetail({ ...dummyData }) {
     const { key } = useParams(); // URL 매개변수 가져오기

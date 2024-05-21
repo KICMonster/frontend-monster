@@ -1,8 +1,10 @@
 import React, { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import OptionSelector from '../../pages/aside/Taste';
+import BasicLayout from '../../layouts/BasicLayout';
 import AnalysisComplete from '../../pages/AnalysisComplete';
+import OptionSelector from '../../pages/contents/Taste';
+
 
 
 
@@ -52,10 +54,10 @@ const TasteAnalysis = () => {
   };
 
   return (
-    <div>
+    <BasicLayout >
     {!isSelectionComplete && <OptionSelector onSelectionComplete={handleOptionSelectionComplete} />}
     {isSelectionComplete && <AnalysisComplete/>}
-  </div>
+    </ BasicLayout >
   );
 };
 

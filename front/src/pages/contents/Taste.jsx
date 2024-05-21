@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import options from '../../data/questionData.json';
-import "../aside/taste.css"
+import "../contents/taste.css"
 
 /**@todo 필요시 클래스 이름, 폰트 css 수정. 선택지 버튼에 아이콘이나 이미지 추가 필요한 경우 questionData.json 
  * 파일 객체값에 "icon":"아이콘 이름" 형식으로 추가하고 import 후 

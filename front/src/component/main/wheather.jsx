@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import BasicLayout from '../../layouts/BasicLayout';
 
 function Weather() {
   const [weather, setWeather] = useState(null);
@@ -96,7 +97,7 @@ function Weather() {
   }
 
   return (
-    <div className="App">
+    <BasicLayout >
       {weather ? (
         <div>
           <h1>Current Weather</h1>
@@ -109,7 +110,7 @@ function Weather() {
       ) : (
         <p>No weather data available</p>
       )}
-    </div>
+    </BasicLayout >
   );
 }
 

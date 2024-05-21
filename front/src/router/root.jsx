@@ -7,14 +7,14 @@ import JoinRouter from './JoinRouter';
 
 import AdditionalForm from '../component/login/AdditionalForm';
 import { Suspense } from 'react';
-import ViewPage from '../pages/VIewPage';
-import IngredientPage from '../pages/IngredientPage';
+import ViewPage from '../pages/cacktaill/VIewPage';
+import IngredientPage from '../pages/cacktaill/IngredientPage';
 import IndexPage from '../pages/todo/IndexPage';
-import CocktailDetail from '../pages/CocktailDetail';
-import CraftPage from '../pages/aside/CraftPage';
-import HistoryPage from '../pages/aside/HistoryPage';
+import CocktailDetail from '../pages/cacktaill/CocktailDetail';
+import CraftPage from '../pages/information/CraftPage';
+import HistoryPage from '../pages/information/HistoryPage';
 import Join from '../component/login/Join';
-import TrendNews from '../pages/TrendNews';
+import TrendNews from '../pages/information/TrendNews';
 import AnalysisComplete from '../pages/AnalysisComplete';
 import Weather from '../component/main/wheather';
 import TasteAnalysis from '../component/detail/tasteAnalysis';
@@ -49,7 +49,7 @@ const root = createBrowserRouter([
     element: <Suspense fallback={Loading}><ViewPage /></Suspense>                  // 칵테일 리스트
   },
   {
-    path: '/cocktail/:cocktailId',  // 동적인 칵테일 상세 페이지 라우트
+    path: '/cocktail/:cocktailId',                                      
     element: <Suspense fallback={Loading}><CocktailDetail /></Suspense> // 칵테일 상세 페이지
   },
   {

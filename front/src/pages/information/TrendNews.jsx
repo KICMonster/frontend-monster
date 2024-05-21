@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import BasicLayout from '../../layouts/BasicLayout';
 
 
 // 뉴스 데이터. 폰트, 각 기사 크기적용 등 CSS 처리 필요. 페이징 예시로 10개씩 10페이까지 지정했으나 필요에따라 조정.
@@ -19,7 +20,7 @@ function TrendNews() {
         const cachedNewsData = localStorage.getItem('newsData');
         const cachedTimestamp = localStorage.getItem('newsDataTimestamp');
         const now = new Date().getTime();
-        
+
         // 24시간마다 데이터를 갱신하도록 설정
         if (cachedNewsData && cachedTimestamp && (now - cachedTimestamp < 24 * 60 * 60 * 1000)) {
             console.log("저장된 데이터를 사용합니다.");
@@ -36,20 +37,20 @@ function TrendNews() {
         try {
             for (let i = 0; i < totalPages; i++) {
                 const startIndex = i * numPerPage + 1;
-                    const url = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(query)}&cx=${SEARCH_ENGINE_ID}&key=${API_KEY}&num=${numPerPage}&start=${startIndex}&sort=date`;
-                    
-                    const response = await axios.get(url);
-                    const articles = response.data.items.map(item => ({
-                        title: item.title,
-                        snippet: item.snippet,
-                        link: item.link,
-                        image: item.pagemap?.cse_image?.[0]?.src
-                    }));
+                const url = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(query)}&cx=${SEARCH_ENGINE_ID}&key=${API_KEY}&num=${numPerPage}&start=${startIndex}&sort=date`;
 
-                    allArticles.push(...articles);
-                }
+                const response = await axios.get(url);
+                const articles = response.data.items.map(item => ({
+                    title: item.title,
+                    snippet: item.snippet,
+                    link: item.link,
+                    image: item.pagemap?.cse_image?.[0]?.src
+                }));
 
-                setArticles(allArticles);
+                allArticles.push(...articles);
+            }
+
+            setArticles(allArticles);
             // 전체 데이터를 로컬 스토리지에 저장
             localStorage.setItem('newsData', JSON.stringify(allArticles));
             localStorage.setItem('newsDataTimestamp', new Date().getTime());
@@ -67,8 +68,7 @@ function TrendNews() {
     };
 
     return (
-        <>
-            <Link to="/">홈</Link>
+        <BasicLayout >
             <h1>Cocktail News</h1>
             {articles.slice((currentPage - 1) * numPerPage, currentPage * numPerPage).map((article, index) => (
                 <div key={index}>
@@ -82,7 +82,7 @@ function TrendNews() {
                 <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
                 <button onClick={handleNextPage} disabled={currentPage === Math.ceil(totalResults / numPerPage)}>Next</button>
             </div>
-        </>
+        </BasicLayout >
     );
 }
 

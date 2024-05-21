@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import BasicLayout from "../layouts/BasicLayout";
+import BasicLayout from "../../layouts/BasicLayout";
 import { Link } from "react-router-dom";
 
 function ViewPage() {

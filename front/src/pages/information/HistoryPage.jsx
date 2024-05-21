@@ -1,6 +1,6 @@
 
 import BasicLayout from '../../layouts/BasicLayout';
-import '../aside/history.css';
+import '../information/history.css';
 
 function HistoryPage() {
     return (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import BasicLayout from "../layouts/BasicLayout";
+import BasicLayout from "../../layouts/BasicLayout";
 
 function ViewPage() {
   const [cocktails, setCocktails] = useState([]);

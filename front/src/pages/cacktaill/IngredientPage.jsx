@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import BasicLayout from "../layouts/BasicLayout";
+import BasicLayout from "../../layouts/BasicLayout";
 
 function IngredientPage() {
   // 임의의 재료 데이터
