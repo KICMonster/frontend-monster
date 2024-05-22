@@ -4,6 +4,7 @@ import Guaka from "../../img/guaka.jpg";
 import Fruit from "../../img/fruit.jpg";
 import Lagu from "../../img/lagu.jpg";
 import Nacho from "../../img/nacho.jpg";
+import "./styles/SideMenuMainPage.css";
 
 function SideMenuMainPage() {
   const sideMenus = [

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import '../../App.css';
 import './styles/Grid.css'; // 추가된 CSS 파일을 import 합니다.
 import Mo from "../../img/mo.jpg";
 import Ma from "../../img/ma.jpg";
@@ -28,7 +27,7 @@ function Grid() {
 
     setCocktails(dummyData);
   };
-  
+
   useEffect(() => {
     fetchCocktails();
   }, []);
@@ -37,6 +36,28 @@ function Grid() {
     const randomIndex = Math.floor(Math.random() * cocktails.length);
     setCurrentIndex(randomIndex);
   };
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://ads-partners.coupang.com/g.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    script.onload = () => {
+      new window.PartnersCoupang.G({
+        id: 780256,
+        template: "carousel",
+        trackingCode: "AF0800913",
+        width: "680",
+        height: "140",
+        tsource: ""
+      });
+    };
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <div className="container">
@@ -50,16 +71,16 @@ function Grid() {
       </div>
 
       <div className="description">
-          <div>
-            <h1>{cocktail[Math.floor(Math.random() * cocktails.length)].name}</h1>
-            <p>{cocktail[Math.floor(Math.random() * cocktails.length)].description}</p>
-          </div>
-          <p className='recipe'>
-            칵테일은 술과 여러 종류의 음료, 첨가물 등을 섞어 만든 혼합주를 일컫는다.
-            다만, 무알콜 칵테일도 있으며 이들은 목테일(Mocktail, Mock과 Cocktail의 합성어)
-            이라고 부른다. 사람의 기호와 취향에 맞추어 독특한 맛과 빛깔을 낼 수 있다.
-            명칭의 유래에 대해서는 여러 가지 설이 있지만, 1795년쯤 미국 루이지애나주.
-          </p>
+        <div>
+          <h1>{cocktail[Math.floor(Math.random() * cocktails.length)].name}</h1>
+          <p>{cocktail[Math.floor(Math.random() * cocktails.length)].description}</p>
+        </div>
+        <p className='recipe'>
+          칵테일은 술과 여러 종류의 음료, 첨가물 등을 섞어 만든 혼합주를 일컫는다.
+          다만, 무알콜 칵테일도 있으며 이들은 목테일(Mocktail, Mock과 Cocktail의 합성어)
+          이라고 부른다. 사람의 기호와 취향에 맞추어 독특한 맛과 빛깔을 낼 수 있다.
+          명칭의 유래에 대해서는 여러 가지 설이 있지만, 1795년쯤 미국 루이지애나주.
+        </p>
       </div>
 
       <div className="operation">
@@ -71,18 +92,22 @@ function Grid() {
       <div className="content">
         <h1>컨텐츠</h1>
         <div className="button-container">
-        <button onClick={handleRandomClick} className="random-button">
-          GIS
-        </button>
-        <button onClick={handleRandomClick} className="random-button">
-          다른칵테일
-        </button>
+          <button onClick={handleRandomClick} className="random-button">
+            GIS
+          </button>
+          <button onClick={handleRandomClick} className="random-button">
+            다른칵테일
+          </button>
         </div>
       </div>
 
-      <div className="advertisement">
-        <h1>광고</h1>
+      <div className="footer-ad">
+        <div id="coupang-ad" className="coupang-ad"></div>
       </div>
+
+      
+        
+      
     </div>
   );
 }

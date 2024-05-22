@@ -1,6 +1,5 @@
 .container {
     margin: 0 10%;
-    height: 400px;
     display: grid;
     justify-content: start;
     padding: 0 20px 0 0;
@@ -61,29 +60,62 @@
   }
   
   .advertisement {
+    grid-column: 1 / span 1; /* 광고를 전체 너비로 확장 */
     grid-row: 3;
+    margin: 50px 0;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left; 
+  }
+
+  .footer-ad {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    padding: 10px 0;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  .random-button {
-    margin-top: 10px;
-    background-color: gray;
+  .coupang-ad {
+    display: flex;
+    justify-content: center;
+  }
+  
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .description,
+  .operation,
+  .content {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #ab2d2d;
     color: white;
-    padding: 10px;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
   }
   
-  .side-menu-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .side-menu-container img {
-    height: 150px;
-    margin: 0 10px;
-  }
-  
-  .arrow-button {
-    font-size: 1.5em;
+  button:hover {
+    background-color: #922626;
   }
   
