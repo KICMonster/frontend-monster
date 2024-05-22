@@ -17,8 +17,9 @@ import Join from '../component/login/Join';
 import TrendNews from '../pages/information/TrendNews';
 import AnalysisComplete from '../pages/AnalysisComplete';
 import Weather from '../component/main/Weather';
-import TasteAnalysis from '../component/detail/tasteAnalysis';
+import TasteAnalysis from '../component/detail/TasteAnalysis';
 import IndexPage from '../pages/todo/IndexPage';
+import GisPage from '../pages/GisPage';
 
 const Loading = <div className={'bg-red-800'}>Loading...</div>
 const root = createBrowserRouter([
@@ -49,7 +50,7 @@ const root = createBrowserRouter([
     element: <Suspense fallback={Loading}><ViewPage /></Suspense>                  // 칵테일 리스트
   },
   {
-    path: '/cocktail/:cocktailId',                                      
+    path: '/cocktail/:cocktailId',
     element: <Suspense fallback={Loading}><CocktailDetail /></Suspense> // 칵테일 상세 페이지
   },
   {
@@ -89,6 +90,10 @@ const root = createBrowserRouter([
   {
     path: '/weather',
     element: <Weather />
+  },
+  {
+    path: '/mapsearch',
+    element: <GisPage />
   },
 ]);
 

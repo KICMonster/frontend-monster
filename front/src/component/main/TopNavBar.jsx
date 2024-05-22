@@ -39,7 +39,7 @@ function TopNavBar({ isShrunk }) {
             <Dropdown.Item href="/#">오늘의 칵테일</Dropdown.Item>
             <Dropdown.Item href="/weather">무작위 칵테일</Dropdown.Item>
             <Dropdown.Item href="/taste">취향 조사</Dropdown.Item>
-            <Dropdown.Item href="/#">칵테일 바 찾기</Dropdown.Item>
+            <Dropdown.Item href="/mapsearch">칵테일 바 찾기</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </Nav>
