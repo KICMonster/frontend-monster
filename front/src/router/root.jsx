@@ -7,7 +7,7 @@ import JoinRouter from './JoinRouter';
 
 import AdditionalForm from '../component/login/AdditionalForm';
 import { Suspense } from 'react';
-import ViewPage from '../pages/cocktail/VIewPage';
+
 import IngredientPage from '../pages/cocktail/IngredientPage';
 
 import CocktailDetail from '../pages/cocktail/CocktailDetail';
@@ -18,8 +18,8 @@ import TrendNews from '../pages/information/TrendNews';
 import AnalysisComplete from '../pages/AnalysisComplete';
 import Weather from '../component/main/Weather';
 import TasteAnalysis from '../component/detail/TasteAnalysis';
-import IndexPage from '../pages/todo/IndexPage';
 import GisPage from '../pages/GisPage';
+import ViewPage from '../pages/cocktail/VIewPage';
 
 const Loading = <div className={'bg-red-800'}>Loading...</div>
 const root = createBrowserRouter([
@@ -50,6 +50,10 @@ const root = createBrowserRouter([
     element: <Suspense fallback={Loading}><ViewPage /></Suspense>                  // 칵테일 리스트
   },
   {
+    path: '/ViewPage/:id',
+    element: <Suspense fallback={Loading}><ViewPage /></Suspense>                  // 칵테일 리스트
+  },
+  {
     path: '/cocktail/:cocktailId',
     element: <Suspense fallback={Loading}><CocktailDetail /></Suspense> // 칵테일 상세 페이지
   },
@@ -60,10 +64,6 @@ const root = createBrowserRouter([
   {
     path: '/Ingredient',
     element: <Suspense fallback={Loading}><IngredientPage /></Suspense>             //재료리스트
-  },
-  {
-    path: '/TodayCocktail',
-    element: <Suspense fallback={Loading}><IndexPage /></Suspense>                  //추천칵테일
   },
   {
     path: '/history',

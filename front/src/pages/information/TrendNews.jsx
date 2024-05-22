@@ -1,35 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import './TrendNews.css';
 import BasicLayout from '../../layouts/BasicLayout';
 
-
-// 뉴스 데이터. 폰트, 각 기사 크기적용 등 CSS 처리 필요. 페이징 예시로 10개씩 10페이까지 지정했으나 필요에따라 조정.
 const API_KEY = import.meta.env.VITE_GOOOLE_API_KEY;
 const SEARCH_ENGINE_ID = import.meta.env.VITE_GOOGLE_SEARCH_ENGINE_ID;
-const query = '칵테일 트렌드';  // 검색어 설정
+const query = '칵테일 트렌드';
 
 function TrendNews() {
     const [articles, setArticles] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const numPerPage = 10; // 한 페이지당 가져올 결과 수
-    const totalResults = 100; // 예시로 총 결과 수를 100으로 가정
+    const numPerPage = 10;
+    const totalResults = 100;
 
     useEffect(() => {
-        // 로컬 스토리지에서 뉴스 데이터 가져오기
         const cachedNewsData = localStorage.getItem('newsData');
         const cachedTimestamp = localStorage.getItem('newsDataTimestamp');
         const now = new Date().getTime();
 
-        // 24시간마다 데이터를 갱신하도록 설정
         if (cachedNewsData && cachedTimestamp && (now - cachedTimestamp < 24 * 60 * 60 * 1000)) {
-            console.log("저장된 데이터를 사용합니다.");
             setArticles(JSON.parse(cachedNewsData));
         } else {
-            // 캐시된 데이터가 없거나 24시간이 지났을 경우에만 새로운 데이터를 가져옴
             fetchNews();
         }
+
+        const loadScript = (id, callback) => {
+            const script = document.createElement('script');
+            script.src = "https://ads-partners.coupang.com/g.js";
+            script.async = true;
+            document.getElementById(id).appendChild(script);
+            script.onload = callback;
+        };
+
+        loadScript("ad-left", () => {
+            new PartnersCoupang.G({ "id": 780257, "template": "carousel", "trackingCode": "AF0800913", "width": "140", "height": "680", "tsource": "" });
+        });
+
+        loadScript("ad-right", () => {
+            new PartnersCoupang.G({ "id": 780257, "template": "carousel", "trackingCode": "AF0800913", "width": "140", "height": "680", "tsource": "" });
+        });
+
     }, []);
+
     const fetchNews = async () => {
         const totalPages = Math.ceil(totalResults / numPerPage);
         const allArticles = [];
@@ -51,7 +64,6 @@ function TrendNews() {
             }
 
             setArticles(allArticles);
-            // 전체 데이터를 로컬 스토리지에 저장
             localStorage.setItem('newsData', JSON.stringify(allArticles));
             localStorage.setItem('newsDataTimestamp', new Date().getTime());
         } catch (error) {
@@ -68,21 +80,29 @@ function TrendNews() {
     };
 
     return (
-        <BasicLayout >
-            <h1>Cocktail News</h1>
-            {articles.slice((currentPage - 1) * numPerPage, currentPage * numPerPage).map((article, index) => (
-                <div key={index}>
-                    <h2>{article.title}</h2>
-                    {article.image && <img src={article.image} alt={article.title} />}
-                    <p>{article.snippet}</p>
-                    <a href={article.link} target="_blank" rel="noopener noreferrer">Read more</a>
+        <BasicLayout>
+            <div className="main-container">
+                <div id="ad-left" className="ad-sidebar"></div>
+                <div className="content">
+                    <h1>Cocktail News</h1>
+                    {articles.slice((currentPage - 1) * numPerPage, currentPage * numPerPage).map((article, index) => (
+                        <div className="article-container" key={index}>
+                            {article.image && <img src={article.image} alt={article.title} />}
+                            <div className="article-content">
+                                <h2>{article.title}</h2>
+                                <p>{article.snippet}</p>
+                                <a href={article.link} target="_blank" rel="noopener noreferrer">Read more</a>
+                            </div>
+                        </div>
+                    ))}
+                    <div>
+                        <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
+                        <button onClick={handleNextPage} disabled={currentPage === Math.ceil(totalResults / numPerPage)}>Next</button>
+                    </div>
                 </div>
-            ))}
-            <div>
-                <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
-                <button onClick={handleNextPage} disabled={currentPage === Math.ceil(totalResults / numPerPage)}>Next</button>
+                <div id="ad-right" className="ad-sidebar"></div>
             </div>
-        </BasicLayout >
+        </BasicLayout>
     );
 }
 

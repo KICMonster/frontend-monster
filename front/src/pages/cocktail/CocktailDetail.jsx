@@ -1,39 +1,68 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import BasicLayout from "../../layouts/BasicLayout";
 
-const cocktailsData = [
-  { id: 1, name: "마티니", ingredients: ["진", "마티니 버무스", "올리브"], image: "martini.jpg", description: "마티니는 진과 마티니 버무스를 섞은 칵테일입니다." },
-  { id: 2, name: "모히또", ingredients: ["럼", "라임 주스", "민트", "설탕", "탄산수"], image: "mojito.jpg", description: "모히또는 럼, 라임 주스, 민트, 설탕, 탄산수를 섞은 칵테일입니다." },
-  { id: 3, name: "칵테일3", ingredients: ["재료1", "재료2", "재료3"], image: "cocktail3.jpg", description: "칵테일3은 재료1, 재료2, 재료3을 섞은 칵테일입니다." },
-  { id: 4, name: "칵테일4", ingredients: ["재료1", "재료2", "재료3"], image: "cocktail4.jpg", description: "칵테일4는 재료1, 재료2, 재료3을 섞은 칵테일입니다." },
-  { id: 5, name: "칵테일5", ingredients: ["재료1", "재료2", "재료3"], image: "cocktail5.jpg", description: "칵테일5는 재료1, 재료2, 재료3을 섞은 칵테일입니다." },
-];
-
 function CocktailDetail() {
-  const { cocktailId } = useParams();
-  const cocktail = cocktailsData.find(c => c.id === parseInt(cocktailId));
+  const { cocktailId } = useParams(); // URL 파라미터에서 칵테일 ID 가져오기
+  const [cocktail, setCocktail] = useState(null); // 칵테일 상세 정보 상태
+  const [error, setError] = useState(null); // 오류 상태
 
-  if (!cocktail) {
-    return <div>칵테일 정보를 찾을 수 없습니다.</div>;
+  // 칵테일 상세 정보를 가져오는 함수
+  const fetchCocktailDetail = async () => {
+    try {
+      const endpoint = `https://localhost:9092/api/cocktail/${cocktailId}`;
+
+      const response = await fetch(endpoint);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setCocktail(data);
+    } catch (error) {
+      console.error('Error fetching cocktail detail:', error);
+      setError(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchCocktailDetail(); // 컴포넌트가 마운트되면 칵테일 상세 정보를 가져옴
+  }, [cocktailId]); // cocktailId 값이 변경될 때마다 실행되도록 설정
+
+  // 오류가 발생한 경우 오류 메시지를 표시
+  if (error) {
+    return (
+      <BasicLayout>
+        <div>Error: {error}</div>
+      </BasicLayout>
+    );
   }
 
+  // 칵테일 상세 정보가 없는 경우 로딩 상태를 표시
+  if (!cocktail) {
+    return (
+      <BasicLayout>
+        <div>Loading...</div>
+      </BasicLayout>
+    );
+  }
+
+  // 칵테일 상세 페이지 컴포넌트 반환
   return (
     <BasicLayout>
       <div style={styles.container}>
-        <div style={styles.imageContainer}>
-          <img src={cocktail.image} alt={cocktail.name} style={styles.image} />
-        </div>
-        <div style={styles.infoContainer}>
-          <div style={styles.recipe}>
-            <h2>{cocktail.name}</h2>
-            <p>{cocktail.description}</p> {/* 레시피 설명 추가 */}
-          </div>
-          <div style={styles.ingredients}>
-            <h3>재료</h3>
-            <p>{cocktail.ingredients.join(", ")}</p>
-          </div>
-        </div>
+        <img src={cocktail.recommend} alt={cocktail.name} style={styles.cocktailImage} />
+        <h1 style={styles.cocktailName}>{cocktail.name}</h1>
+        <p style={styles.cocktailDescription}>{cocktail.description}</p>
+        <h2 style={styles.sectionTitle}>Ingredients:</h2>
+        <ul style={styles.ingredientsList}>
+          <li>Vodka: {cocktail.measure1}</li>
+          <li>Triple sec: {cocktail.measure2}</li>
+          <li>Cranberry juice: {cocktail.measure3}</li>
+        </ul>
+        <h2 style={styles.sectionTitle}>Instructions:</h2>
+        <p style={styles.instructions}>{cocktail.instructions}</p>
       </div>
     </BasicLayout>
   );
@@ -41,41 +70,39 @@ function CocktailDetail() {
 
 const styles = {
   container: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: '20px auto',
-    maxWidth: '1200px',
-    width: '100%',
+    maxWidth: "600px",
+    margin: "0 auto",
+    padding: "20px",
+    textAlign: "center",
   },
-  imageContainer: {
-    flex: '1',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '10px',
+  cocktailImage: {
+    width: "100%",
+    borderRadius: "8px",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
   },
-  image: {
-    width: '100%',
-    maxWidth: '500px',
-    borderRadius: '8px',
+  cocktailName: {
+    fontSize: "24px",
+    fontWeight: "bold",
+    margin: "20px 0",
   },
-  infoContainer: {
-    flex: '1',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    padding: '10px',
+  cocktailDescription: {
+    fontSize: "16px",
+    margin: "10px 0",
   },
-  recipe: {
-    marginBottom: '20px',
+  sectionTitle: {
+    fontSize: "20px",
+    fontWeight: "bold",
+    margin: "30px 0 10px",
   },
-  ingredients: {
-    marginTop: '20px',
-  }
+  ingredientsList: {
+    listStyleType: "none",
+    padding: 0,
+    margin: "0 0 30px",
+  },
+  instructions: {
+    fontSize: "16px",
+    lineHeight: "1.6",
+  },
 };
 
 export default CocktailDetail;
-
-CocktailDetail.jsx
-

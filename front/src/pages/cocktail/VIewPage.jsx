@@ -1,61 +1,94 @@
 import React, { useState, useEffect } from "react";
-import BasicLayout from "../../layouts/BasicLayout";
+
 import { Link } from "react-router-dom";
+import BasicLayout from "../../layouts/BasicLayout";
 
 function ViewPage() {
   const [cocktails, setCocktails] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState('');
 
-  const fetchAllCocktails = () => {
-    const dummyData = [
-      { id: 1, name: "마티니", ingredients: ["진", "마티니 버무스", "올리브"], image: "martini.jpg", description: "마티니는 진과 마티니 버무스를 섞은 칵테일입니다." },
-      { id: 2, name: "모히또", ingredients: ["럼", "라임 주스", "민트", "설탕", "탄산수"], image: "mojito.jpg", description: "모히또는 럼, 라임 주스, 민트, 설탕, 탄산수를 섞은 칵테일입니다." },
-      { id: 3, name: "칵테일3", ingredients: ["재료1", "재료2", "재료3"], image: "cocktail3.jpg", description: "칵테일3은 재료1, 재료2, 재료3을 섞은 칵테일입니다." },
-      { id: 4, name: "칵테일4", ingredients: ["재료1", "재료2", "재료3"], image: "cocktail4.jpg", description: "칵테일4는 재료1, 재료2, 재료3을 섞은 칵테일입니다." },
-      { id: 5, name: "칵테일5", ingredients: ["재료1", "재료2", "재료3"], image: "cocktail5.jpg", description: "칵테일5는 재료1, 재료2, 재료3을 섞은 칵테일입니다." },
-    ];
-    setCocktails(dummyData);
-    setLoading(false);
+  const fetchAllCocktails = async () => {
+    try {
+      const endpoint = 'https://localhost:9092/api/cocktail';                  
+      const response = await fetch(endpoint);
+      const data = await response.json();
+      setCocktails(data);
+    } catch (error) {
+      console.error('Error fetching cocktails:', error);
+    }
   };
 
   useEffect(() => {
     fetchAllCocktails();
   }, []);
 
-  const groupCocktails = () => {
-    const groupedCocktails = [];
-    const size = 5;
-    for (let i = 0; i < cocktails.length; i += size) {
-      groupedCocktails.push(cocktails.slice(i, i + size));
-    }
-    return groupedCocktails;
+  // 필터링된 칵테일 목록을 계산
+  const filteredCocktails = cocktails.filter(cocktail => {
+    return filter === '' || cocktail.ingredient1 === filter;
+  });
+
+  // 필터 옵션 설정 함수
+  const handleFilterChange = (newFilter) => {
+    setFilter(newFilter);
   };
 
   return (
     <BasicLayout>
-      {loading ? (
-        <div>Loading...</div>
-      ) : (
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-          {groupCocktails().map((group, index) => (
-            <div key={index} style={{ display: "flex" }}>
-              {group.map(cocktail => (
-                <div key={cocktail.id} style={{ width: "200px", margin: "10px", backgroundColor: "#fff", borderRadius: "8px", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)" }}>
-                  <Link to={`/cocktail/${cocktail.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                    <img src={cocktail.image} alt={cocktail.name} style={{ width: "100%", borderTopLeftRadius: "8px", borderTopRightRadius: "8px" }} />
-                    <div style={{ padding: "20px" }}>
-                      <h2>{cocktail.name}</h2>
-                      <p>재료: {cocktail.ingredients.join(", ")}</p>
-                    </div>
-                  </Link>
-                </div>
-              ))}
+      <div>
+        <button onClick={() => handleFilterChange('Vodka')}>Vodka</button>
+        <button onClick={() => handleFilterChange('Apple juice')}>Apple juice</button>
+        <button onClick={() => handleFilterChange('Rum')}>Rum</button>
+        <button onClick={() => handleFilterChange('')}>Reset Filter</button>
+      </div>
+      <div className="cocktail-list" style={styles.cocktailList}>
+        {filteredCocktails.map(cocktail => (
+          <Link key={cocktail.id} to={`/cocktail/${cocktail.id}`} style={styles.cocktailLink}>
+            <div style={styles.cocktailItem}>
+              <div style={styles.imageBox}>
+                <img src={cocktail.recommend || 'default-image-url.jpg'} alt={cocktail.name} style={styles.cocktailImage} />
+              </div>
+              <h2 style={styles.cocktailName}>{cocktail.name}</h2>
             </div>
-          ))}
-        </div>
-      )}
+          </Link>
+        ))}
+      </div>
     </BasicLayout>
   );
 }
+
+const styles = {
+  cocktailList: {
+    display: "grid",
+    gridTemplateColumns: "repeat(5, 1fr)", // 가로로 5개씩 나열
+    gridGap: "10px", // 각 칵테일 간의 간격
+    padding: "20px", // 전체적인 여백 추가
+  },
+  cocktailLink: {
+    textDecoration: 'none',
+    color: 'inherit',
+  },
+  cocktailItem: {
+    textAlign: "center",
+    margin: "auto", // 박스를 가운데 정렬
+  },
+  imageBox: {
+    width: "302px", // 이미지 박스의 가로 크기를 302px로 설정
+    height: "202px", // 이미지 박스의 세로 크기를 202px로 설정
+    overflow: "hidden",
+    borderRadius: "8px",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)", // 그림자 효과 추가
+    margin: "0 auto", // 이미지를 가운데 정렬
+  },
+  cocktailImage: {
+    width: "100%", // 이미지가 이미지 박스에 가득 차도록 설정
+    height: "100%", // 이미지가 이미지 박스에 가득 차도록 설정
+    objectFit: "cover", // 이미지가 자동으로 크기를 맞춤
+  },
+  cocktailName: {
+    margin: "10px 0 0 0",
+    fontSize: "16px",
+    fontWeight: "bold",
+  },
+};
 
 export default ViewPage;

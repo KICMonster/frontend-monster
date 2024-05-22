@@ -48,7 +48,8 @@ function Grid() {
         id: 780256,
         template: "carousel",
         trackingCode: "AF0800913",
-        width: "680",
+        width: "100%",
+        margin: "0 auto",
         height: "140",
         tsource: ""
       });
