@@ -19,7 +19,7 @@ import AnalysisComplete from '../pages/AnalysisComplete';
 import Weather from '../component/main/Weather';
 import TasteAnalysis from '../component/detail/TasteAnalysis';
 import GisPage from '../pages/GisPage';
-import ViewPage from '../pages/cocktail/VIewPage';
+import ViewPage from '../pages/cocktail/ViewPage';
 
 const Loading = <div className={'bg-red-800'}>Loading...</div>
 const root = createBrowserRouter([
@@ -56,10 +56,6 @@ const root = createBrowserRouter([
   {
     path: '/cocktail/:cocktailId',
     element: <Suspense fallback={Loading}><CocktailDetail /></Suspense> // 칵테일 상세 페이지
-  },
-  {
-    path: '/cocktail/martini',
-    element: <Suspense fallback={Loading}><CocktailDetail /></Suspense> // 칵테일 상세페이지(더미 데이터)
   },
   {
     path: '/Ingredient',

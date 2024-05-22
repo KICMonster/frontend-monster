@@ -3,23 +3,24 @@ import { useParams } from "react-router-dom";
 import BasicLayout from "../../layouts/BasicLayout";
 
 function CocktailDetail() {
-  const { cocktailId } = useParams(); // URL 파라미터에서 칵테일 ID 가져오기
-  const [cocktail, setCocktail] = useState(null); // 칵테일 상세 정보 상태
-  const [error, setError] = useState(null); // 오류 상태
+  const { cocktailId } = useParams();
+  const [cocktail, setCocktail] = useState(null);
+  const [error, setError] = useState(null);
+  const [appetizers, setAppetizers] = useState([]);
 
-  // 칵테일 상세 정보를 가져오는 함수
   const fetchCocktailDetail = async () => {
     try {
-      const endpoint = `https://localhost:9092/api/cocktail/${cocktailId}`;
+      const cocktailEndpoint = `https://localhost:9092/api/cocktail/${cocktailId}`;
+      const appetizersEndpoint = "https://localhost:9092/api/ingredient";
 
-      const response = await fetch(endpoint);
+      const cocktailResponse = await fetch(cocktailEndpoint);
+      const cocktailData = await cocktailResponse.json();
+      setCocktail(cocktailData);
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      setCocktail(data);
+      const appetizersResponse = await fetch(appetizersEndpoint);
+      const appetizersData = await appetizersResponse.json();
+      // 처음 세 개의 안주만 가져오기
+      setAppetizers(appetizersData.slice(0, 3));
     } catch (error) {
       console.error('Error fetching cocktail detail:', error);
       setError(error.message);
@@ -27,10 +28,9 @@ function CocktailDetail() {
   };
 
   useEffect(() => {
-    fetchCocktailDetail(); // 컴포넌트가 마운트되면 칵테일 상세 정보를 가져옴
-  }, [cocktailId]); // cocktailId 값이 변경될 때마다 실행되도록 설정
+    fetchCocktailDetail();
+  }, [cocktailId]);
 
-  // 오류가 발생한 경우 오류 메시지를 표시
   if (error) {
     return (
       <BasicLayout>
@@ -39,7 +39,6 @@ function CocktailDetail() {
     );
   }
 
-  // 칵테일 상세 정보가 없는 경우 로딩 상태를 표시
   if (!cocktail) {
     return (
       <BasicLayout>
@@ -48,37 +47,71 @@ function CocktailDetail() {
     );
   }
 
-  // 칵테일 상세 페이지 컴포넌트 반환
   return (
     <BasicLayout>
       <div style={styles.container}>
-        <img src={cocktail.recommend} alt={cocktail.name} style={styles.cocktailImage} />
-        <h1 style={styles.cocktailName}>{cocktail.name}</h1>
-        <p style={styles.cocktailDescription}>{cocktail.description}</p>
-        <h2 style={styles.sectionTitle}>Ingredients:</h2>
-        <ul style={styles.ingredientsList}>
-          <li>Vodka: {cocktail.measure1}</li>
-          <li>Triple sec: {cocktail.measure2}</li>
-          <li>Cranberry juice: {cocktail.measure3}</li>
-        </ul>
-        <h2 style={styles.sectionTitle}>Instructions:</h2>
-        <p style={styles.instructions}>{cocktail.instructions}</p>
+        <div style={styles.leftColumn}>
+          <div style={styles.imageBox}>
+            <img src={cocktail.recommend} alt={cocktail.name} style={styles.cocktailImage} />
+          </div>
+        </div>
+        <div style={styles.rightColumn}>
+          <h1 style={styles.cocktailName}>{cocktail.name}</h1>
+          <p style={styles.cocktailDescription}>{cocktail.description}</p>
+          <h2 style={styles.sectionTitle}>Ingredients:</h2>
+          <ul style={styles.ingredientsList}>
+            <li>Vodka: {cocktail.measure1}</li>
+            <li>Triple sec: {cocktail.measure2}</li>
+            <li>Cranberry juice: {cocktail.measure3}</li>
+          </ul>
+          <h2 style={styles.sectionTitle}>Instructions:</h2>
+          <p style={styles.instructions}>{cocktail.instructions}</p>
+          <h2 style={styles.sectionTitle}>Appetizers:</h2>
+          <div style={styles.appetizersContainer}>
+            {appetizers.map((appetizer, index) => (
+              <div key={index} style={styles.appetizerBox}>
+                <img src={appetizer.description || 'default-image-url.jpg'} alt={appetizer.name} style={styles.appetizerImage} />
+                <div>{appetizer.name}</div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </BasicLayout>
   );
 }
-
 const styles = {
   container: {
-    maxWidth: "600px",
-    margin: "0 auto",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
     padding: "20px",
-    textAlign: "center",
+  },
+  leftColumn: {
+    flex: "1 1 auto",
+    marginRight: "20px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  rightColumn: {
+    flex: "2 1 auto",
+    maxWidth: "600px",
+  },
+  imageBox: {
+    width: "500px", // 이미지 박스의 가로 크기
+    height: "500px", // 이미지 박스의 세로 크기
+    overflow: "hidden",
+    borderRadius: "8px",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)", // 그림자 효과 추가
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   cocktailImage: {
-    width: "100%",
-    borderRadius: "8px",
-    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+    maxWidth: "100%", // 이미지가 이미지 박스에 가득 차도록 설정
+    maxHeight: "100%", // 이미지가 이미지 박스에 가득 차도록 설정
+    objectFit: "contain", // 이미지가 자동으로 크기를 맞춤
   },
   cocktailName: {
     fontSize: "24px",
@@ -102,6 +135,22 @@ const styles = {
   instructions: {
     fontSize: "16px",
     lineHeight: "1.6",
+  },
+  appetizersContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexWrap: "wrap",
+    marginTop: "20px",
+  },
+  appetizerBox: {
+    width: "200px",
+    textAlign: "center",
+    margin: "10px",
+  },
+  appetizerImage: {
+    width: "100%",
+    borderRadius: "8px",
   },
 };
 
