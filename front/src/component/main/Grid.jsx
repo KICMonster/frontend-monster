@@ -49,9 +49,9 @@ function Grid() {
         template: "carousel",
         trackingCode: "AF0800913",
         width: "100%",
-        margin: "0 auto",
         height: "140",
-        tsource: ""
+        tsource: "",
+        
       });
     };
 
@@ -63,13 +63,16 @@ function Grid() {
   return (
     <div className="container">
       <div className="image-container">
+      <div className="image-text">
         <h1>오늘의 칵테일</h1>
+      </div>
         {cocktails.length > 0 && (
           <div>
             <img src={cocktails[currentIndex].image} alt="Random Cocktail" />
           </div>
         )}
       </div>
+      
 
       <div className="description">
         <div>
@@ -86,7 +89,9 @@ function Grid() {
 
       <div className="operation">
         <h1>사이드</h1>
-        <SideMenuMainPage />
+        <div className="side-menu">
+          <SideMenuMainPage />
+        </div>
         <RecommendedList />
       </div>
 

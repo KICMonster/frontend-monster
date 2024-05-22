@@ -121,7 +121,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #ab2d2d !important;  /* 배경색을 흰색으로 설정, 필요에 따라 변경 가능 */
+  background-color: #a7dcf3 !important;  /* 배경색을 흰색으로 설정, 필요에 따라 변경 가능 */
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);  /* 그림자 효과 추가 */
   z-index: 1000;  /* 다른 요소들보다 위에 오도록 z-index 설정 */
   transition: all 0.3s ease; /* 부드러운 전환 효과 */
