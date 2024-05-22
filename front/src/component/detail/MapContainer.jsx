@@ -1,82 +1,59 @@
-import React, { useEffect, useRef, useState } from 'react';
-const apiKey = import.meta.env.VITE_GIS;
+import React, { useState, useEffect, useRef } from 'react';
 
 function MapContainer() {
     const mapRef = useRef(null);
     const [map, setMap] = useState(null);
-    const [marker, setMarker] = useState(null);
-    const [infowindow, setInfowindow] = useState(null);
+    const [currentPosition, setCurrentPosition] = useState(null);
 
     useEffect(() => {
         const script = document.createElement('script');
-        script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&autoload=false&libraries=services`;
+        script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${import.meta.env.VITE_GIS}&autoload=false&libraries=services`;
         script.async = true;
         document.head.appendChild(script);
 
         script.addEventListener("load", () => {
             window.kakao.maps.load(() => {
-                const container = mapRef.current;
-                const options = {
-                    center: new window.kakao.maps.LatLng(33.450701, 126.570667),
-                    level: 3,
-                };
-                const map = new window.kakao.maps.Map(container, options);
-                setMap(map);
-
-                const marker = new window.kakao.maps.Marker();
-                setMarker(marker);
-
-                const infowindow = new window.kakao.maps.InfoWindow({ zIndex: 1 });
-                setInfowindow(infowindow);
-
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(position => {
                         const lat = position.coords.latitude;
                         const lon = position.coords.longitude;
-                        const locPosition = new window.kakao.maps.LatLng(lat, lon);
-                        const message = '<div style="padding:5px;">여기에 계신가요?!</div>';
-                        displayMarker(locPosition, message, map, marker, infowindow);
+                        setCurrentPosition({ lat, lon });
+                        initializeMap(lat, lon);
+                    }, error => {
+                        console.error('Geolocation error:', error);
+                        initializeMap(33.450701, 126.570667); // Default to Seoul City Hall if geolocation fails
                     });
                 } else {
-                    const locPosition = new window.kakao.maps.LatLng(33.450701, 126.570667);
-                    const message = 'geolocation을 사용할수 없어요..';
-                    displayMarker(locPosition, message, map, marker, infowindow);
-                }
-
-                window.kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
-                    searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
-                        if (status === window.kakao.maps.services.Status.OK) {
-                            let detailAddr = result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
-                            detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
-                            const content = '<div class="bAddr"><span class="title">법정동 주소정보</span>' + detailAddr + '</div>';
-                            marker.setPosition(mouseEvent.latLng);
-                            marker.setMap(map);
-                            infowindow.setContent(content);
-                            infowindow.open(map, marker);
-                        }
-                    });
-                });
-
-                function searchDetailAddrFromCoords(coords, callback) {
-                    const geocoder = new window.kakao.maps.services.Geocoder();
-                    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+                    console.error('Geolocation is not supported by this browser.');
+                    initializeMap(33.450701, 126.570667); // Default to Seoul City Hall if geolocation is not supported
                 }
             });
         });
 
-        return () => script.remove();
+        return () => {
+            document.head.removeChild(script);
+        }
     }, []);
 
-    function displayMarker(locPosition, message, map, marker, infowindow) {
-        marker.setPosition(locPosition);
+    const initializeMap = (latitude, longitude) => {
+        const container = mapRef.current;
+        const options = {
+            center: new window.kakao.maps.LatLng(latitude, longitude),
+            level: 3
+        };
+        const map = new window.kakao.maps.Map(container, options);
+        setMap(map);
+
+        // Create and place a marker on the map
+        const markerPosition = new window.kakao.maps.LatLng(latitude, longitude);
+        const marker = new window.kakao.maps.Marker({
+            position: markerPosition
+        });
         marker.setMap(map);
-        infowindow.setContent(message);
-        infowindow.open(map, marker);
-        map.setCenter(locPosition);
-    }
+    };
 
     return (
-        <div id="map" ref={mapRef} style={{ width: '1000px', height: '500px' }}></div>
+        <div id="map" ref={mapRef} style={{ width: '100%', height: '500px' }}></div>
     );
 }
 
