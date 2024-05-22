@@ -1,90 +1,89 @@
 import React, { useEffect, useState } from 'react';
-import ImageClicker from '../main/ImageClicker';
 import '../../App.css';
+import './styles/Grid.css'; // 추가된 CSS 파일을 import 합니다.
 import Mo from "../../img/mo.jpg";
 import Ma from "../../img/ma.jpg";
 import Sang from "../../img/sang.jpg";
-import sicexam from "../../img/sicexam.png"
+import RecommendedList from './RecommendedList';
+import SideMenuMainPage from './SideMenuMainPage';
 
+// 임의의 칵테일 이름과 설명
+const cocktail = [
+  { name: '모히또', description: '라임과 민트 향이 물씬 나는 상쾌한 칵테일' },
+  { name: '마티니', description: '진과 버몬트, 오렌지 비터의 감각적인 조합' },
+  { name: '카페리누이', description: '카푸치노와 맥주의 완벽한 만남' },
+  // 추가적인 칵테일들을 필요에 따라 여기에 추가할 수 있습니다.
+];
 
 function Grid() {
   const [cocktails, setCocktails] = useState([]);
-  const [randomCocktailImage, setRandomCocktailImage] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const fetchCocktails = () => {
     const dummyData = [
       { id: 1, name: "마티니", ingredients: ["진", "마티니 버무스", "올리브"], image: Ma },
       { id: 2, name: "모히또", ingredients: ["럼", "라임 주스", "민트", "설탕", "탄산수"], image: Mo },
       { id: 3, name: "상그리아", ingredients: ["재료1", "재료2", "재료3"], image: Sang },
-      { id: 4, name: "마티니", ingredients: ["진", "마티니 버무스", "올리브"], image: Ma },
-      { id: 5, name: "모히또", ingredients: ["럼", "라임 주스", "민트", "설탕", "탄산수"], image: Mo },
-      { id: 6, name: "상그리아", ingredients: ["재료1", "재료2", "재료3"], image: Sang },
     ];
 
     setCocktails(dummyData);
-    const randomIndex = Math.floor(Math.random() * dummyData.length);
-    setRandomCocktailImage(dummyData[randomIndex].image);
   };
-
+  
   useEffect(() => {
     fetchCocktails();
   }, []);
 
-  return (
-    <div style={{
-      margin: '0 10%',
-      height: '400px',
-      display: 'grid',
-      justifyContent: 'start',
-      padding: '0 20px 0 0',
-      gridGap: '10px',
+  const handleRandomClick = () => {
+    const randomIndex = Math.floor(Math.random() * cocktails.length);
+    setCurrentIndex(randomIndex);
+  };
 
-    }}>
-      <div style={{
-        gridColumn: '1 / span 3',
-        gridRow: '1 / span 2',
-      }}>
-        {randomCocktailImage && (
-          <img src={randomCocktailImage} style={{ height: '500px' }} alt="Random Cocktail" />
+  return (
+    <div className="container">
+      <div className="image-container">
+        <h1>오늘의 칵테일</h1>
+        {cocktails.length > 0 && (
+          <div>
+            <img src={cocktails[currentIndex].image} alt="Random Cocktail" />
+          </div>
         )}
       </div>
 
-      <div style={{
-        gridColumn: '4 / span 5',
-        gridRow: '1',
-      }}>
-        <h1>칵테일 이름 </h1>
-        <p className='historyCokatail'>
-          칵테일은 술과 여러 종류의 음료, 첨가물 등을 섞어 만든 혼합주를 일컫는다.
-          다만, 무알콜 칵테일도 있으며 이들은 목테일(Mocktail, Mock과 Cocktail의 합성어)
-          이라고 부른다. 사람의 기호와 취향에 맞추어 독특한 맛과 빛깔을 낼 수 있다.
-          명칭의 유래에 대해서는 여러 가지 설이 있지만, 1795년쯤 미국 루이지애나주.
-        </p>
+      <div className="description">
+          <div>
+            <h1>{cocktail[Math.floor(Math.random() * cocktails.length)].name}</h1>
+            <p>{cocktail[Math.floor(Math.random() * cocktails.length)].description}</p>
+          </div>
+          <p className='recipe'>
+            칵테일은 술과 여러 종류의 음료, 첨가물 등을 섞어 만든 혼합주를 일컫는다.
+            다만, 무알콜 칵테일도 있으며 이들은 목테일(Mocktail, Mock과 Cocktail의 합성어)
+            이라고 부른다. 사람의 기호와 취향에 맞추어 독특한 맛과 빛깔을 낼 수 있다.
+            명칭의 유래에 대해서는 여러 가지 설이 있지만, 1795년쯤 미국 루이지애나주.
+          </p>
       </div>
 
-      <div style={{
-        gridColumn: '5 / span 2',
-        gridRow: '2',
-      }}>
-        <h1>조작</h1>
-        <ImageClicker />
+      <div className="operation">
+        <h1>사이드</h1>
+        <SideMenuMainPage />
+        <RecommendedList />
       </div>
 
-      <div style={{
-        gridColumn: '8',
-        gridRow: '2',
-      }}>
+      <div className="content">
         <h1>컨텐츠</h1>
-        <img src={sicexam} style={{ height: '300px' }} />
+        <div className="button-container">
+        <button onClick={handleRandomClick} className="random-button">
+          랜덤 이미지
+        </button>
+        <button onClick={handleRandomClick} className="random-button">
+          랜덤 이미지
+        </button>
+        </div>
       </div>
 
-      <div style={{
-        gridRow: '3',
-      }}>
+      <div className="advertisement">
         <h1>광고</h1>
       </div>
     </div>
-
   );
 }
 

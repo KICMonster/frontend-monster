@@ -20,7 +20,6 @@ import Weather from '../component/main/Weather';
 import TasteAnalysis from '../component/detail/TasteAnalysis';
 import IndexPage from '../pages/todo/IndexPage';
 
-
 const Loading = <div className={'bg-red-800'}>Loading...</div>
 const root = createBrowserRouter([
   {
