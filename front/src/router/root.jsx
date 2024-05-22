@@ -17,7 +17,7 @@ import Join from '../component/login/Join';
 import TrendNews from '../pages/information/TrendNews';
 import AnalysisComplete from '../pages/AnalysisComplete';
 import Weather from '../component/main/Weather';
-import TasteAnalysis from '../component/detail/TasteAnalysis';
+import TasteAnalysis from '../component/detail/tasteAnalysis';
 import IndexPage from '../pages/todo/IndexPage';
 
 const Loading = <div className={'bg-red-800'}>Loading...</div>

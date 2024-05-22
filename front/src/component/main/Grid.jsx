@@ -72,10 +72,10 @@ function Grid() {
         <h1>컨텐츠</h1>
         <div className="button-container">
         <button onClick={handleRandomClick} className="random-button">
-          랜덤 이미지
+          GIS
         </button>
         <button onClick={handleRandomClick} className="random-button">
-          랜덤 이미지
+          다른칵테일
         </button>
         </div>
       </div>
