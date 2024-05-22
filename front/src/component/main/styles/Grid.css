@@ -144,7 +144,7 @@
   
   button {
     padding: 10px 20px;
-    background-color: #ab2d2d;
+    background-color: #B8D0FA;
     color: white;
     border: none;
     border-radius: 5px;
@@ -153,6 +153,6 @@
   }
   
   button:hover {
-    background-color: #922626;
+    background-color: #8b9ebd;
   }
   

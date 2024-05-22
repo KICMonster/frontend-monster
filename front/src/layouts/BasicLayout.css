@@ -11,48 +11,9 @@
   /* 스크롤 내릴 때 그림자 효과를 줍니다. */
 }
 
-/* 검색 폼 스타일 */
-/* .search-form-container {
-  background-color: #333;
-  padding: 10px 0;
-  text-align: center;
-}
-
-.search-form {
-  margin-bottom: 10px;
-}
-
-.search-input {
-  margin-right: 5px;
-  padding: 5px;
-  border: none;
-  border-radius: 3px;
-}
-
-.search-button {
-  padding: 5px 10px;
-  background-color: #fff;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.search-button:hover {
-  background-color: #ddd;
-} */
-
-
-.search-form {
-  display: flex;
-}
-
-
-
-
-
 /* 푸터 css */
 .footer {
-  background-color: #a7dcf3;
+  background-color: #d3fbfb;
   padding: 10px;
   text-align: center;
   position: fixed;

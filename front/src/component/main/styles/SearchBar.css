@@ -1,0 +1,26 @@
+.search-icon {
+    cursor: pointer;
+    font-size: 17px;
+    color: #776A77;
+}
+
+.search-form-container {
+    position: absolute;
+    top: 50%;
+    right: 40px; /* 오른쪽에 위치 */
+    transform: translateY(-50%);
+    background-color: transparent;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    padding: 5px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid #776A77;
+    outline: none;
+}
