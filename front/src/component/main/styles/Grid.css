@@ -81,8 +81,8 @@
   .operation .side-menu img {
     width: 100%;
     max-width: 150px; /* 이미지의 최대 너비를 설정하여 컨테이너를 벗어나지 않도록 설정 */
-    height: auto;
-    margin: 10px;
+    height: 100px;
+    margin: 2px;
     border-radius: 8px;
    }
   
@@ -131,7 +131,7 @@
   .content {
     margin: 20px 0;
     padding: 20px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
@@ -149,4 +149,29 @@
   button:hover {
     background-color: #8b9ebd;
   }
+  
+  .random-button {
+    background-color: #B8D0FA;
+    border: none;
+    color: white;
+    font-size: 2em;
+    cursor: pointer;
+    margin-top: 40px;
+    transition: background-color 0.3s ease; /* 부드러운 색상 변화를 위한 트랜지션 추가 */
+  }
+  
+  .random-button:hover {
+    background-color: #8b9ebd; /* 마우스 오버 시 색상 변경 */
+  }
+  
+  .random-button:active {
+    background-color: #16376e; /* 클릭 시 색상 변경 */
+  }
+  
+
+
+
+
+
+
   

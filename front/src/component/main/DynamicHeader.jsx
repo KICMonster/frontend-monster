@@ -27,10 +27,10 @@ function  DynamicHeader() {
   return (
     <header className='header'>
       <div className="header-content">
-        <TopNavBar isShrunk={isShrunk} />
+        <TopNavBar isShrunk={isShrunk} /> 
         <div className="right-section">
-          <SearchBar />
-          <LoginButton />
+        <SearchBar />
+        <LoginButton />
         </div>
       </div>
     </header>

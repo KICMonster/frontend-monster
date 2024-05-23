@@ -5,10 +5,12 @@ import '../App.css';
 
 
 
+
 function Home({dummyData}) {
 
   return (
     <BasicLayout >
+     
       <Grid />
 
       
