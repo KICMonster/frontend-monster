@@ -230,42 +230,9 @@ function LoginPage() {
           <LoginFooter isChange={isChange} />
         </div>
 
-        <ul className="bg-bubbles">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-
-        </ul>
-
       </div>
     </ BasicLayout>
-    // <BasicLayout>
-    //   <h2>Login</h2>
-    //   {/* 기본로그인 개발 */}
-    //   <form action="/login" method="post">
-    //     <div>
-    //       <label htmlFor="username">Username:</label>
-    //       <input type="text" id="username" name="username" autoComplete="username" />
-    //     </div>
-    //     <div>
-    //       <label htmlFor="password">Password:</label>
-    //       <input type="password" id="password" name="password" autoComplete="current-password" />
-    //     </div>
-    //     <button type="submit">Login</button>
-    //     <a href={KAKAO_AUTH_URL}>카카오 로그인 하기</a>
-    //     <a href={GOOGLE_AUTH_URL}>구글 로그인</a>
-    //     <a href={NAVER_AUTH_URL}>네이버 로그인</a>
 
-    //     <Link to={"/join"}>회원가입</Link>
-    //   </form>
-    // </ BasicLayout>
   );
 }
 

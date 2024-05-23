@@ -53,7 +53,7 @@ function Grid() {
       </div>
 
 
-      <div className="description">
+      <div className="description" style={{marginBottom:'0px', paddingBottom: '50px'}}>
         <div>
           <h1>{cocktail[Math.floor(Math.random() * cocktails.length)].name}</h1>
           <p>{cocktail[Math.floor(Math.random() * cocktails.length)].description}</p>
@@ -66,7 +66,7 @@ function Grid() {
         </p>
       </div>
 
-      <div className="operation">
+      <div className="operation" style={{marginTop:'0px'}}>
         <h1>사이드</h1>
         <div className="side-menu">
           <SideMenuMainPage />
@@ -74,7 +74,7 @@ function Grid() {
         <RecommendedList />
       </div>
 
-      <div className="content">
+      <div className="content" style={{marginTop:'0px'}}>
         <h1>컨텐츠</h1>
         <div className="button-container">
           <Link to={"/mapsearch"}><button className="random-button">GIS</button></Link>

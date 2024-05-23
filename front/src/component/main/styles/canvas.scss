@@ -1,9 +1,12 @@
+@use 'sass:math';
+
 body {
-  background: linear-gradient(to top left, #3F1344 10%, #4A1742 20%,  #522357 50%, #5539B2);
+  background: linear-gradient(to top left, #3F1344 10%, #4A1742 20%, #522357 50%, #5539B2);
   height: 100vh;
-  overflow: hidden;
+
 }
-$primary_colors: #A135D8 #B13CC8 #D562C7 #BD369D #7022B6 #F777EE #D15BB1 #8E39A0 #6F38DC #6E44C2 #E2BCE1 #E8EBFA #D8B1F4 #DC59C1 #EAC5E6 #A83E9A #DFB2E9;
+
+$primary_colors: #A135D8, #B13CC8, #D562C7, #BD369D, #7022B6, #F777EE, #D15BB1, #8E39A0, #6F38DC, #6E44C2, #E2BCE1, #E8EBFA, #D8B1F4, #DC59C1, #EAC5E6, #A83E9A, #DFB2E9;
 
 #canvas {
   position: absolute;
@@ -21,23 +24,24 @@ $primary_colors: #A135D8 #B13CC8 #D562C7 #BD369D #7022B6 #F777EE #D15BB1 #8E39A0
 
 @function create-palette() {
   $palette: ();
-  @for $i from 1 through 150{
+  @for $i from 1 through 150 {
     $palette: append($palette, mix(nth($primary_colors, random(length($primary_colors))), nth($primary_colors, random(length($primary_colors))), 60%));
   }
   @return $palette;
 }
+
 $palette: create-palette();
 
 @each $color in $palette {
   $size: random(100) + px;
-  .circle:nth-child(#{index($palette, $color)}){
+  .circle:nth-child(#{index($palette, $color)}) {
     background: $color;
     box-shadow: 0 0 random(10) + px random(10) + px $color;
     top: random(100) + 0%;
     left: random(100) + 0%;
     width: $size;
     height: $size;
-    opacity: random(100) / 100;
+    opacity: math.div(random(100), 100);
     z-index: -7;
     animation: float#{index($palette, $color)} 20s infinite linear;
   }
@@ -69,19 +73,23 @@ $palette: create-palette();
   border-radius: 50%;
   background: linear-gradient(135deg, #A191AE, #dbdce0);
 }
+
 .colorizer2 {
   top: 20%;
   left: 70%;
   z-index: -2;
   background: #63568C;
 }
+
 .colorizer3 {
   top: 80%;
   left: -15%;
   background: #2D0D34;
   filter: blur(80px);
   border-radius: 50%;
+  z-index: -1;
 }
+
 .colorizer4 {
   top: 20%;
   left: 35%;
@@ -90,6 +98,7 @@ $palette: create-palette();
   background: #bbdebc;
   filter: blur(80px);
   border-radius: 50%;
+  z-index: -3;
 }
 
 @keyframes spin {

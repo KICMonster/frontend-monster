@@ -35,7 +35,6 @@ function TopNavBar({ isShrunk }) {
             컨텐츠
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item href="/#">오늘의 칵테일</Dropdown.Item>
             <Dropdown.Item href="/weather">무작위 칵테일</Dropdown.Item>
             <Dropdown.Item href="/mycocktail">커스텀 칵테일</Dropdown.Item>
             <Dropdown.Item href="/taste">취향 조사</Dropdown.Item>
