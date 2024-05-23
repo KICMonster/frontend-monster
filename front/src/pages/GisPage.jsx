@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MapContainer from '../component/detail/MapContainer';
 import BasicLayout from '../layouts/BasicLayout';
 import '../component/main/styles/GisPage.css';
+import { Link } from 'react-router-dom';
 
 function GisPage() {
   const [places, setPlaces] = useState([]);
@@ -47,13 +48,18 @@ function GisPage() {
       <div className="GisContainer">
         <div className="GisSidebar">
           <ul>
-            {places.map((place, index) => (
-              <li key={index} className="GisPlaceItem">
-                <p className="GisPlaceName">{place.place_name}</p>
-                <p className="GisAddressName">{place.address_name}</p>
-                <p className="GisPhone">{place.phone}</p>
-              </li>
-            ))}
+            {places
+              .sort((a, b) => a.distance - b.distance) // place.distance를 기준으로 오름차순 정렬
+              .map((place, index) => (
+                <Link to={place.place_url} key={index}>
+                  <li className="GisPlaceItem">
+                    <p className="GisPlaceName">{place.place_name}</p>
+                    <p className="GisAddressName">{place.address_name}</p>
+                    <p className="GisPhone">{place.distance}m</p>
+                    <p className="GisPhone">{place.phone}</p>
+                  </li>
+                </Link>
+              ))}
           </ul>
         </div>
         <div className="GisMapContainer">

@@ -45,11 +45,18 @@ function MapContainer() {
         setMap(map);
 
         // Create and place a marker on the map
-        const markerPosition = new window.kakao.maps.LatLng(latitude, longitude);
         const marker = new window.kakao.maps.Marker({
-            position: markerPosition
+            position: map.getCenter()
         });
         marker.setMap(map);
+
+        // Add click event listener to the map
+        kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+            // Get the clicked latitude and longitude
+            const latlng = mouseEvent.latLng;
+            // Move the marker position to the clicked location
+            marker.setPosition(latlng);
+        });
     };
 
     return (
