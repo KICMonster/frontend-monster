@@ -42,17 +42,11 @@ function LoginButton() {
 
     return (
         <>
-            <p>
-                <a href="/login" className="login-button login-button-color">login/</a>
-                <a href="/join" className="login-button login-button-color" >join</a>
-            </p>
-
             {isLoggedIn ? (
                 // 토큰이 있을 경우 프로필 버튼
-                <p><a href="/mypage" className="login-button login-button-color">프로필</a></p>
+                <a href="/mypage" className="login-button login-button-color">프로필</a>
             ) : (
-                // 토큰이 없을 경우 로그인 버튼
-                <></>
+                <a href="/login" className="login-button login-button-color">Login</a>
             )}
         </>
     );

@@ -26,7 +26,7 @@ function BasicLayout({ children }) {
   return (
     <>
       {/* 헤더 영역 */}
-      <div className={isScrolled ? "header scrolled" : "header"}>
+      <div className= "header">
         <DynamicHeader />
        
         
@@ -34,13 +34,6 @@ function BasicLayout({ children }) {
 
       {/* 정보 영역 */}
       <div className="info">
-        {/* 메인 페이지 칵테일 재료 카테고리 */}
-        <div className="cocktail-categories">
-          {/* 칵테일 재료 목록 */}
-          {/* 여기에 칵테일 재료 목록이 들어갈 예정입니다. */}
-        </div>
-
-        {/* 카테고리 아래에 있는 자식 컴포넌트 렌더링 */}
         {children}
       </div>
 

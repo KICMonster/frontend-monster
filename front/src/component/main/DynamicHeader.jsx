@@ -3,7 +3,7 @@ import TopNavBar from './TopNavBar';
 import SearchBar from './SearchBar';
 import LoginButton from './LoginButton';
 
-function DynamicHeader() {
+function  DynamicHeader() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isShrunk, setShrunk] = useState(false);
 
@@ -16,14 +16,16 @@ function DynamicHeader() {
       setShrunk(window.scrollY > 100);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    // window.addEventListener('scroll', handleScroll);
+    // return () => {
+    //   window.removeEventListener('scroll', handleScroll);
+    // };
+    //  동준형 이기능 쓸건지 회의때 얘기해야함 빼자는얘기가 계속나옴
+
   }, []);
 
   return (
-    <header className={isShrunk ? 'header shrink' : 'header expand'}>
+    <header className='header'>
       <div className="header-content">
         <TopNavBar isShrunk={isShrunk} />
         <div className="right-section">

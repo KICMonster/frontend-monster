@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center; /* 중앙 정렬 */
     gap: 10px; /* 드롭다운 간의 간격 */
-    margin-bottom: 20px; /* 드롭다운 아래 여백 */
+    margin-top: 20px; /* 드롭다운 아래 여백 */
   }
   
   .filter-dropdowns select {

@@ -183,12 +183,8 @@ function LoginPage() {
       <main>
         <form style={{ width: '100%' }}>
           <div className="LoginMainBody">
-            <label htmlFor="username">
-              <input type="text" id="username" name="username" autoComplete="username" placeholder={"Email"} className='email' />
-            </label>
-            <label htmlFor="password">
-              <input type="password" id="password" name="password" autoComplete="current-password" placeholder={"PASSWORD"} className='pass' />
-            </label>
+            <input type="text" id="username" name="username" autoComplete="username" placeholder={"Email"} className='email' />
+            <input type="password" id="password" name="password" autoComplete="current-password" placeholder={"PASSWORD"} className='pass' />
           </div>
           <button type='submit' className='origin__btn' style={{ marginTop: '20px' }}>로그인</button>
         </form>

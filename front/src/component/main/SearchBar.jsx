@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { FaSearch } from "react-icons/fa";
-import './styles/SearchBar.css'; 
+import './styles/SearchBar.css';
 
 function SearchBar() {
     const [searchQuery, setSearchQuery] = useState("");
-    const [isSearchOpen, setIsSearchOpen] = useState(false);
 
     const handleInputChange = (event) => {
         setSearchQuery(event.target.value);
@@ -13,28 +12,24 @@ function SearchBar() {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log("검색어:", searchQuery);
+        setSearchQuery("")
     };
 
-    const toggleSearch = () => {
-        setIsSearchOpen(!isSearchOpen);
-    };
 
     return (
         <div className="search-container">
-            <FaSearch onClick={toggleSearch} className="search-icon" />
-            {isSearchOpen && (
-                <div className="search-form-container">
-                    <form onSubmit={handleSubmit} className="search-form">
-                        <input
-                            type="text"
-                            value={searchQuery}
-                            onChange={handleInputChange}
-                            placeholder="Search"
-                            className="search-input"
-                        />
-                    </form>
-                </div>
-            )}
+            <FaSearch onClick={handleSubmit} className="search-icon" />
+            <div className="search-form-container">
+                <form onSubmit={handleSubmit} className="search-form">
+                    <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={handleInputChange}
+                        placeholder="Search"
+                        className="search-input"
+                    />
+                </form>
+            </div>
         </div>
     );
 }

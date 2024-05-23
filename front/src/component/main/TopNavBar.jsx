@@ -18,7 +18,6 @@ function TopNavBar({ isShrunk }) {
           <Dropdown.Menu>
             <Dropdown.Item href="/ViewPage">칵테일</Dropdown.Item>
             <Dropdown.Item href="/Ingredient">재료</Dropdown.Item>
-            <Dropdown.Item href="/TodayCocktail">사이드메뉴</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         <Dropdown>

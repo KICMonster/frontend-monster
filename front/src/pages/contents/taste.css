@@ -10,9 +10,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start; /* 중앙에서 위쪽으로 배치하기 위해 flex-start 사용 */
-    height: 100vh;
-    padding: 20px;
-    padding-top: 10vh; /* 위쪽 여백 추가 */
+    padding: 30vh 0 ;  /* 위쪽 여백 추가 */
   }
   
   .question-box {
