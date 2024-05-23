@@ -20,6 +20,7 @@ import Weather from '../component/main/Weather';
 import TasteAnalysis from '../component/detail/TasteAnalysis';
 import GisPage from '../pages/GisPage';
 import ViewPage from '../pages/cocktail/ViewPage';
+import RecommendCocktail from '../pages/cocktail/RecommendCocktail';
 
 const Loading = <div className={'bg-red-800'}>Loading...</div>
 const root = createBrowserRouter([
@@ -85,11 +86,15 @@ const root = createBrowserRouter([
   },
   {
     path: '/weather',
-    element: <Weather />
+    element: <Weather />  
   },
   {
     path: '/mapsearch',
-    element: <GisPage />
+    element: <GisPage />        //Gis페이지 
+  },
+  {
+    path: '/recommend',         // 칵테일 추천 페이지
+    element: <Suspense fallback={Loading}><RecommendCocktail /></Suspense>
   },
 ]);
 

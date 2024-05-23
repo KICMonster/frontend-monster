@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { FaCheckCircle } from "react-icons/fa";
+import BasicLayout from "../../layouts/BasicLayout";
 
 
-function AdditionalForm (){
-  const navigate = useNavigate();  
+function AdditionalForm() {
+  const navigate = useNavigate();
   const queryParams = new URLSearchParams(window.location.search);
   const emailFromQuery = queryParams.get('email'); // 'email' 쿼리 파라미터의 값을 가져옵니다.
 
   const [email, setEmail] = useState(emailFromQuery || ''); // 쿼리 파라미터가 없는 경우를 대비해 기본값을 설정합니다.
-    // pw val  
+  // pw val  
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -28,7 +29,7 @@ function AdditionalForm (){
     const hasSpecialChar = /[@$!%*#?&]/.test(password);
     const isValidLength = password.length >= 8;
     const validCombinationCount = [hasLetter, hasNumber, hasSpecialChar].filter(Boolean).length >= 2;
-  
+
     return isValidLength && validCombinationCount;
   }
 
@@ -55,8 +56,8 @@ function AdditionalForm (){
   };
 
 
-// 핸드폰 번호 유효성 검사
-const validatePhone = (phone) => {
+  // 핸드폰 번호 유효성 검사
+  const validatePhone = (phone) => {
     return /^\d{11,12}$/.test(phone);
   }
 
@@ -126,115 +127,117 @@ const validatePhone = (phone) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h4>추가정보를 입력해 주세요</h4>
-      <div>
-      <label htmlFor="email">이메일</label>
-      <input
-        type="email"
-        id="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        readOnly // 수정 불가능하게 설정
-      />
-    </div>
-      <div>
-        <label htmlFor="password">비밀번호</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={handlePasswordChange}
-          required
-        />
-        {passwordError && <div style={{color: 'red'}}>{passwordError}</div>}
-        {!passwordError && password && <FaCheckCircle style={{ color: 'green' }} />}
-      </div>
-      <div>
-        <label htmlFor="confirmPassword">비밀번호 확인</label>
-        <input
-          type="password"
-          id="confirmPassword"
-          value={confirmPassword}
-          onChange={handleConfirmPasswordChange}
-          required
-        />
-        {confirmPasswordError && <div style={{color: 'red'}}>{confirmPasswordError}</div>}
-        {!confirmPasswordError && confirmPassword && <FaCheckCircle style={{ color: 'green' }} />}
-      </div>
-      <div>
-        <label htmlFor="name">이름</label>
-        <input
-          type="text"
-          id="name"
-          value={name}
-          onChange={handleNameChange}
-          required
-        />
-        {nameError && <div style={{color: 'red'}}>{nameError}</div>}
-      </div>
-      <div>
-        <label htmlFor="birth">생년월일</label>
-        <input
-          type="date"
-          id="birth"
-          value={birth}
-          onChange={(e) => setBirth(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="phone">전화번호</label>
-        <input
-          type="tel"
-          id="phone"
-          value={phone}
-          onChange={handlePhoneChange}
-          required
-        />
-        {phoneError && <div style={{color: 'red'}}>{phoneError}</div>}
-      </div>
-      <div>
-        <label>성별</label>
+    <BasicLayout>
+      <form onSubmit={handleSubmit}>
+        <h4>추가정보를 입력해 주세요</h4>
         <div>
+          <label htmlFor="email">이메일</label>
           <input
-            type="radio"
-            id="gender-male"
-            name="gender"
-            value="male"
-            checked={gender == 'male'}
-            onChange={(e) => setGender(e.target.value)}
-            required
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            readOnly // 수정 불가능하게 설정
           />
-          <label htmlFor="gender-male" defaultChecked>남성</label>
         </div>
         <div>
+          <label htmlFor="password">비밀번호</label>
           <input
-            type="radio"
-            id="gender-female"
-            name="gender"
-            value="female"
-            checked={gender == 'female'}
-            onChange={(e) => setGender(e.target.value)}
+            type="password"
+            id="password"
+            value={password}
+            onChange={handlePasswordChange}
             required
           />
-          <label htmlFor="gender-female">여성</label>
+          {passwordError && <div style={{ color: 'red' }}>{passwordError}</div>}
+          {!passwordError && password && <FaCheckCircle style={{ color: 'green' }} />}
         </div>
         <div>
+          <label htmlFor="confirmPassword">비밀번호 확인</label>
           <input
-            type="radio"
-            id="gender-other"
-            name="gender"
-            value="other"
-            checked={gender === 'other'}
-            onChange={(e) => setGender(e.target.value)}
+            type="password"
+            id="confirmPassword"
+            value={confirmPassword}
+            onChange={handleConfirmPasswordChange}
             required
           />
-          <label htmlFor="gender-other">기타</label>
+          {confirmPasswordError && <div style={{ color: 'red' }}>{confirmPasswordError}</div>}
+          {!confirmPasswordError && confirmPassword && <FaCheckCircle style={{ color: 'green' }} />}
         </div>
-      </div>
-      <button type="submit">회원가입</button>
-    </form>
+        <div>
+          <label htmlFor="name">이름</label>
+          <input
+            type="text"
+            id="name"
+            value={name}
+            onChange={handleNameChange}
+            required
+          />
+          {nameError && <div style={{ color: 'red' }}>{nameError}</div>}
+        </div>
+        <div>
+          <label htmlFor="birth">생년월일</label>
+          <input
+            type="date"
+            id="birth"
+            value={birth}
+            onChange={(e) => setBirth(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="phone">전화번호</label>
+          <input
+            type="tel"
+            id="phone"
+            value={phone}
+            onChange={handlePhoneChange}
+            required
+          />
+          {phoneError && <div style={{ color: 'red' }}>{phoneError}</div>}
+        </div>
+        <div>
+          <label>성별</label>
+          <div>
+            <input
+              type="radio"
+              id="gender-male"
+              name="gender"
+              value="male"
+              checked={gender == 'male'}
+              onChange={(e) => setGender(e.target.value)}
+              required
+            />
+            <label htmlFor="gender-male" defaultChecked>남성</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="gender-female"
+              name="gender"
+              value="female"
+              checked={gender == 'female'}
+              onChange={(e) => setGender(e.target.value)}
+              required
+            />
+            <label htmlFor="gender-female">여성</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="gender-other"
+              name="gender"
+              value="other"
+              checked={gender === 'other'}
+              onChange={(e) => setGender(e.target.value)}
+              required
+            />
+            <label htmlFor="gender-other">기타</label>
+          </div>
+        </div>
+        <button type="submit">회원가입</button>
+      </form>
+    </BasicLayout>
   );
 }
 export default AdditionalForm;

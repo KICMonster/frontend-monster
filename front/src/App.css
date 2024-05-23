@@ -1,7 +1,9 @@
 body {
   background: linear-gradient(to left, #fbd6e3, #a9ede9) !important;
 }
-
+.info{
+  height: 773px;
+}
 /* App.css */
 .logo {
     margin-right: 30px;
@@ -11,9 +13,7 @@ body {
     background-size: contain; /* 이미지가 컨테이너 안에 맞게 조정 */
     background-repeat: no-repeat; /* 이미지가 반복되지 않도록 설정 */
   }
-  .header{
-    margin-bottom: 110px;
-  }
+
   .navbar {
     background-color: transparent; /* 투명 배경 */
     color: white; /* 글자 색상 */
@@ -103,8 +103,12 @@ body {
     z-index: 1000;
     transition: all 0.3s ease;
     padding: 0 30px;
+
   }
 
+  .header{
+    margin-bottom: 92px;
+  }
   
 
   .header.shrink {
