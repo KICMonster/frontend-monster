@@ -5,6 +5,7 @@ import Ma from "../../img/ma.jpg";
 import Sang from "../../img/sang.jpg";
 import RecommendedList from './RecommendedList';
 import SideMenuMainPage from './SideMenuMainPage';
+import { Link } from 'react-router-dom';
 
 // 임의의 칵테일 이름과 설명
 const cocktail = [
@@ -37,42 +38,20 @@ function Grid() {
     setCurrentIndex(randomIndex);
   };
 
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://ads-partners.coupang.com/g.js";
-    script.async = true;
-    document.body.appendChild(script);
-
-    script.onload = () => {
-      new window.PartnersCoupang.G({
-        id: 780256,
-        template: "carousel",
-        trackingCode: "AF0800913",
-        width: "100%",
-        height: "140",
-        tsource: "",
-        
-      });
-    };
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
 
   return (
     <div className="container">
       <div className="image-container">
-      <div className="image-text">
-        <h1>오늘의 칵테일</h1>
-      </div>
+        <div className="image-text">
+          <h1>오늘의 칵테일</h1>
+        </div>
         {cocktails.length > 0 && (
           <div>
             <img src={cocktails[currentIndex].image} alt="Random Cocktail" />
           </div>
         )}
       </div>
-      
+
 
       <div className="description">
         <div>
@@ -98,9 +77,7 @@ function Grid() {
       <div className="content">
         <h1>컨텐츠</h1>
         <div className="button-container">
-          <button onClick={handleRandomClick} className="random-button">
-            GIS
-          </button>
+          <Link to={"/mapsearch"}><button className="random-button">GIS</button></Link>
           <button onClick={handleRandomClick} className="random-button">
             다른칵테일
           </button>
@@ -108,12 +85,8 @@ function Grid() {
       </div>
 
       <div className="footer-ad">
-        <div id="coupang-ad" className="coupang-ad"></div>
+        <img />
       </div>
-
-      
-        
-      
     </div>
   );
 }

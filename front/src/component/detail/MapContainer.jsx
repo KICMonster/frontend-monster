@@ -60,7 +60,7 @@ function MapContainer() {
     };
 
     return (
-        <div id="map" ref={mapRef} style={{ width: '100%', height: '775px' }}></div>
+        <div id="map" ref={mapRef} style={{ width: '100%', height: '797px' }}></div>
     );
 }
 
