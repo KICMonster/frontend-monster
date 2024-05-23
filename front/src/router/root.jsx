@@ -21,6 +21,7 @@ import TasteAnalysis from '../component/detail/TasteAnalysis';
 import GisPage from '../pages/GisPage';
 import ViewPage from '../pages/cocktail/ViewPage';
 import RecommendCocktail from '../pages/cocktail/RecommendCocktail';
+import MyCocktail from '../pages/contents/MyCocktail';
 
 const Loading = <div className={'bg-red-800'}>Loading...</div>
 const root = createBrowserRouter([
@@ -95,6 +96,10 @@ const root = createBrowserRouter([
   {
     path: '/recommend',         // 칵테일 추천 페이지
     element: <Suspense fallback={Loading}><RecommendCocktail /></Suspense>
+  },
+  {
+    path: '/mycocktail', // 커스텀 칵테일
+    element: <Suspense fallback={Loading}><MyCocktail /></Suspense>
   },
 ]);
 
