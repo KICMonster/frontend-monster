@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import IconRenderer from './renderIcon'; // 아이콘 렌더링 컴포넌트 import
+import IconRenderer from '../renderIcon'; // 아이콘 렌더링 컴포넌트 import
 
 const WeatherButton = () => {
   const [weather, setWeather] = useState(null);
