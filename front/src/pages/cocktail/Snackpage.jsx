@@ -35,12 +35,12 @@ function Snackpage() {
     // 스낵 데이터를 화면에 렌더링
     return (
         <BasicLayout>
-            <div className="snack-body">
-                <div className="image-container">
+            <div className="snackBody">
+                <div className="snackImageContainer">
                     <img src={snack.image} alt={snack.name} />
                 </div>
-                <div className="description">
-                    <div className="snack-title">
+                <div className="snackDescription">
+                    <div className="snackTitle">
                         <h1>{snack.name}</h1>
                         <p>{snack.description}</p>
                     </div>

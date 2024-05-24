@@ -1,4 +1,4 @@
-.snack-body {   
+.snackBody {   
     margin: 150px 150px;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.8);
@@ -11,7 +11,7 @@
     min-height: 200px; /* 최소 높이를 200px로 설정합니다. */
 }
 
-.image-container {
+.snackImageContainer {
     margin: 20px;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.8);
@@ -21,7 +21,7 @@
     text-align: center;
 }
 
-.description {
+.snackDescription {
     height: 100%;
     margin: 20px;
     padding: 20px;
@@ -31,11 +31,12 @@
     flex: 2; 
 }
 
-.snack-title h1 {
+.snackTitle h1 {
     text-align: center;
     margin: 0;
     padding: 5px;
 }
-.snack-title p {
+
+.snackTitle p {
     padding: 5px;
 }
