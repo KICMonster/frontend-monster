@@ -24,6 +24,7 @@ import RecommendCocktail from '../pages/cocktail/RecommendCocktail';
 import MyCocktail from '../pages/contents/MyCocktail';
 import Loading from '../pages/Loading'; 
 import Snackpage from '../pages/cocktail/Snackpage';
+import CustomCocktail from '../pages/contents/CustomCocktail';
 
 const root = createBrowserRouter([
   {
@@ -99,11 +100,15 @@ const root = createBrowserRouter([
     element: <Suspense fallback={<Loading />}><RecommendCocktail /></Suspense>
   },
   {
-    path: '/mycocktail', // 커스텀 칵테일
-    element: <Suspense fallback={<Loading />}><MyCocktail /></Suspense>
+    path: '/customcocktail', // 커스텀 칵테일
+    element: <Suspense fallback={Loading}><CustomCocktail /></Suspense>
   },
   {
-    path: '/snack/:snack_id',
+    path: '/mycocktail', // 커스텀 칵테일 게시판
+    element: <Suspense fallback={Loading}><MyCocktail /></Suspense>
+  },
+  {
+    path: '/snack/:id',
     element: <Suspense fallback={<Loading />}><Snackpage /></Suspense>
   },
 ]);
