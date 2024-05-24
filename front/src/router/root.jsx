@@ -25,6 +25,7 @@ import MyCocktail from '../pages/contents/MyCocktail';
 import Loading from '../pages/Loading'; 
 import Snackpage from '../pages/cocktail/Snackpage';
 import CustomCocktail from '../pages/contents/CustomCocktail';
+import CustomCocktailPage from '../pages/cocktail/CustomCocktailPage';
 
 const root = createBrowserRouter([
   {
@@ -110,6 +111,10 @@ const root = createBrowserRouter([
   {
     path: '/snack/:id',
     element: <Suspense fallback={<Loading />}><Snackpage /></Suspense>
+  },
+  {
+    path: '/custom-cocktail',
+    element: <CustomCocktailPage /> // 커스텀 칵테일 페이지
   },
 ]);
 
