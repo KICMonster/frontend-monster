@@ -21,7 +21,7 @@ import GisPage from '../pages/GisPage';
 import ViewPage from '../pages/cocktail/ViewPage';
 import RecommendCocktail from '../pages/cocktail/RecommendCocktail';
 import MyCocktail from '../pages/contents/MyCocktail';
-import Loading from '../pages/Loading'; 
+import Loading from '../pages/Loading';
 import Snackpage from '../pages/cocktail/Snackpage';
 import CustomCocktail from '../pages/contents/CustomCocktail';
 import CustomCocktailPage from '../pages/cocktail/CustomCocktailPage';
@@ -84,7 +84,7 @@ const root = createBrowserRouter([
   },
   {
     path: '/weather',
-    element: <Suspense fallback={<Loading />}><Weather /></Suspense> 
+    element: <Suspense fallback={<Loading />}><Weather /></Suspense>
   },
   {
     path: '/mapsearch',
