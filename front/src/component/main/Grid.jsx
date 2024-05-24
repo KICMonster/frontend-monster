@@ -53,7 +53,7 @@ function Grid() {
       </div>
 
 
-      <div className="description" style={{marginBottom:'0px', paddingBottom: '50px'}}>
+      <div className="description" style={{ marginBottom: '0px', paddingBottom: '50px' }}>
         <div>
           <h1>{cocktail[Math.floor(Math.random() * cocktails.length)].name}</h1>
           <p>{cocktail[Math.floor(Math.random() * cocktails.length)].description}</p>
@@ -66,7 +66,7 @@ function Grid() {
         </p>
       </div>
 
-      <div className="operation" style={{marginTop:'0px'}}>
+      <div className="operation" style={{ marginTop: '0px' }}>
         <h1>사이드</h1>
         <div className="side-menu">
           <SideMenuMainPage />
@@ -74,10 +74,10 @@ function Grid() {
         <RecommendedList />
       </div>
 
-      <div className="content" style={{marginTop:'0px'}}>
+      <div className="content" style={{ marginTop: '0px' }}>
         <h1>컨텐츠</h1>
         <div className="button-container">
-          <Link to={"/mapsearch"}><button className="random-button">GIS</button></Link>
+          <Link to={"/mapsearch"}><button className="random-button" style={{ padding: "6px 75px" }}>GIS</button></Link>
           <button onClick={handleRandomClick} className="random-button">
             다른칵테일
           </button>
@@ -85,7 +85,7 @@ function Grid() {
       </div>
 
       <div className="footer-ad">
-        <img />
+        {/* <div class="image image--contain" style="background-image: url(&quot;https://sin.creativecdn.com/images?id=02eaa98033e31bd7e84dafb281f2633ccf07479c&amp;w=119&amp;h=115&amp;o=1005005519378877&amp;fid=2zTjYdIa0F6j6ke8d6fF&amp;f=3&quot;);"></div> */}
       </div>
     </div>
   );
