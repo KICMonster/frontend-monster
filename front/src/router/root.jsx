@@ -13,7 +13,6 @@ import IngredientPage from '../pages/cocktail/IngredientPage';
 import CocktailDetail from '../pages/cocktail/CocktailDetail';
 import CraftPage from '../pages/information/CraftPage';
 import HistoryPage from '../pages/information/HistoryPage';
-import Join from '../component/login/Join';
 import TrendNews from '../pages/information/TrendNews';
 import AnalysisComplete from '../pages/AnalysisComplete';
 import Weather from '../component/main/Weather';
@@ -36,11 +35,6 @@ const root = createBrowserRouter([
     path: '/login',
     element: <Suspense fallback={<Loading />}><LoginPage /></Suspense>,
     children: LoginRouter() // LoginRouter()가 객체를 반환하므로 이를 바로 사용     //로그인
-  },
-  {
-    path: '/join',
-    element: <Suspense fallback={<Loading />}><Join />,</Suspense>,             //회원가입 이멜인증
-    children: JoinRouter()
   },
   {
     path: '/additional',
