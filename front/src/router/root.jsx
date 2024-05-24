@@ -22,54 +22,54 @@ import GisPage from '../pages/GisPage';
 import ViewPage from '../pages/cocktail/ViewPage';
 import RecommendCocktail from '../pages/cocktail/RecommendCocktail';
 import MyCocktail from '../pages/contents/MyCocktail';
+import Loading from '../pages/Loading'; 
 
-const Loading = <div className={'bg-red-800'}>Loading...</div>
 const root = createBrowserRouter([
   {
     path: '',
-    element: <Suspense fallback={Loading}><Home /></Suspense>         //메인화면
+    element: <Suspense fallback={<Loading />}><Home /></Suspense>         //메인화면
   },
   {
     path: '/login',
-    element: <Suspense fallback={Loading}><LoginPage /></Suspense>,
+    element: <Suspense fallback={<Loading />}><LoginPage /></Suspense>,
     children: LoginRouter() // LoginRouter()가 객체를 반환하므로 이를 바로 사용     //로그인
   },
   {
     path: '/join',
-    element: <Suspense fallback={Loading}><Join />,</Suspense>,             //회원가입 이멜인증
+    element: <Suspense fallback={<Loading />}><Join />,</Suspense>,             //회원가입 이멜인증
     children: JoinRouter()
   },
   {
     path: '/additional',
-    element: <Suspense fallback={Loading}><AdditionalForm /></Suspense>           //회원가입   
+    element: <Suspense fallback={<Loading />}><AdditionalForm /></Suspense>           //회원가입   
   },
   {
     path: '/mypage',
-    element: <Suspense fallback={Loading}><Mypage /></Suspense>                   //프로필
+    element: <Suspense fallback={<Loading />}><Mypage /></Suspense>                   //프로필
   },
   {
     path: '/ViewPage',
-    element: <Suspense fallback={Loading}><ViewPage /></Suspense>                  // 칵테일 리스트
+    element: <Suspense fallback={<Loading />}><ViewPage /></Suspense>                  // 칵테일 리스트
   },
   {
     path: '/ViewPage/:id',
-    element: <Suspense fallback={Loading}><ViewPage /></Suspense>                  // 칵테일 리스트
+    element: <Suspense fallback={<Loading />}><ViewPage /></Suspense>                  // 칵테일 리스트
   },
   {
     path: '/cocktail/:cocktailId',
-    element: <Suspense fallback={Loading}><CocktailDetail /></Suspense> // 칵테일 상세 페이지
+    element: <Suspense fallback={<Loading />}><CocktailDetail /></Suspense> // 칵테일 상세 페이지
   },
   {
     path: '/Ingredient',
-    element: <Suspense fallback={Loading}><IngredientPage /></Suspense>             //재료리스트
+    element: <Suspense fallback={<Loading />}><IngredientPage /></Suspense>             //재료리스트
   },
   {
     path: '/history',
-    element: <Suspense fallback={Loading}><HistoryPage /></Suspense>                //역사 페이지
+    element: <Suspense fallback={<Loading />}><HistoryPage /></Suspense>                //역사 페이지
   },
   {
     path: '/craft/:key',
-    element: <Suspense fallback={Loading} ><CraftPage /></Suspense>                     //기초제조법페이지
+    element: <Suspense fallback={<Loading />}><CraftPage /></Suspense>                     //기초제조법페이지
   },
   {
     path: '/taste', // 기호조사. 필요 페이지와 연결할것.지금은 home.jsx에 버튼. 회원가입 페이지와 연결할 경우 로직 수정할 필요.   
@@ -87,7 +87,7 @@ const root = createBrowserRouter([
   },
   {
     path: '/weather',
-    element: <Weather />  
+    element: <Suspense fallback={<Loading />}><Weather /></Suspense> 
   },
   {
     path: '/mapsearch',
@@ -95,11 +95,11 @@ const root = createBrowserRouter([
   },
   {
     path: '/recommend',         // 칵테일 추천 페이지
-    element: <Suspense fallback={Loading}><RecommendCocktail /></Suspense>
+    element: <Suspense fallback={<Loading />}><RecommendCocktail /></Suspense>
   },
   {
     path: '/mycocktail', // 커스텀 칵테일
-    element: <Suspense fallback={Loading}><MyCocktail /></Suspense>
+    element: <Suspense fallback={<Loading />}><MyCocktail /></Suspense>
   },
 ]);
 

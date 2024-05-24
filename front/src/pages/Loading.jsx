@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import loading from '../img/loading.gif';
+import '../component/main/styles/Loading.css';
+
+
 
 function Loading() {
+
   return (
-    <div className="bg-red-800 text-white p-4 text-center">
-      로딩 중입니다. 잠시만 기다려주세요...
+    <div className="loading">
+      <img src={loading} alt="로딩 중" />
     </div>
   );
 }
