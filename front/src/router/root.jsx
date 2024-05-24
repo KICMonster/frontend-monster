@@ -23,6 +23,7 @@ import ViewPage from '../pages/cocktail/ViewPage';
 import RecommendCocktail from '../pages/cocktail/RecommendCocktail';
 import MyCocktail from '../pages/contents/MyCocktail';
 import Loading from '../pages/Loading'; 
+import Snackpage from '../pages/cocktail/Snackpage';
 
 const root = createBrowserRouter([
   {
@@ -100,6 +101,10 @@ const root = createBrowserRouter([
   {
     path: '/mycocktail', // 커스텀 칵테일
     element: <Suspense fallback={<Loading />}><MyCocktail /></Suspense>
+  },
+  {
+    path: '/snack/:snack_id',
+    element: <Suspense fallback={<Loading />}><Snackpage /></Suspense>
   },
 ]);
 
