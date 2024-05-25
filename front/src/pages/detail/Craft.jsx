@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import CraftList from "../../component/list/CraftList";
 import "../../component/list/CraftList.css";
-import "../aside/Craft.css"
+import "../detail/Craft.css"
 import { useParams } from "react-router-dom";
 import BasicLayout from "../../layouts/BasicLayout";
-function CraftPage() {
+function Craft() {
 
     const { key } = useParams();
     const [isMensuration, setIsMensuration] = useState(false);
@@ -156,4 +156,4 @@ function CraftPage() {
     );
 }
 
-export default CraftPage;
+export default Craft;

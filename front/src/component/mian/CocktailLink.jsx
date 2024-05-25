@@ -6,10 +6,10 @@ import Bar from '../../img/make.jpg';
 
 // 페이지 하단 4개 이미지
 const links = [
-    { name: '오늘의 칵테일', imageUrl: TodayCocktail, link: '/#' },
-    { name: '회원님의 취향 저격', imageUrl: Taste, link: '/#' },
-    { name: '건강한 음주', imageUrl: Health, link: '/#' },
-    { name: '주변 바 추천받기', imageUrl: Bar, link: '/#' }
+    { name: '오늘의 칵테일', imageUrl: TodayCocktail, link: '/ViewPage' },
+    { name: '회원님의 취향 저격', imageUrl: Taste, link: '/Ingredient' },
+    { name: '건강한 음주', imageUrl: Health, link: '/TodayCocktail' },
+    { name: '주변 바 추천받기', imageUrl: Bar, link: '/craft/mensuration' }
 ];
 
 const CocktailLink = () => {
