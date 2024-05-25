@@ -1,7 +1,7 @@
 @use 'sass:math';
 body{
   background: linear-gradient(to top left, #3F1344 10%, #4A1742 20%, #522357 50%, #5539B2);
-  overflow-x: hidden;
+  overflow: hidden;
 }
 .info{
   height: 100%;

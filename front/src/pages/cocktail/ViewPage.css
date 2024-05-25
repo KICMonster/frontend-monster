@@ -15,30 +15,11 @@
   margin-top: 200px; /* 필터를 아래로 내리는 마진 추가 */
 }
 
-.cocktail-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px; /* 각각의 박스 사이의 간격을 조절하는 부분 */
-}
+
 
 .cocktail-link {
   text-decoration: none;
   color: inherit;
-}
-
-.cocktail-item {
-  width: 250px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: #fff;
-  transition: transform 0.3s ease;
-  margin: 10px; /* 좌우 간격을 조절하는 속성 */
-}
-
-.cocktail-item:hover {
-  transform: scale(1.05);
 }
 
 .cocktail-item {
@@ -51,7 +32,14 @@
   overflow: hidden;
   background-color: #fff;
   transition: transform 0.3s ease;
+  margin: 10px; /* 좌우 간격을 조절하는 속성 */
+  padding: 10px;
 }
+
+.cocktail-item:hover {
+  transform: scale(1.05);
+}
+
 
 .cocktail-image {
   width: 100%;

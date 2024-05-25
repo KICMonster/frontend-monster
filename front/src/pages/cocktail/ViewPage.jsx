@@ -10,7 +10,7 @@ function ViewPage() {
   const [uniqueIngredients, setUniqueIngredients] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageGroup, setPageGroup] = useState(0); // 페이지 그룹 상태 추가
-  const itemsPerPage = 15;
+  const itemsPerPage = 10;
 
   const fetchAllCocktails = async () => {
     try {
@@ -101,7 +101,7 @@ function ViewPage() {
         </select>
         <button onClick={handleResetFilter}>Reset Filter</button>
       </div>
-      <div className="cocktail-list">
+      <div className="container" style={{ gridTemplateColumns: 'repeat(5, 1fr)' }}>
         {currentItems.map(cocktail => (
           <Link key={cocktail.id} to={`/cocktail/${cocktail.id}`} className="cocktail-link">
             <div className="cocktail-item">
