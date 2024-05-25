@@ -3,7 +3,6 @@ import Home from '../pages/Home';
 import LoginPage from '../pages/LoginPage';
 import LoginRouter from './LoginRouter';
 import Mypage from '../pages/Mypage';
-import JoinRouter from './JoinRouter';
 
 import AdditionalForm from '../component/login/AdditionalForm';
 import { Suspense } from 'react';
@@ -25,6 +24,7 @@ import Loading from '../pages/Loading';
 import Snackpage from '../pages/cocktail/Snackpage';
 import CustomCocktail from '../pages/contents/CustomCocktail';
 import CustomCocktailPage from '../pages/cocktail/CustomCocktailPage';
+import TasteStart from '../pages/contents/TasteStart';
 
 const root = createBrowserRouter([
   {
@@ -67,6 +67,10 @@ const root = createBrowserRouter([
   {
     path: '/craft/:key',
     element: <Suspense fallback={<Loading />}><CraftPage /></Suspense>                     //기초제조법페이지
+  },
+  {
+    path: '/tastestart',
+    element: <Suspense fallback={Loading}><TasteStart /></Suspense>             //재료리스트
   },
   {
     path: '/taste', // 기호조사. 필요 페이지와 연결할것.지금은 home.jsx에 버튼. 회원가입 페이지와 연결할 경우 로직 수정할 필요.   

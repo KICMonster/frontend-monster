@@ -42,12 +42,11 @@ function Grid() {
   return (
     <div className="container">
       <div className="image-container">
-        <div className="image-text">
-          <h1>오늘의 칵테일</h1>
-        </div>
         {cocktails.length > 0 && (
-          <div>
+          <div className='image-interval'>
+            <h1>오늘의 칵테일</h1>
             <img src={cocktails[currentIndex].image} alt="Random Cocktail" />
+            <RecommendedList />
           </div>
         )}
       </div>
@@ -59,22 +58,22 @@ function Grid() {
           <p>{cocktail[Math.floor(Math.random() * cocktails.length)].description}</p>
         </div>
         <p className='recipe'>
-        오늘의 칵테일 기능은 사용자의 현재 위치와 날씨를 분석하여 그 날씨에 어울리는 칵테일을 추천해주는 서비스입니다. 날씨 정보에 맞춰 자동으로 최적의 칵테일을 찾아주고, 레시피와 만드는 방법도 함께 제공합니다.
+          오늘의 칵테일 기능은 사용자의 현재 위치와 날씨를 분석하여 그 날씨에 어울리는 칵테일을 추천해주는 서비스입니다. 날씨 정보에 맞춰 자동으로 최적의 칵테일을 찾아주고, 레시피와 만드는 방법도 함께 제공합니다.
         </p>
       </div>
 
       <div className="operation" style={{ marginTop: '0px' }}>
         <h1>사이드</h1>
+        <h6>칵테일과 어울리는 사이드 메뉴들...</h6>
         <div className="side-menu">
           <SideMenuMainPage />
         </div>
-        <RecommendedList />
       </div>
 
       <div className="content" style={{ marginTop: '0px' }}>
         <h1>컨텐츠</h1>
         <div className="button-container">
-          <Link to={"/mapsearch"}><button className="random-button" style={{ padding: "6px 75px" }}>GIS</button></Link>
+          <Link to={"/mapsearch"}><button className="random-button" >칵테일 바 찾기</button></Link>
           <button onClick={handleRandomClick} className="random-button">
             다른칵테일
           </button>
@@ -82,7 +81,13 @@ function Grid() {
       </div>
 
       <div className="footer-ad">
-        {/* <div class="image image--contain" style="background-image: url(&quot;https://sin.creativecdn.com/images?id=02eaa98033e31bd7e84dafb281f2633ccf07479c&amp;w=119&amp;h=115&amp;o=1005005519378877&amp;fid=2zTjYdIa0F6j6ke8d6fF&amp;f=3&quot;);"></div> */}
+        <div className="ad-banner">
+          <iframe
+            src="https://example-ad-network.com/ad-banner?client=your-client-id&slot=your-ad-slot-id"
+            style={{ width: '100%', height: '100px', border: 'none' }}
+            title="Ad Banner"
+          ></iframe>
+        </div>
       </div>
     </div>
   );
