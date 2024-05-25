@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import BasicLayout from "../../layouts/BasicLayout";
 import { Link } from "react-router-dom";
@@ -30,11 +29,11 @@ function ViewPage() {
   }, []);
 
   // 필터링된 칵테일 목록을 계산
-const filteredCocktails = cocktails.filter(cocktail => {
-  const baseMatch = baseFilter === '' || cocktail.ingredient1 === baseFilter;
-  const alcoholMatch = alcoholFilter === '' || (alcoholFilter === 'Yes' && cocktail.alcoholic === 'Yes') || (alcoholFilter === 'No' && cocktail.alcoholic === 'No');
-  return baseMatch && alcoholMatch;
-});
+  const filteredCocktails = cocktails.filter(cocktail => {
+    const baseMatch = baseFilter === '' || cocktail.ingredient1 === baseFilter;
+    const alcoholMatch = alcoholFilter === '' || (alcoholFilter === 'Yes' && cocktail.alcoholic === 'Yes') || (alcoholFilter === 'No' && cocktail.alcoholic === 'No');
+    return baseMatch && alcoholMatch;
+  });
 
   // 베이스주 필터 설정 함수
   const handleBaseFilterChange = (event) => {
@@ -73,7 +72,7 @@ const filteredCocktails = cocktails.filter(cocktail => {
           <Link key={cocktail.id} to={`/cocktail/${cocktail.id}`} className="cocktail-link">
             <div className="cocktail-item">
               <div className="image-box">
-                <img src={cocktail.recommend || 'default-image-url.jpg'} alt={cocktail.name} className="cocktail-image" />
+                <img src={cocktail.imageUrl || 'default-image-url.jpg'} alt={cocktail.name} className="cocktail-image" style={{ width: "100%", height: "auto" }} />
               </div>
               <h2 className="cocktail-name">{cocktail.name}</h2>
             </div>
