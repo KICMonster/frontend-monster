@@ -12,6 +12,7 @@ import {
   Legend
 } from 'chart.js';
 import '../../component/main/styles/CocktailSearchChart.css'; // 추가한 CSS 파일을 임포트
+import BasicLayout from '../../layouts/BasicLayout';
 
 // Chart.js에 필요한 스케일과 요소들을 등록
 ChartJS.register(
@@ -127,7 +128,7 @@ const CocktailSearchChart = () => {
         }
       }
     },
-    onClick: function(event, elements) {
+    onClick: function (event, elements) {
       if (elements.length > 0) {
         const clickedHour = chartData.labels[elements[0].index].split(':')[0];
         handleHourClick(parseInt(clickedHour)); // 시간대 클릭 시 해당 시간대 선택
@@ -195,7 +196,7 @@ const CocktailSearchChart = () => {
   };
 
   return (
-    <div>
+    <BasicLayout>
       <h2>칵테일을 많이 마시는 시간대</h2>
       <div>
         <button onClick={() => setTimeRange('today')}>오늘</button>
@@ -245,7 +246,7 @@ const CocktailSearchChart = () => {
           </div>
         )}
       </div>
-    </div>
+    </BasicLayout>
   );
 };
 
