@@ -25,6 +25,7 @@ import Snackpage from '../pages/cocktail/Snackpage';
 import CustomCocktail from '../pages/contents/CustomCocktail';
 import CustomCocktailPage from '../pages/cocktail/CustomCocktailPage';
 import TasteStart from '../pages/contents/TasteStart';
+import CocktailSearchChart from '../component/detail/CocktailSearchChart';
 
 const root = createBrowserRouter([
   {
@@ -114,6 +115,10 @@ const root = createBrowserRouter([
     path: '/custom-cocktail',
     element: <CustomCocktailPage /> // 커스텀 칵테일 페이지
   },
+  {
+    path: '/chart',
+    element: <CocktailSearchChart /> // 커스텀 칵테일 페이지
+  }
 ]);
 
 export default root;
