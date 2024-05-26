@@ -1,8 +1,8 @@
 @font-face {
   font-family: 'buttonfont';
   src: url('/assets/fonts/buttonfont.woff2') format('woff2'),
-       url('/assets/fonts/buttonfont.woff') format('woff'),
-       url('/assets/fonts/buttonfont.ttf') format('truetype');
+    url('/assets/fonts/buttonfont.woff') format('woff'),
+    url('/assets/fonts/buttonfont.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -12,7 +12,8 @@
   justify-content: center;
   gap: 10px;
   margin-bottom: 20px;
-  margin-top: 200px; /* 필터를 아래로 내리는 마진 추가 */
+  margin-top: 200px;
+  /* 필터를 아래로 내리는 마진 추가 */
 }
 
 
@@ -24,15 +25,18 @@
 
 .cocktail-item {
   display: flex;
-  flex-direction: column; /* 요소들을 세로로 배치 */
-  align-items: center; /* 요소들을 수직으로 중앙 정렬 */
+  flex-direction: column;
+  /* 요소들을 세로로 배치 */
+  align-items: center;
+  /* 요소들을 수직으로 중앙 정렬 */
   width: 250px;
   border: 1px solid #ddd;
   border-radius: 10px;
   overflow: hidden;
   background-color: #fff;
   transition: transform 0.3s ease;
-  margin: 10px; /* 좌우 간격을 조절하는 속성 */
+  margin: 10px;
+  /* 좌우 간격을 조절하는 속성 */
   padding: 10px;
 }
 
@@ -43,8 +47,10 @@
 
 .cocktail-image {
   width: 100%;
-  height: auto; /* 이미지의 높이를 자동으로 조정하여 가로 세로 비율 유지 */
-  object-fit: contain; /* 이미지가 왜곡되지 않도록 설정 */
+  height: auto;
+  /* 이미지의 높이를 자동으로 조정하여 가로 세로 비율 유지 */
+  object-fit: contain;
+  /* 이미지가 왜곡되지 않도록 설정 */
 }
 
 .cocktail-name {
@@ -52,12 +58,23 @@
   text-align: center;
   font-size: 18px;
   font-weight: bold;
-  margin-top: auto; /* 남은 공간을 아래로 밀착 */
+  margin-top: auto;
+  /* 남은 공간을 아래로 밀착 */
+}
+
+.pagination {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 20px auto;
 }
 
 .pagination button.active {
   font-weight: bold;
-  text-decoration: underline;
+  border: solid 2px #fff;
+  background-color: rgba(255, 255, 255, .4);
+  box-shadow: 0 0 10px #fff;
 }
 
 .pagination button:disabled {
@@ -65,5 +82,14 @@
 }
 
 .pagination button {
-  margin: 0 2px;
+  float: left;
+  margin: 8px;
+  padding: 8px;
+  border-radius: 4px;
+  border: solid 2px rgba(255, 255, 255, .4);
+  text-decoration: none;
+  text-align: center;
+  color: #fff;
+  background-color: rgba(255, 255, 255, .2);
+  transition: all .1s;
 }
