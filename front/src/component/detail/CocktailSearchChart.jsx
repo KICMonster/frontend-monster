@@ -234,10 +234,10 @@ const CocktailSearchChart = () => {
               <>
                 <h4>오늘 총 검색 순위</h4>
                 <div className="ranking-list">
-                  {getSelectedRankings().map(([name, count], index) => (
+                  {getSelectedRankings().map(([name, count, id], index) => (
                     <div className="ranking-item" key={index}>
                       <span className="ranking-position">{index + 1}</span>
-                      <span className="ranking-name">{name}</span>
+                      <Link to={`/cocktail/${id}`} className="ranking-name">{name}</Link>
                     </div>
                   ))}
                 </div>
