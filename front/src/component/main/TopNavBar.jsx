@@ -8,8 +8,8 @@ function TopNavBar({ isShrunk }) {
   return (
     <Navbar className={isShrunk ? 'navbar shrink' : 'navbar expand'}>
 
+      <Link to='/ViewPage'>칵테일 </Link>
       <Nav className="mr-auto">
-        <Link to='/ViewPage'>칵테일 </Link>
         <Dropdown>
           <Dropdown.Toggle variant="transparent" >
             정보
@@ -35,6 +35,7 @@ function TopNavBar({ isShrunk }) {
           </Dropdown.Menu>
         </Dropdown>
       </Nav>
+      <Link to='/ViewPage'>순위</Link>
     </Navbar>
 
   );

@@ -1,52 +1,72 @@
 /* 추가된 슬라이더 스타일 및 애니메이션 */
 .slider-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 그리드 형식으로 자동 맞춤 */
-  overflow: hidden; /* 컨테이너의 오버플로우를 숨깁니다 */
-  position: fixed; /* 페이지의 하단에 고정 */
-  bottom: -500px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  overflow: hidden;
+  bottom: -200px;
   width: 100%;
   position: relative;
+  height: 500px;
 }
 
 @keyframes scroll {
-  0% {
+  from {
     transform: translateX(0);
   }
-  100% {
-    transform: translateX(-100%);
+
+  to {
+    transform: translateX(-50%);
   }
 }
 
 .slider-track {
   display: flex;
-  animation: scroll 20s linear infinite; /* 20초 동안 무한히 스크롤합니다 */
+  width: calc(50%);
+  gap: 20px;
+  animation: scroll 30s linear infinite;
+
+}
+
+.slider-track:hover {
+  animation-play-state: paused;
+  /* 호버할 경우 애니메이션 일시 정지 */
 }
 
 .cocktail-item {
-  margin: 10px; /* 여백 설정 */
+  /* 여백 설정 */
   width: 200px;
   border: 1px solid #ddd;
   border-radius: 10px;
   overflow: hidden;
   background-color: #fff;
-  position: relative; /* 상대 위치 지정 */
+  position: relative;
+  /* 상대 위치 지정 */
 }
 
 .cocktail-item .cocktail-details {
-  position: absolute; /* 절대 위치 지정 */
-  bottom: 0; /* 아래에 위치하도록 설정 */
-  left: 0; /* 왼쪽에 위치하도록 설정 */
-  width: 100%; /* 부모 요소의 전체 너비를 사용 */
-  background-color: rgba(255, 255, 255, 0); /* 투명한 하얀 배경색 */
-  padding: 5px; /* 내부 여백 설정 */
-  box-sizing: border-box; /* padding이 너비를 늘리지 않도록 설정 */
-  text-align: left; /* 텍스트 왼쪽 정렬 */
-  font-size: 12px; /* 폰트 크기 조정 */
+  position: absolute;
+  /* 절대 위치 지정 */
+  bottom: 0;
+  /* 아래에 위치하도록 설정 */
+  left: 0;
+  /* 왼쪽에 위치하도록 설정 */
+  width: 100%;
+  /* 부모 요소의 전체 너비를 사용 */
+  background-color: rgba(255, 255, 255, 0);
+  /* 투명한 하얀 배경색 */
+  padding: 5px;
+  /* 내부 여백 설정 */
+  box-sizing: border-box;
+  /* padding이 너비를 늘리지 않도록 설정 */
+  text-align: left;
+  /* 텍스트 왼쪽 정렬 */
+  font-size: 12px;
+  /* 폰트 크기 조정 */
 }
 
 .cocktail-item .cocktail-details p {
-  margin: 0; /* 기본 마진 제거 */
+  margin: 0;
+  /* 기본 마진 제거 */
 }
 
 .cocktail-link {
@@ -54,39 +74,25 @@
   color: inherit;
 }
 
-.cocktail-image {
-  width: 100%;
-  height: auto; /* 이미지의 높이를 자동으로 조정하여 가로 세로 비율 유지 */
-  object-fit: contain; /* 이미지가 왜곡되지 않도록 설정 */
-}
-
 .cocktail-name {
   padding: 10px;
   text-align: center;
   font-size: 18px;
   font-weight: bold;
-  margin-top: auto; /* 남은 공간을 아래로 밀착 */
-}
-.slider-container {
-  display: flex;
-  overflow: hidden;
-  width: 100%;
+  margin-top: auto;
+  /* 남은 공간을 아래로 밀착 */
 }
 
 @keyframes scroll {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-100%);
   }
 }
 
-.slider-track {
-  display: flex;
-  width: calc(200%); /* 슬라이더 트랙의 길이를 2배로 설정하여 무한 스크롤 구현 */
-  animation: scroll 30s linear infinite; /* 30초 동안 무한히 스크롤합니다 */
-}
 
 .cocktail-item {
   margin: 10px;
@@ -100,38 +106,12 @@
   flex-shrink: 0;
 }
 
-.cocktail-link {
-  text-decoration: none;
-  color: inherit;
-}
-
-.cocktail-image {
-  width: 100%;
-  height: auto; /* 이미지의 높이를 자동으로 조정하여 가로 세로 비율 유지 */
-  object-fit: contain; /* 이미지가 왜곡되지 않도록 설정 */
-}
-
-.cocktail-name {
-  padding: 10px;
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: auto; /* 남은 공간을 아래로 밀착 */
-}
-.parng__btn {
-  width: 100%;
-  background-color: #b8d0fa;
-  color: white;
-  display: block;
-  height: 50px;
-  border-radius: 8px;
-  border: none;
-  font-size: 14px;
-  box-shadow: 0 15px 30px #b8d0fa75;
-  transition: .2s linear;
-
-  &:hover {
-    background-color: #9db2d6;
-    box-shadow: 0 0 0 rgba(233, 30, 98, 0);
-  }
+.cocktailImage {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 51.91%, rgba(0, 0, 0, 0.3) 75.88%);
+  width:  233px;
+  height: 308px;
+  /* 이미지의 높이를 자동으로 조정하여 가로 세로 비율 유지 */
+  object-fit: contain;
+  /* 이미지가 왜곡되지 않도록 설정 */
+  padding: 16px 20px;
 }

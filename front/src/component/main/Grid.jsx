@@ -1,50 +1,3 @@
-// import React, { useState, useEffect } from "react";
-// import { Link } from "react-router-dom";
-// import './styles/Grid.css';
-
-// function Grid() {
-//   const [cocktails, setCocktails] = useState([]);
-
-//   const fetchAllCocktails = async () => {
-//     try {
-//       const endpoint = 'https://localhost:9092/api/cocktail';                  
-//       const response = await fetch(endpoint);
-//       const data = await response.json();
-//       setCocktails(data);
-//     } catch (error) {
-//       console.error('Error fetching cocktails:', error);
-//     }
-//   };
-
-//   useEffect(() => {
-//     fetchAllCocktails();
-//   }, []);
-
-//   return (
-//     <div className="slider-container">
-//       <div className="slider-track">
-//         {cocktails.concat(cocktails).map((cocktail, index) => (
-//           <Link key={`${cocktail.id}-${index}`} to={`/cocktail/${cocktail.id}`} className="cocktail-link">
-//             <div className="cocktail-item">
-//               <div className="image-box">
-//                 <img src={cocktail.imageUrl || 'default-image-url.jpg'} alt={cocktail.name} className="cocktail-image" />
-//               </div>
-//               <div className="cocktail-details">
-//                 <p>{cocktail.name}</p>
-//                 <p>{cocktail.ingredient1}</p>
-//                 {/* 원하는 다른 설명도 추가할 수 있습니다 */}
-//               </div>
-//             </div>
-//           </Link>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Grid;
-
-
 import React, { useState } from 'react';
 import '../main/styles/Grid.css';
 import RecommendedList from './RecommendedList';
@@ -71,11 +24,11 @@ function Grid({ cocktails }) {
       </div>
       <div className="slider-container">
         <div className="slider-track">
-          {doubledCocktails.map((cocktail, index) => (
+          {doubledCocktails.slice(0, 15).map((cocktail, index) => (
             <Link key={`${cocktail.id}-${index}`} to={`/cocktail/${cocktail.id}`} className="cocktail-link">
               <div className="cocktail-item">
                 <div className="image-box">
-                  <img src={cocktail.imageUrl || 'default-image-url.jpg'} alt={cocktail.name} className="cocktail-image" />
+                  <img src={cocktail.imageUrl || 'default-image-url.jpg'} alt={cocktail.name} className="cocktailImage" />
                 </div>
                 <div className="cocktail-details">
                   <p>{cocktail.name}</p>

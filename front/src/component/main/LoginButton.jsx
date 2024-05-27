@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../../App.css'
+import { Link } from 'react-router-dom';
 
 function LoginButton() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -46,7 +47,9 @@ function LoginButton() {
                 // 토큰이 있을 경우 프로필 버튼
                 <a href="/mypage" className="login-button login-button-color">프로필</a>
             ) : (
-                <a href="/login" className="login-button login-button-color">Login</a>
+                <Link to="/login" >
+                    <button className="btn-hover">Login</button>
+                </Link>
             )}
         </>
     );

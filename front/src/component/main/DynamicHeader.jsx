@@ -25,7 +25,7 @@ function DynamicHeader() {
           <TopNavBar isShrunk={isShrunk} />
         </div>
         <div className="center-section">
-          <Link><div className="logo"></div></Link>
+          <Link to={'/'}><div className="logo"></div></Link>
         </div>
         <div className="right-section">
           <SearchBar />
