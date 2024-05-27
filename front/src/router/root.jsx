@@ -24,7 +24,7 @@ import CustomCocktail from '../pages/contents/CustomCocktail';
 import CustomCocktailPage from '../pages/cocktail/CustomCocktailPage';
 import TasteStart from '../pages/contents/TasteStart';
 import CocktailSearchChart from '../component/detail/CocktailSearchChart';
-import MyPage from '../pages/MyPage';
+import MyPage from '../pages/Mypage';
 
 
 
