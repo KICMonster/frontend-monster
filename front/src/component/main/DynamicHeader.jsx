@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TopNavBar from './TopNavBar';
 import SearchBar from './SearchBar';
 import LoginButton from './LoginButton';
+import { Link } from 'react-router-dom';
 
 function DynamicHeader() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -15,19 +16,17 @@ function DynamicHeader() {
     const handleScroll = () => {
       setShrunk(window.scrollY > 100);
     };
-
-    // window.addEventListener('scroll', handleScroll);
-    // return () => {
-    //   window.removeEventListener('scroll', handleScroll);
-    // };
-    //  동준형 이기능 쓸건지 회의때 얘기해야함 빼자는얘기가 계속나옴
-
   }, []);
 
   return (
     <header className='header'>
-      <div className="container-lg">
-        <TopNavBar isShrunk={isShrunk} />
+      <div className="headervar">
+        <div className="left-section">
+          <TopNavBar isShrunk={isShrunk} />
+        </div>
+        <div className="center-section">
+          <Link><div className="logo"></div></Link>
+        </div>
         <div className="right-section">
           <SearchBar />
           <LoginButton />
