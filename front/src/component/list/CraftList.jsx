@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import "../../pages/information/Craft.css"
+
 const craft = [
     {
         title: '바텐딩 기초: 칵테일 계량',
