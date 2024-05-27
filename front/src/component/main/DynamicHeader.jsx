@@ -20,7 +20,7 @@ function DynamicHeader() {
 
   return (
     <header className='header'>
-      <div className="headervar">
+      <div className="container-lg">
         <div className="left-section">
           <TopNavBar isShrunk={isShrunk} />
         </div>

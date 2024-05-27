@@ -18,7 +18,6 @@ function TopNavBar({ isShrunk }) {
             <Dropdown.Item as={Link} to="/history">역사</Dropdown.Item>
             <Dropdown.Item as={Link} to="/craft/mensuration">튜토리얼</Dropdown.Item>
             <Dropdown.Item as={Link} to="/trendNews">뉴스</Dropdown.Item>
-            <Dropdown.Item as={Link} to="/weather">날씨?test</Dropdown.Item>
             <Dropdown.Item as={Link} to="/chart">차트</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
