@@ -2,7 +2,6 @@ import { createBrowserRouter } from 'react-router-dom';
 import Home from '../pages/Home';
 import LoginPage from '../pages/LoginPage';
 import LoginRouter from './LoginRouter';
-import Mypage from '../pages/Mypage';
 
 import AdditionalForm from '../component/login/AdditionalForm';
 import { Suspense } from 'react';
@@ -25,6 +24,9 @@ import CustomCocktail from '../pages/contents/CustomCocktail';
 import CustomCocktailPage from '../pages/cocktail/CustomCocktailPage';
 import TasteStart from '../pages/contents/TasteStart';
 import CocktailSearchChart from '../component/detail/CocktailSearchChart';
+import MyPage from '../pages/MyPage';
+
+
 
 const root = createBrowserRouter([
   {
@@ -39,10 +41,6 @@ const root = createBrowserRouter([
   {
     path: '/additional',
     element: <AdditionalForm />           //회원가입   
-  },
-  {
-    path: '/mypage',
-    element: <Mypage />                   //프로필
   },
   {
     path: '/ViewPage',
@@ -117,6 +115,10 @@ const root = createBrowserRouter([
   {
     path: '/chart',
     element: <CocktailSearchChart /> // 커스텀 칵테일 페이지
+  },
+  {
+    path: '/mypage',
+    element: <MyPage /> // 커스텀 칵테일 페이지
   }
 ]);
 

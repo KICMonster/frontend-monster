@@ -32,6 +32,7 @@ function TopNavBar({ isShrunk }) {
             <Dropdown.Item as={Link} to="/tastestart">취향 조사</Dropdown.Item>
             <Dropdown.Item as={Link} to="/mapsearch">칵테일 바 찾기</Dropdown.Item>
             <Dropdown.Item as={Link} to="/custom-cocktail">테스트하는뭐시기</Dropdown.Item>
+            <Dropdown.Item as={Link} to="/mypage">마이페이지테스트</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </Nav>
