@@ -16,16 +16,16 @@ function TrendNews() {
     const sliderInterval = useRef(null); // Slider interval reference
 
     useEffect(() => {
-        const cachedNewsData = localStorage.getItem('newsData');
-        const cachedTimestamp = localStorage.getItem('newsDataTimestamp');
+        const cachedNewsData = localStorage.getItem(`newsData_${currentPage}`);
+        const cachedTimestamp = localStorage.getItem(`newsDataTimestamp_${currentPage}`);
         const now = new Date().getTime();
 
         if (cachedNewsData && cachedTimestamp && (now - cachedTimestamp < 24 * 60 * 60 * 1000)) {
             setArticles(JSON.parse(cachedNewsData));
         } else {
-            fetchNews();
+            fetchNews(currentPage);
         }
-    }, []);
+    }, [currentPage]);
 
     useEffect(() => {
         // Start slider interval when component mounts
@@ -34,40 +34,33 @@ function TrendNews() {
         return () => clearInterval(sliderInterval.current);
     }, [currentPage]);
 
-    const fetchNews = async () => {
-        const totalPages = Math.ceil(totalResults / numPerPage);
-        const allArticles = [];
+    const fetchNews = async (page) => {
+        const startIndex = (page - 1) * numPerPage + 1;
+        const url = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(query)}&cx=${SEARCH_ENGINE_ID}&key=${API_KEY}&num=${numPerPage}&start=${startIndex}&sort=date`;
 
         try {
-            for (let i = 0; i < totalPages; i++) {
-                const startIndex = i * numPerPage + 1;
-                const url = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(query)}&cx=${SEARCH_ENGINE_ID}&key=${API_KEY}&num=${numPerPage}&start=${startIndex}&sort=date`;
+            const response = await axios.get(url);
+            const newArticles = response.data.items.map(item => ({
+                title: item.title,
+                snippet: item.snippet,
+                link: item.link,
+                image: item.pagemap?.cse_image?.[0]?.src
+            }));
 
-                const response = await axios.get(url);
-                const articles = response.data.items.map(item => ({
-                    title: item.title,
-                    snippet: item.snippet,
-                    link: item.link,
-                    image: item.pagemap?.cse_image?.[0]?.src
-                }));
-
-                allArticles.push(...articles);
-            }
-
-            setArticles(allArticles);
-            localStorage.setItem('newsData', JSON.stringify(allArticles));
-            localStorage.setItem('newsDataTimestamp', new Date().getTime());
+            setArticles(newArticles);
+            localStorage.setItem(`newsData_${page}`, JSON.stringify(newArticles));
+            localStorage.setItem(`newsDataTimestamp_${page}`, new Date().getTime());
         } catch (error) {
             console.error('Error fetching news:', error);
         }
     };
 
     const handleNextPage = () => {
-        setCurrentPage(prevPage => prevPage + 1);
+        setCurrentPage(prevPage => Math.min(prevPage + 1, Math.ceil(totalResults / numPerPage)));
     };
 
     const handlePrevPage = () => {
-        setCurrentPage(prevPage => prevPage - 1);
+        setCurrentPage(prevPage => Math.max(prevPage - 1, 1));
     };
 
     const startSliderInterval = () => {
@@ -91,7 +84,7 @@ function TrendNews() {
                         <button style={{ marginRight: '30px' }} onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
                         <div>
                             <h1>Cocktail News</h1>
-                            {articles.slice((currentPage - 1) * numPerPage, currentPage * numPerPage).map((article, index) => (
+                            {articles.map((article, index) => (
                                 <div className="article-container" key={index}>
                                     {article.image && <img src={article.image} alt={article.title} />}
                                     <div className="article-content">
