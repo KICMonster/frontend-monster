@@ -32,17 +32,6 @@
   /* 호버할 경우 애니메이션 일시 정지 */
 }
 
-.cocktail-item {
-  /* 여백 설정 */
-  width: 200px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: #fff;
-  position: relative;
-  /* 상대 위치 지정 */
-}
-
 .cocktail-details {
   position: absolute;
   top: 260px;
@@ -89,20 +78,6 @@
   100% {
     transform: translateX(-100%);
   }
-}
-
-
-.cocktail-item {
-  margin: 10px;
-  width: 230px;
-  border: 1px solid #46464685;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: #fff;
-  transition: transform 0.3s ease;
-  text-align: center;
-  flex-shrink: 0;
 }
 
 .slider-items {
