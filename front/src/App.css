@@ -16,8 +16,13 @@ body {
 
 
 .logo {
-  width: 100px;
-  height: 65px;
+  position: absolute;
+  /* 이미지를 상위 컨테이너 기준으로 고정 */
+  top: -63%;
+  left: 46%;/* 좌측 정렬 */
+  z-index: 1;
+  width: 150px;
+  height: 150px;
   background-image: url('./img/logo.png');
   background-size: contain;
   background-repeat: no-repeat;
@@ -180,12 +185,13 @@ header {
 .home-container {
   margin: 0 auto;
   text-align: center;
+
   h1 {
     text-align: center;
     max-width: 870px;
     font-size: 72px;
     line-height: 76px;
-    margin: 40px auto 24px;
+    margin: 70px auto 24px;
     font-family: "Source Serif 4", Georgia, serif;
     font-weight: 400;
     letter-spacing: -0.5px;
@@ -247,16 +253,18 @@ header {
     transition: color 0.2s;
   }
 
-  a:hover{
+  a:hover {
     color: #7e4141;
   }
+
   div {
-    
+
     padding: 4px 12px;
     color: #000;
     text-decoration: none;
     transition: color 0.2s;
-    :hover{
+
+    :hover {
       color: #7e4141;
     }
   }
