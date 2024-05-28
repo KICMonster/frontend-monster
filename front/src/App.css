@@ -127,18 +127,17 @@ header {
   left: 0;
   width: 100%;
   background-color: #ffffff00;
-  /* 그라데이션 색상 설정 */
   z-index: 6;
   transition: all 0.3s ease;
   height: 70px;
 
 }
 
+/* 
 .header.shrink {
   padding: 10px;
-  background: linear-gradient(to left, #ff7e5f, #feb47b, #fbf0ea);
-  /* 스크롤 시 그라데이션 색상 변경 */
-}
+  background: linear-gradient(to left, #ff7e5f, #feb47b, #fbf0ea);}
+  스크롤 시 그라데이션 색상 변경 */
 
 .cocktail {
   margin-right: 30px;
@@ -260,4 +259,9 @@ header {
       color: #7e4141;
     }
   }
+}
+
+/* 네비게이션 클릭시 배경 무색 */
+.navbar .dropdown-item:focus {
+  background-color: transparent !important;
 }
