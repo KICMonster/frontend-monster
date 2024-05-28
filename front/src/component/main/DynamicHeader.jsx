@@ -4,7 +4,8 @@ import SearchBar from './SearchBar';
 import LoginButton from './LoginButton';
 import { Link } from 'react-router-dom';
 
-function DynamicHeader() {
+function 
+DynamicHeader() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isShrunk, setShrunk] = useState(false);
 
@@ -28,8 +29,10 @@ function DynamicHeader() {
           <Link to={'/'}><div className="logo"></div></Link>
         </div>
         <div className="right-section">
+          <div style={{display: 'flex'}}>
           <SearchBar />
           <LoginButton />
+          </div>
         </div>
       </div>
     </header>

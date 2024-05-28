@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { Navbar, Nav, Dropdown } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from 'react-router-dom';
+import '../../App.css'
 
-function TopNavBar({ isShrunk }) {
+function TopNavBar() {
 
   return (
-    <Navbar className={isShrunk ? 'navbar shrink' : 'navbar expand'}>
+    <Navbar className='navbar expand' >
 
       <Link to='/ViewPage'>칵테일 </Link>
       <Nav className="mr-auto">

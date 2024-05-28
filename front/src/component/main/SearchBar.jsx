@@ -17,7 +17,7 @@ function    SearchBar() {
 
 
     return (
-        <div className="search-container">
+        <div className="SerchC">
             <FaSearch onClick={handleSubmit} className="search-icon" />
             <div className="search-form-container">
                 <form onSubmit={handleSubmit} className="search-form">
