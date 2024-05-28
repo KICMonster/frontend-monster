@@ -16,15 +16,6 @@ function LoginButton() {
                 // JWT 토큰이 있으면 로그아웃 링크로 변경합니다.
                 loginLink.textContent = 'Logout';
                 loginLink.setAttribute('href', '/logout');
-                loginLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    // 로컬 스토리지에서 JWT 토큰을 제거합니다.
-                    localStorage.removeItem('jwt');
-                    // 상태를 업데이트합니다.
-                    setIsLoggedIn(false);
-                    // 로그인 페이지로 리다이렉트합니다.
-                    window.location.href = '/login';
-                });
             }
             // 조인 링크를 숨깁니다.
             if (joinLink) {
@@ -40,12 +31,24 @@ function LoginButton() {
         }
     }, [isLoggedIn]);
 
+    const handleLogout = () => {
+        // 로컬 스토리지에서 JWT 토큰을 제거합니다.
+        localStorage.removeItem('jwt');
+        // 상태를 업데이트하여 로그아웃 상태로 변경합니다.
+        setIsLoggedIn(false);
+        // 로그인 페이지로 리다이렉트합니다.
+        window.location.href = '/login';
+    };
 
     return (
         <>
             {isLoggedIn ? (
-                // 토큰이 있을 경우 프로필 버튼
-                <a href="/mypage" className="login-button login-button-color">프로필</a>
+                <>
+                    <button className="btn-hover" onClick={handleLogout}>Logout</button>
+                    <Link to="/mypage" >    
+                        <button className="btn-hover">My Page</button>
+                    </Link>
+                </>
             ) : (
                 <Link to="/login" >
                     <button className="btn-hover">Login</button>

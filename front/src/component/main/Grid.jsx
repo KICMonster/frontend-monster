@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import '../main/styles/Grid.css';
-import RecommendedList from './RecommendedList';
-import SideMenuMainPage from './SideMenuMainPage';
 import { Link } from 'react-router-dom';
+import Loading from '../../pages/Loading';
 
 function Grid({ cocktails }) {
   // 칵테일 데이터가 존재하지 않는 경우 대비
   if (!cocktails || cocktails.length === 0) {
-    return <div>No cocktails available.</div>;
+    return <Loading />
   }
 
   // 칵테일 배열을 두 배로 연장하여 슬라이더에 연속된 느낌을 줄 수 있도록 설정
@@ -19,7 +18,7 @@ function Grid({ cocktails }) {
         <div className="home-container">
           <h1 className="font">당신을 위한 칵테일</h1>
           <div>한 잔은 이미 초라해진 나를 위하여 또 한잔은 너와 나의 영원했던 사랑을 위하여</div>
-          <Link to={'/#'}>Get started</Link>
+          <Link to="/tastestart"><button className="btn-hover">Get Started!</button></Link>
         </div>
       </div>
       <div className="slider-container">
