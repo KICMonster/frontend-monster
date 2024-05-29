@@ -17,7 +17,6 @@ const Weather = lazy(() => import('../component/main/Weather'));
 const TasteAnalysis = lazy(() => import('../component/detail/TasteAnalysis'));
 const GisPage = lazy(() => import('../pages/GisPage'));
 const ViewPage = lazy(() => import('../pages/cocktail/ViewPage'));
-const RecommendCocktail = lazy(() => import('../pages/cocktail/RecommendCocktail'));
 const MyCocktail = lazy(() => import('../pages/contents/MyCocktail'));
 const Snackpage = lazy(() => import('../pages/cocktail/Snackpage'));
 const CustomCocktail = lazy(() => import('../pages/cocktail/CustomCocktail'));
@@ -81,9 +80,9 @@ const root = createBrowserRouter([
     element: withSuspense(TasteAnalysis),
     children: [
       {
-        path: 'complete',
+        path: 'complete', // 상대 경로로 수정
         element: withSuspense(AnalysisComplete),
-      },
+      }
     ],
   },
   {
@@ -97,10 +96,6 @@ const root = createBrowserRouter([
   {
     path: '/mapsearch',
     element: withSuspense(GisPage),
-  },
-  {
-    path: '/recommend',
-    element: withSuspense(RecommendCocktail),
   },
   {
     path: '/customcocktail',

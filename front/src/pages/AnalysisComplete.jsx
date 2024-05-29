@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import Loading from './Loading';
 
 /**@todo_결과도출값.실제API에서 불러오는 값에 맞춰 변경할것. CSS 추가작업과 다른경로 
  * 이동버튼 혹은 팝업창으로 구현할 경우 그에 맞게 이동방식 등 수정 필요 */
@@ -23,7 +24,7 @@ function AnalysisComplete() {
           ))}
         </div>
       ) : (
-        <div>로딩 중...</div> // 로딩 이미지나 애니메이션을 여기에 추가
+        <Loading /> // 로딩 이미지나 애니메이션을 여기에 추가
       )}
     </div>
   );
