@@ -20,11 +20,12 @@
 }
 
 .CraftListArticle {
-    width: 250PX;
+    width: 240PX;
     height: 208PX;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
-    margin-left: 60px;
+    margin-left: 20px;
+    margin-right: 43px;
 }
 
 .CraftListArticle img {
