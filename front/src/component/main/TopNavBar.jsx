@@ -9,9 +9,9 @@ function TopNavBar() {
   return (
     <Navbar className='navbar expand' >
 
-      <Nav className="mr-auto">
-      <Dropdown>
-          <Dropdown.Toggle variant="transparent" >
+      <Nav className="mr-auto" style={{paddingLeft:" 0px"}}>
+      <Dropdown style={{paddingLeft:" 0px"}}>
+          <Dropdown.Toggle variant="transparent" style={{paddingLeft:" 0px"}} >
             칵테일
           </Dropdown.Toggle>
           <Dropdown.Menu>

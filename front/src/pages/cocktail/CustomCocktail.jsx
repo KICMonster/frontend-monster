@@ -109,7 +109,7 @@ function CustomCocktail() {
           <option value="Yes">알코올</option>
           <option value="No">논알코올</option>
         </select>
-        <button onClick={handleResetFilter}>Reset Filter</button>
+        <button onClick={handleResetFilter} className="btn-hover" style={{margin:"2px", marginLeft:"20px", padding:"0px 20px 0px", height: "39px"}}>Reset</button>
         <div className="my-cocktail-link">
           <Link to="/mycocktail">My Cocktail</Link>
         </div>
