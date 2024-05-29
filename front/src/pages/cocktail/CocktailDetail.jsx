@@ -12,16 +12,16 @@ function CocktailDetail() {
   const fetchCocktailDetail = async () => {
     try {
       const cocktailEndpoint = `https://localhost:9092/api/cocktail/${cocktailId}`;
-      const appetizersEndpoint = "https://localhost:9092/api/ingredient";
+      // const appetizersEndpoint = "https://localhost:9092/api/ingredient";
 
       const cocktailResponse = await fetch(cocktailEndpoint);
       const cocktailData = await cocktailResponse.json();
       setCocktail(cocktailData);
 
-      const appetizersResponse = await fetch(appetizersEndpoint);
-      const appetizersData = await appetizersResponse.json();
+      // const appetizersResponse = await fetch(appetizersEndpoint);
+      // const appetizersData = await appetizersResponse.json();
       // 처음 세 개의 안주만 가져오기
-      setAppetizers(appetizersData.slice(0, 3));
+      // setAppetizers(appetizersData.slice(0, 3));
     } catch (error) {
       console.error('Error fetching cocktail detail:', error);
       setError(error.message);
@@ -50,13 +50,13 @@ function CocktailDetail() {
 
   return (
     <BasicLayout>
-      <div className="container">
-        <div className="leftColumn">
+      <div className="container"  style={{paddingRight:'42px',marginTop:'150px'} }>
+        <div className="leftColumn" style={{ gridColumn: '1 / 4' }}>
           <div className="imageBox">
-            <img src={cocktail.imageUrl} alt={cocktail.name} className="cocktailImage" />
+            <img src={cocktail.imageUrl} alt={cocktail.name} className="cocktailImage2" />
           </div>
         </div>
-        <div className="rightColumn">
+        <div className="rightColumn" style={{ gridColumn: '4 / span 3' }}>
           <div className="contentBox">
             <h1 className="cocktailName">{cocktail.name}</h1>
             <hr className="divider" />
