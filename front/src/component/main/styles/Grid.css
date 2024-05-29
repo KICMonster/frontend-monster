@@ -10,21 +10,20 @@
 }
 
 @keyframes scroll {
-  from {
+  0% {
     transform: translateX(0);
   }
 
-  to {
+  100% {
     transform: translateX(-50%);
   }
 }
 
 .slider-track {
   display: flex;
-  width: calc(50%);
+  width: calc(200%); /* 두 배로 설정 */
   gap: 20px;
   animation: scroll 30s linear infinite;
-
 }
 
 .slider-track:hover {
@@ -48,13 +47,11 @@
   margin: 3px;
   color: #fff;
   text-shadow: 1px 2px 5px black;
-  p{
+  p {
     margin: 3px;
     margin-left: 8px;
   }
-  
 }
-
 
 .cocktail-link {
   text-decoration: none;
@@ -68,16 +65,6 @@
   font-weight: bold;
   margin-top: auto;
   /* 남은 공간을 아래로 밀착 */
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-100%);
-  }
 }
 
 .slider-items {

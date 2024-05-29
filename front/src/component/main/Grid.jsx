@@ -23,7 +23,7 @@ function Grid({ cocktails }) {
       </div>
       <div className="slider-container">
         <div className="slider-track">
-          {doubledCocktails.slice(0, 15).map((cocktail, index) => (
+          {doubledCocktails.map((cocktail, index) => (
             <Link key={`${cocktail.id}-${index}`} to={`/cocktail/${cocktail.id}`} className="cocktail-link">
               <div className="slider-items">
                 <div className="image-box">
