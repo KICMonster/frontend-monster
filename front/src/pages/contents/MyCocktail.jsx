@@ -1,12 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BasicLayout from "../../layouts/BasicLayout";
 import '../../component/main/styles/mycocktail.css';
+import { useNavigate } from "react-router-dom";
 
 function MyCocktail() {
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const jwtToken = localStorage.getItem("jwt");
+    // JWT 토큰 확인
+    if (!jwtToken) {
+      alert("로그인한 회원만 등록 버튼을 누를 수 있습니다!");
+      navigate("/login"); // navigate 사용
+    }
+  }, [navigate]);
+
+
   // 상태 변수들 선언 및 초기화
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const jwtToken = localStorage.getItem("jwt");
   const [selectedFile, setSelectedFile] = useState(null);
   const [ingredients, setIngredients] = useState([
     { id: 1, name: "", amount: "" },
@@ -48,13 +61,6 @@ function MyCocktail() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // JWT 토큰 확인
-    if (!jwtToken) {
-      alert("로그인한 회원만 등록 버튼을 누를 수 있습니다!");
-      window.location.href = "/login";
-      return;
-    }
 
     // 재료 유효성 검사 및 값 변경 여부 확인
 
