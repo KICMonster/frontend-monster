@@ -13,6 +13,7 @@ import {
 } from 'chart.js';
 import '../../component/main/styles/CocktailSearchChart.css'; // 추가한 CSS 파일을 임포트
 import BasicLayout from '../../layouts/BasicLayout';
+import { Link } from 'react-router-dom';
 
 // Chart.js에 필요한 스케일과 요소들을 등록
 ChartJS.register(
@@ -197,55 +198,24 @@ const CocktailSearchChart = () => {
 
   return (
     <BasicLayout>
-      <h2>칵테일을 많이 마시는 시간대</h2>
-      <div>
-        <button onClick={() => setTimeRange('today')}>오늘</button>
-        <button onClick={() => setTimeRange('thisWeek')}>이번 주</button>
-        <button onClick={() => setTimeRange('thisMonth')}>이번 달</button>
-      </div>
-      <div style={{ display: 'flex', position: 'relative' }}>
-        <div style={{ width: '600px', height: '400px' }}>
-          <Line data={chartData} options={options} />
-          {isDataEmpty && (
-            <div className="overlay-message">
-              <p>오늘은 아무도 검색을 하지 않았네요 ㅠㅠ</p>
-              <button onClick={() => setTimeRange('thisWeek')}>이번 주</button>
-              <button onClick={() => setTimeRange('thisMonth')}>이번 달</button>
-            </div>
-          )}
+      <div className="time">
+        <h2>칵테일을 많이 마시는 시간대</h2>
+        <div>
+          <button onClick={() => setTimeRange('today')}>오늘</button>
+          <button onClick={() => setTimeRange('thisWeek')}>이번 주</button>
+          <button onClick={() => setTimeRange('thisMonth')}>이번 달</button>
         </div>
-        {!isDataEmpty && (
-          <div className="ranking-container">
-            <h3>검색 순위</h3>
-            {selectedHour !== null && (
-              <>
-                <h4>{selectedHour}시 순위</h4>
-                <div className="ranking-list">
-                  {getSelectedRankings().map(([name, count], index) => (
-                    <div className="ranking-item" key={index}>
-                      <span className="ranking-position">{index + 1}</span>
-                      <span className="ranking-name">{name}</span>
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
-            {selectedHour === null && (
-              <>
-                <h4>오늘 총 검색 순위</h4>
-                <div className="ranking-list">
-                  {getSelectedRankings().map(([name, count, id], index) => (
-                    <div className="ranking-item" key={index}>
-                      <span className="ranking-position">{index + 1}</span>
-                      <Link to={`/cocktail/${id}`} className="ranking-name">{name}</Link>
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
-          </div>
-        )}
       </div>
+      <div className="chart" >
+        <Line data={chartData} options={options} />
+      </div>
+      {isDataEmpty && (
+        <div className="overlay-message">
+          <p>오늘은 아무도 검색을 하지 않았네요 ㅠㅠ</p>
+          <button onClick={() => setTimeRange('thisWeek')}>이번 주</button>
+          <button onClick={() => setTimeRange('thisMonth')}>이번 달</button>
+        </div>
+      )}
     </BasicLayout>
   );
 };
