@@ -114,7 +114,7 @@ const CocktailSearchChart = () => {
         label: '칵테일 검색 횟수',
         data: timeSlotLogs.map(log => log.searchCount),
         fill: false,
-        borderColor: 'rgb(147, 112, 219)', // 연보라색으로 변경
+        borderColor: 'rgb(13, 12, 34)', // 연보라색으로 변경
         tension: 0.1
       }
     ]
@@ -198,23 +198,24 @@ const CocktailSearchChart = () => {
 
   return (
     <BasicLayout>
-    <h2>칵테일을 많이 마시는 시간대</h2>
-    <div>
-      <button onClick={() => setTimeRange('today')}>오늘</button>
-      <button onClick={() => setTimeRange('thisWeek')}>이번 주</button>
-      <button onClick={() => setTimeRange('thisMonth')}>이번 달</button>
-    </div>
-    <div style={{ display: 'flex', position: 'relative' }}>
-      <div style={{ width: '600px', height: '400px' }}>
-        <Line data={chartData} options={options} />
-        {isDataEmpty && (
-          <div className="overlay-message">
-            <p>오늘은 아무도 검색을 하지 않았네요 ㅠㅠ</p>
-            <button onClick={() => setTimeRange('thisWeek')}>이번 주</button>
-            <button onClick={() => setTimeRange('thisMonth')}>이번 달</button>
-          </div>
-        )}
+      <div className="time">
+        <h2>칵테일을 많이 마시는 시간대</h2>
+        <div className="button-group">
+          <button onClick={() => setTimeRange('today')}>오늘</button>
+          <button onClick={() => setTimeRange('thisWeek')}>이번 주</button>
+          <button onClick={() => setTimeRange('thisMonth')}>이번 달</button>
+        </div>
       </div>
+      <div className="chart" >
+        <Line data={chartData} options={options} />
+      </div>
+      {isDataEmpty && (
+        <div className="overlay-message">
+          <p>오늘은 아무도 검색을 하지 않았네요 ㅠㅠ</p>
+          <button onClick={() => setTimeRange('thisWeek')}>이번 주</button>
+          <button onClick={() => setTimeRange('thisMonth')}>이번 달</button>
+        </div>
+        )}
       {!isDataEmpty && (
         <div className="ranking-container">
           <h3>검색 순위</h3>
@@ -246,9 +247,9 @@ const CocktailSearchChart = () => {
           )}
         </div>
       )}
-    </div>
-  </BasicLayout>
-  );
-};
+      </BasicLayout>
+    );
+  };
+  
 
 export default CocktailSearchChart;
