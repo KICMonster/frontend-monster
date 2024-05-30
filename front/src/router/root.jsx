@@ -9,6 +9,7 @@ const LoginPage = lazy(() => import('../pages/LoginPage'));
 const AdditionalForm = lazy(() => import('../component/login/AdditionalForm'));
 const IngredientPage = lazy(() => import('../pages/cocktail/IngredientPage'));
 const CocktailDetail = lazy(() => import('../pages/cocktail/CocktailDetail'));
+const CustomCocktailDetail = lazy(() => import('../pages/cocktail/CustomCocktailDetail'));
 const CraftPage = lazy(() => import('../pages/information/CraftPage'));
 const HistoryPage = lazy(() => import('../pages/information/HistoryPage'));
 const TrendNews = lazy(() => import('../pages/information/TrendNews'));
@@ -57,8 +58,16 @@ const root = createBrowserRouter([
     element: withSuspense(ViewPage),
   },
   {
-    path: '/cocktail/:cocktailId',
+    path: '/customcocktail',
+    element: withSuspense(CustomCocktail),
+  },
+  {
+    path: '/cocktail/:customNm',  
     element: withSuspense(CocktailDetail),
+  },
+  {
+    path: '/customcocktail/:cocktailId', // 커스텀 칵테일 디테일 페이지 라우팅 설정
+    element: withSuspense(CustomCocktailDetail),
   },
   {
     path: '/ingredient',
