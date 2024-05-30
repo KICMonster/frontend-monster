@@ -43,11 +43,12 @@
   .overlay-message {
     position: absolute;
     width: 20%;
-    top: 45% !important;
-    left: 73% !important;
+    top: 50% !important;
+    left: 50% !important;
     transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.8); /* 반투명 배경색 */
+    background-color: rgba(255, 255, 255, 0.5); /* 반투명 배경색 */
     color: black; /* 글씨색은 까만색 */
+    box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
