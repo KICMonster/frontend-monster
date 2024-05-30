@@ -23,6 +23,7 @@ const CustomCocktail = lazy(() => import('../pages/cocktail/CustomCocktail'));
 const TasteStart = lazy(() => import('../pages/contents/TasteStart'));
 const CocktailSearchChart = lazy(() => import('../component/detail/CocktailSearchChart'));
 const MyPage = lazy(() => import('../pages/Mypage'));
+const SearchViewPage = lazy(() => import('../pages/cocktail/SearchViewPage'));
 
 // Suspense를 적용하여 각 컴포넌트를 래핑하는 함수
 const withSuspense = (Component) => {
@@ -116,6 +117,10 @@ const root = createBrowserRouter([
   {
     path: '/mypage',
     element: withSuspense(MyPage),
+  },
+  {
+    path: '/search/:name',
+    element: withSuspense(SearchViewPage)
   },
  
 ]);
