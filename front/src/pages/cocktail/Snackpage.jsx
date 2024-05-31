@@ -71,13 +71,15 @@ function Snackpage() {
                             <h2 className="sectionTitle">Instructions:</h2>
                             <p>{snack.description}</p>
                         </div>
-                        <h2 className="sectionTitle">Appetizers:</h2>
                         <div className="cocktailList">
+                            <h2 className="sectionTitle">Appetizers:</h2>
                             {cocktail.map((item, index) => (
                                 <div key={index}>
                                     <Link className="AppetizersLine" to={`/cocktail/${item.id}`}>
-                                        <img src={item.imageUrl} alt={item.name} />
-                                        <h6>{item.name}</h6>
+                                        
+                                            <img src={item.imageUrl} alt={item.name} />
+                                            <h6>{item.name}</h6>
+                                    
                                     </Link>
                                 </div>
                             ))}

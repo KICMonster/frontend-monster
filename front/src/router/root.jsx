@@ -62,7 +62,7 @@ const root = createBrowserRouter([
     element: withSuspense(CustomCocktail),
   },
   {
-    path: '/cocktail/:customNm',  
+    path: '/cocktail/:cocktailId',  
     element: withSuspense(CocktailDetail),
   },
   {

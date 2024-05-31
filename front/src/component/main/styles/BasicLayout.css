@@ -16,10 +16,10 @@
   padding:  10px 0px;
   position: fixed;
   bottom: 0;
-  width: 66%;
+  width: 67%;
   display: flex;
   justify-content: space-between;
-  left: 18%; /* 부모 요소의 가운데를 기준으로 */
+  left: 15.3%; /* 부모 요소의 가운데를 기준으로 */
 
   a{
     margin: 0 3px;
