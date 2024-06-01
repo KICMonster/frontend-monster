@@ -158,9 +158,9 @@ function CustomCocktail() {
           <Link key={cocktail.cocktailId} to={`/customcocktail/${cocktail.cocktailId}`} className="cocktail-link">
             <div className="cocktail-item">
               <div className="image-box">
-                <img src={cocktail.imageUrl || 'default-image-url.jpg'} alt={cocktail.name} className="cocktail-image" />
+                <img src={cocktail.customImageUrl || 'default-image-url.jpg'} alt={cocktail.customNm} className="cocktail-image" />
               </div>
-              <h2 className="cocktail-name">{cocktail.name}</h2>
+              <h2 className="cocktail-name">{cocktail.customNm}</h2>
             </div>
           </Link>
         ))}

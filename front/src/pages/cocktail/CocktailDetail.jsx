@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import BasicLayout from "../../layouts/BasicLayout";
 import '../../component/main/styles/CocktailDetail.css';
 function CocktailDetail() {
@@ -21,7 +21,7 @@ function CocktailDetail() {
       const appetizersResponse = await fetch(appetizersEndpoint);
       const appetizersData = await appetizersResponse.json();
       // 처음 세 개의 안주만 가져오기
-      setAppetizers(appetizersData.slice(0, 3));
+      setAppetizers(appetizersData.slice(0, 4));
     } catch (error) {
       console.error('Error fetching cocktail detail:', error);
       setError(error.message);
@@ -50,7 +50,7 @@ function CocktailDetail() {
 
   return (
     <BasicLayout>
-      <div className="container"  style={{paddingRight:'42px',marginTop:'150px'} }>
+      <div className="container" style={{ paddingRight: '42px', marginTop: '150px' }}>
         <div className="leftColumn" style={{ gridColumn: '1 / 4' }}>
           <div className="imageBox">
             <img src={cocktail.imageUrl} alt={cocktail.name} className="cocktailImage2" />
@@ -63,62 +63,67 @@ function CocktailDetail() {
             <p className="cocktailDescription">{cocktail.description}</p>
             <h2 className="sectionTitle">사용된 재료</h2>
             <ul className="ingredientsList">
-                {cocktail.ingredient1 && cocktail.measure1 && (
-                  <li>{cocktail.ingredient1} : {cocktail.measure1}</li>
-                )}
-                {cocktail.ingredient2 && cocktail.measure2 && (
-                  <li>{cocktail.ingredient2} : {cocktail.measure2}</li>
-                )}
-                {cocktail.ingredient3 && cocktail.measure3 && (
-                  <li>{cocktail.ingredient3} : {cocktail.measure3}</li>
-                )}
-                {cocktail.ingredient4 && cocktail.measure4 && (
-                  <li>{cocktail.ingredient4} : {cocktail.measure4}</li>
-                )}
-                {cocktail.ingredient5 && cocktail.measure5 && (
-                  <li>{cocktail.ingredient5} : {cocktail.measure5}</li>
-                )}
-                {cocktail.ingredient6 && cocktail.measure6 && (
-                  <li>{cocktail.ingredient6} : {cocktail.measure6}</li>
-                )}
-                {cocktail.ingredient7 && cocktail.measure7 && (
-                  <li>{cocktail.ingredient7} : {cocktail.measure7}</li>
-                )}
-                {cocktail.ingredient8 && cocktail.measure8 && (
-                  <li>{cocktail.ingredient8} : {cocktail.measure8}</li>
-                )}
-                {cocktail.ingredient9 && cocktail.measure9 && (
-                  <li>{cocktail.ingredient9} : {cocktail.measure9}</li>
-                )}
-                {cocktail.ingredient10 && cocktail.measure10 && (
-                  <li>{cocktail.ingredient10} : {cocktail.measure10}</li>
-                )}
-                {cocktail.ingredient11 && cocktail.measure11 && (
-                  <li>{cocktail.ingredient11} : {cocktail.measure11}</li>
-                )}
-                {cocktail.ingredient12 && cocktail.measure12 && (
-                  <li>{cocktail.ingredient12} : {cocktail.measure12}</li>
-                )}
-                {cocktail.ingredient13 && cocktail.measure13 && (
-                  <li>{cocktail.ingredient13} : {cocktail.measure13}</li>
-                )}
-                {cocktail.ingredient14 && cocktail.measure14 && (
-                  <li>{cocktail.ingredient14} : {cocktail.measure14}</li>
-                )}
-                {cocktail.ingredient15 && cocktail.measure15 && (
-                  <li>{cocktail.ingredient15} : {cocktail.measure15}</li>
-                )}
-              </ul>
+              {cocktail.ingredient1 && cocktail.measure1 && (
+                <li>{cocktail.ingredient1} : {cocktail.measure1}</li>
+              )}
+              {cocktail.ingredient2 && cocktail.measure2 && (
+                <li>{cocktail.ingredient2} : {cocktail.measure2}</li>
+              )}
+              {cocktail.ingredient3 && cocktail.measure3 && (
+                <li>{cocktail.ingredient3} : {cocktail.measure3}</li>
+              )}
+              {cocktail.ingredient4 && cocktail.measure4 && (
+                <li>{cocktail.ingredient4} : {cocktail.measure4}</li>
+              )}
+              {cocktail.ingredient5 && cocktail.measure5 && (
+                <li>{cocktail.ingredient5} : {cocktail.measure5}</li>
+              )}
+              {cocktail.ingredient6 && cocktail.measure6 && (
+                <li>{cocktail.ingredient6} : {cocktail.measure6}</li>
+              )}
+              {cocktail.ingredient7 && cocktail.measure7 && (
+                <li>{cocktail.ingredient7} : {cocktail.measure7}</li>
+              )}
+              {cocktail.ingredient8 && cocktail.measure8 && (
+                <li>{cocktail.ingredient8} : {cocktail.measure8}</li>
+              )}
+              {cocktail.ingredient9 && cocktail.measure9 && (
+                <li>{cocktail.ingredient9} : {cocktail.measure9}</li>
+              )}
+              {cocktail.ingredient10 && cocktail.measure10 && (
+                <li>{cocktail.ingredient10} : {cocktail.measure10}</li>
+              )}
+              {cocktail.ingredient11 && cocktail.measure11 && (
+                <li>{cocktail.ingredient11} : {cocktail.measure11}</li>
+              )}
+              {cocktail.ingredient12 && cocktail.measure12 && (
+                <li>{cocktail.ingredient12} : {cocktail.measure12}</li>
+              )}
+              {cocktail.ingredient13 && cocktail.measure13 && (
+                <li>{cocktail.ingredient13} : {cocktail.measure13}</li>
+              )}
+              {cocktail.ingredient14 && cocktail.measure14 && (
+                <li>{cocktail.ingredient14} : {cocktail.measure14}</li>
+              )}
+              {cocktail.ingredient15 && cocktail.measure15 && (
+                <li>{cocktail.ingredient15} : {cocktail.measure15}</li>
+              )}
+            </ul>
             <h2 className="sectionTitle">칵테일 레시피</h2>
             <p className="instructions">{cocktail.instructions}</p>
             <h2 className="sectionTitle">칵테일과 어울리는 안주</h2>
             <div className="appetizersContainer">
-              {appetizers.map((appetizer, index) => (
-                <div key={index} className="appetizerBox">
-                  <img src={appetizer.image || 'default-image-url.jpg'} alt={appetizer.name} className="appetizerImage" />
-                  <div>{appetizer.name}</div>
-                </div>  
-              ))}
+              {appetizers.map((appetizer, index) => {
+                const truncatedName = appetizer.name.length > 8 ? `${appetizer.name.substring(0, 8)}...` : appetizer.name;
+                return (
+                  <Link to={`/snack/${appetizer.id}`} key={index}>
+                    <div className="appetizerBox">
+                      <img src={appetizer.image || 'default-image-url.jpg'} alt={appetizer.name} className="appetizerImage" />
+                      <div>{truncatedName}</div>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>
