@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaCheckCircle } from "react-icons/fa";
 import BasicLayout from "../../layouts/BasicLayout";
 import '../../component/main/styles/login.css'
+import  '../login/additionalForm.css';
 
 
 function AdditionalForm() {
@@ -129,12 +130,13 @@ function AdditionalForm() {
 
   return (
     <BasicLayout>
+      <div className="form">
       <div className="logingrid">
         <form onSubmit={handleSubmit}>
-          <h4 className='LoginHeader'>추가정보를 입력해 주세요</h4>
-          <div className="LoginMainBody" style={{display:'flex' ,flexDirection: 'column'}}>
-            <div className='email'>
-              <label htmlFor="email">이메일</label>
+          <h4 className="LoginHeader">추가정보를 입력해 주세요</h4>
+          <div className="LoginMainBody" style={{ display: 'flex', flexDirection: 'column' }}>
+            <div className="email">
+              <label className="label-centered" htmlFor="email"></label>
               <input
                 placeholder={"Email"}
                 type="email"
@@ -144,34 +146,38 @@ function AdditionalForm() {
                 readOnly // 수정 불가능하게 설정
               />
             </div>
-            <div>
-              <label htmlFor="password">비밀번호</label>
-              <input
-                placeholder={"Passwrod"}
-                type="password"
-                id="password"
-                value={password}
-                onChange={handlePasswordChange}
-                required
-              />
-              {passwordError && <div style={{ color: 'red' }}>{passwordError}</div>}
-              {!passwordError && password && <FaCheckCircle style={{ color: 'green' }} />}
+            <div className="input-with-icon">
+              <label className="label-centered" htmlFor="password">비밀번호</label>
+              <div className="input-icon-wrapper">
+                <input
+                  placeholder={"Password"}
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={handlePasswordChange}
+                  required
+                />
+                {!passwordError && password && <FaCheckCircle className="icon" style={{ color: 'black' }} />}
+              </div>
+              {passwordError && <div style={{ color: 'red',font:8,textAlign:'center' ,}}>{passwordError}</div>}
+            </div>
+            <div className="input-with-icon">
+              <label className="label-centered" htmlFor="confirmPassword">비밀번호 확인</label>
+              <div className="input-icon-wrapper">
+                <input
+                  placeholder={"Password"}
+                  type="password"
+                  id="confirmPassword"
+                  value={confirmPassword}
+                  onChange={handleConfirmPasswordChange}
+                  required
+                />
+                {!confirmPasswordError && confirmPassword && <FaCheckCircle className="icon" style={{ color: 'black' }} />}
+              </div>
+              {confirmPasswordError && <div style={{ color: 'red',font:8,textAlign:'center'  }}>{confirmPasswordError}</div>}
             </div>
             <div>
-              <label htmlFor="confirmPassword">비밀번호 확인</label>
-              <input
-                placeholder={"Passwrod"}
-                type="password"
-                id="confirmPassword"
-                value={confirmPassword}
-                onChange={handleConfirmPasswordChange}
-                required
-              />
-              {confirmPasswordError && <div style={{ color: 'red' }}>{confirmPasswordError}</div>}
-              {!confirmPasswordError && confirmPassword && <FaCheckCircle style={{ color: 'green' }} />}
-            </div>
-            <div>
-              <label htmlFor="name">이름</label>
+              <label className="label-centered" htmlFor="name">이름</label>
               <input
                 placeholder={"Name"}
                 type="text"
@@ -180,10 +186,10 @@ function AdditionalForm() {
                 onChange={handleNameChange}
                 required
               />
-              {nameError && <div style={{ color: 'red' }}>{nameError}</div>}
+              {nameError && <div style={{ color: 'red',font:8,textAlign:'center'  }}>{nameError}</div>}
             </div>
             <div>
-              <label htmlFor="birth">생년월일</label>
+              <label className="label-centered" htmlFor="birth">생년월일</label>
               <input
                 type="date"
                 id="birth"
@@ -193,7 +199,7 @@ function AdditionalForm() {
               />
             </div>
             <div>
-              <label htmlFor="phone">전화번호</label>
+              <label className="label-centered" htmlFor="phone">전화번호</label>
               <input
                 placeholder={"Phone"}
                 type="tel"
@@ -202,52 +208,54 @@ function AdditionalForm() {
                 onChange={handlePhoneChange}
                 required
               />
-              {phoneError && <div style={{ color: 'red' }}>{phoneError}</div>}
+              {phoneError && <div style={{ color: 'red',font:8,textAlign:'center'  }}>{phoneError}</div>}
             </div>
-            <div style={{flexDirection: 'row'}}>
-              <label>성별</label>
-              <div style={{flexDirection: 'row'}}>
+            <div className="gender" style={{ flexDirection: 'row' }}>
+              <label className="label-centered category">성별</label>
+              <div style={{ flexDirection: 'row' }}>
                 <input
                   type="radio"
                   id="gender-male"
                   name="gender"
-                  value="male"
-                  checked={gender == 'male'}
+                  value="M"
+                  checked={gender === 'M'}
                   onChange={(e) => setGender(e.target.value)}
                   required
                 />
-                <label htmlFor="gender-male" defaultChecked>남성</label>
+                <label className="label-centered" htmlFor="gender-male" defaultChecked>남성</label>
               </div>
-              <div style={{flexDirection: 'row'}}>
+              <div style={{ flexDirection: 'row' }}>
                 <input
                   type="radio"
                   id="gender-female"
                   name="gender"
-                  value="female"
-                  checked={gender == 'female'}
+                  value="F"
+                  checked={gender === 'F'}
                   onChange={(e) => setGender(e.target.value)}
                   required
                 />
-                <label htmlFor="gender-female">여성</label>
+                <label className="label-centered" htmlFor="gender-female">여성</label>
               </div>
-              <div style={{flexDirection: 'row'}}>
+              <div style={{ flexDirection: 'row' }}>
                 <input
                   type="radio"
                   id="gender-other"
                   name="gender"
-                  value="other"
-                  checked={gender === 'other'}
+                  value="O"
+                  checked={gender === 'O'}
                   onChange={(e) => setGender(e.target.value)}
                   required
                 />
-                <label htmlFor="gender-other">기타</label>
+                <label className="label-centered" htmlFor="gender-other">기타</label>
               </div>
             </div>
           </div>
-          <button className='origin__btn' type="submit">회원가입</button>
+          <button className="submit_btn" type="submit">회원가입</button>
         </form>
+      </div>
       </div>
     </BasicLayout>
   );
-}
+};
+
 export default AdditionalForm;

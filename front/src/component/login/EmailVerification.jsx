@@ -84,7 +84,7 @@ const isValidEmailFormat = (email) => {
           }
         } catch (error) {
           if (status === 409) {
-            alert('이미 가입된 이메일입니다. 로그인페이지로 돌아갑니다.');
+            alert('이미 가입된 이메일입니다.');
             navigate("/login");
           } else {
             // fetch 요청 실패 또는 서버에서 409 외 다른 에러 코드로 응답한 경우의 처리
@@ -93,79 +93,80 @@ const isValidEmailFormat = (email) => {
           }
         }
     }
-  const onVerified = async () => {
-    setIsCodeSent(true); // 인증이 성공하여 더 이상 인증 코드 폼을 보여줄 필요가 없음
+    const onVerified = async () => {
+      setIsCodeSent(true); // 더 이상 인증 코드 폼을 보여줄 필요가 없음
     
-    const fullEmail = `${email}@${emailDomain}`;
-
-    try {
-      const response = await fetch(`https://localhost:9092/join/emails/verifications?email=${encodeURIComponent(fullEmail)}&code=${authCode}`, {
-        method: 'GET',
-      });
-
-      
-      if (response.ok) {
-        setIsVerified(true);
-        alert('이메일이 성공적으로 인증되었습니다.');
-        isEmailVerifiednav();// 이메일 인증 상태를 업데이트
-      } else {
-        throw new Error(data.message);
+      const fullEmail = `${email}@${emailDomain}`;
+    
+      try {
+        const response = await fetch(`https://localhost:9092/join/emails/verifications?email=${encodeURIComponent(fullEmail)}&code=${authCode}`, {
+          method: 'GET',
+        });
+    
+        const data = await response.json(); // 응답 데이터를 JSON 형태로 파싱
+    
+        if (response.ok) {
+          setIsVerified(true);
+          alert('이메일이 성공적으로 인증되었습니다.');
+          isEmailVerifiednav(); // 이메일 인증 상태를 업데이트
+        } else {
+          // HTTP 상태 코드가 200이 아닌 경우 예외를 발생시킴
+          const error = new Error(data.message || '인증에 실패했습니다.');
+          error.status = response.status;
+          throw error;
+        }
+      } catch (error) {
+        if (error.status === 422) {
+          console.error('이메일 인증 실패:', error);
+          alert("인증코드가 일치하지 않습니다.");
+        } else {
+          console.error('이메일 인증 실패:', error);
+          alert("예상치 못한 문제가 발생하였습니다. 다시 시도해 주십시오.");
+        }
       }
-    } catch (error) {
-      console.error('이메일 인증 실패:', error);
-      alert('이메일 인증에 실패했습니다.');
-    }
-  };
+    };
 
   return (
     <div>
-      <div className="email-label-container">
-        <label htmlFor="email" className="email-label">이메일</label>
+      <div className='emailform'>
         <input
           type="text"
           id="email"
           value={email}
           onChange={handleEmailChange}
           required
-          className="email-input"
+          placeholder='email'
         />
-      
-      <strong className="email-at">@</strong>
-      <input
-        type="text"
-        id="emailDomain"
-        value={emailDomain}
-        onChange={handleDomainChange}
-        disabled={domainOption !== 'direct'}
-        required
-        className="email-domain-input"
-      />
-      
-      <select
-        onChange={handleDomainOptionChange}
-        value={domainOption}
-        className="email-domain-select"
-      >
-        <option value="">선택하세요</option>
-        <option value="direct">직접 입력</option>
-        <option value="naver.com">네이버</option>
-        <option value="gmail.com">구글</option>
-        <option value="daum.net">다음</option>
-      </select>
+        <strong>@</strong>
+        <input
+          type="text"
+          id="emailDomain"
+          value={emailDomain}
+          onChange={handleDomainChange}
+          disabled={domainOption !== 'direct'}
+          required
+        />
+        <select className='select' onChange={handleDomainOptionChange} value={domainOption}>
+          <option value="">선택하세요</option>
+          <option value="direct">직접 입력</option>
+          <option value="naver.com">네이버</option>
+          <option value="gmail.com">구글</option>
+          <option value="daum.net">다음</option>
+        </select>
       </div>
-      {isCodeSent && !isVerified ? (
-        <AuthCodeForm
-          authCode={authCode}
-          setAuthCode={setAuthCode}
-          onVerified={onVerified}
-        />
-      ) : (
-        <button onClick={handleVerifyEmail} className="origin__btn">인증 코드 받기</button>
-      )}
+      <div>
+        {isCodeSent && !isVerified ? (
+          <AuthCodeForm
+            authCode={authCode}
+            setAuthCode={setAuthCode}
+            onVerified={onVerified}
+          />
+        ) : (
+          <button onClick={handleVerifyEmail} className='origin__btn'>인증 코드 받기</button>
+        )}
+      </div>
     </div>
   );
-  
-  
 };
 
 export default EmailForm;

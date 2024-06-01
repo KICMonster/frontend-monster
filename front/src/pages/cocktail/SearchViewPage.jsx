@@ -125,7 +125,7 @@ useEffect(() => {
           onClick={() => handlePageGroupChange('prev')}
           disabled={pageGroup === 0}
         >
-          {'<'}
+          {'<<'}
         </button>
         {Array.from({ length: Math.min(pagesPerGroup, totalPages - pageGroup * pagesPerGroup) }, (_, index) => {
           const pageNumber = pageGroup * pagesPerGroup + index + 1;
@@ -143,7 +143,7 @@ useEffect(() => {
           onClick={() => handlePageGroupChange('next')}
           disabled={(pageGroup + 1) * pagesPerGroup >= totalPages}
         >
-          {'>'}
+          {'>>'}
         </button>
       </div>
     </BasicLayout>
