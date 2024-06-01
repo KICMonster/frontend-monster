@@ -1,8 +1,8 @@
 .myPage {
   width: 600px;
   margin: 0 auto;
-  margin-top: 230px;
-  padding: 40px;
+  margin-top: 85px;
+  padding: 20px;
   border: 1px solid #ddd;
   border-radius: 20px;
   background-color: #ffffff;
@@ -11,13 +11,13 @@
 
 .myPage h2 {
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .myPage p {
   font-size: 14px;
   color: #666;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .profile-section {
@@ -129,4 +129,26 @@
 .buttons button:last-child:hover {
   background-position: 100% 0;
   background-color: #2626298f;
+}
+
+.apply {
+  width: 100px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #0d0c22de !important;
+  box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+  color: #F8F7F4;
+  margin: 10px;
+  height: 35px;
+  text-align: center;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 50px;
+  background-position: 0% 0;
+  transition: all .4s ease-in-out; 
+}
+
+.apply:hover {
+  background-position: 100% 0;
+  background-color: #0d0c228f !important;
 }
