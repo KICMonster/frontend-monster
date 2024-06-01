@@ -60,30 +60,27 @@ function Snackpage() {
             <div className="container" style={{ paddingRight: '42px', marginTop: '150px' }}>
                 <div className="leftColumn" style={{ gridColumn: '1 / 4' }}>
                     <div className="imageBox">
-                        <img src={snack.image} alt={snack.name} style={{ height: '600px', width: '600px' }} />
+                        <img src={snack.image} alt={snack.name} style={{ height: '576px', width: '100%' }} className="cocktailImage" />
                     </div>
                 </div>
                 <div className="rightColumn" style={{ gridColumn: '4 / span 3' }}>
                     <div className="contentBox">
-                        <div className="snackTitle">
-                            <h1 className="cocktailName" >{snack.name}</h1>
-                            <hr className="divider" />
-                            <h2 className="sectionTitle">Instructions:</h2>
-                            <p>{snack.description}</p>
-                        </div>
-                        <div className="cocktailList">
-                            <h2 className="sectionTitle">Appetizers:</h2>
+                        <h1 className="cocktailName" >{snack.name}</h1>
+                        <hr className="divider" />
+                        <h2 className="sectionTitle">Instructions:</h2>
+                        <p>{snack.description}</p>
+                        <h2 className="sectionTitle">Appetizers:</h2>
+                        <div className="appetizersContainer">
                             {cocktail.map((item, index) => (
-                                <div key={index}>
-                                    <Link className="AppetizersLine" to={`/cocktail/${item.id}`}>
-                                        
-                                            <img src={item.imageUrl} alt={item.name} />
-                                            <h6>{item.name}</h6>
-                                    
+                                <div key={index} className="appetizerBox">
+                                    <Link to={`/cocktail/${item.id}`}>
+                                        <img src={item.imageUrl} alt={item.name} className="appetizerImage" />
+                                        <h6>{item.name}</h6>
                                     </Link>
                                 </div>
                             ))}
                         </div>
+
                     </div>
                 </div>
             </div>

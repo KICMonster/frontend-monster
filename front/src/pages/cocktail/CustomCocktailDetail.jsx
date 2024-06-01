@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import BasicLayout from "../../layouts/BasicLayout";
-import '../../component/main/styles/CustomCocktailDetail.css';
 import Loading from "../Loading";
-
+import '../../component/main/styles/CocktailDetail.css'
 function CustomCocktailDetail() {
   const { cocktailId } = useParams();
   const [cocktail, setCocktail] = useState(null);
@@ -54,10 +53,10 @@ function CustomCocktailDetail() {
 
   return (
     <BasicLayout>
-      <div className="container" style={{ paddingRight:'42px', marginTop:'150px' }}>
+      <div className="container" style={{ paddingRight: '42px', marginTop: '150px' }}>
         <div className="leftColumn" style={{ gridColumn: '1 / 4' }}>
           <div className="imageBox">
-            <img src={cocktail.customImageUrl} alt={cocktail.customNm} className="cocktailImage" />
+            <img src={cocktail.customImageUrl} alt={cocktail.customNm} style={{ height: '576px', width: '100%' }} className="cocktailImage" />
           </div>
         </div>
         <div className="rightColumn" style={{ gridColumn: '4 / span 3' }}>
@@ -67,51 +66,51 @@ function CustomCocktailDetail() {
             <p className="cocktailDescription">{cocktail.description}</p>
             <h2 className="sectionTitle">Ingredients:</h2>
             <ul className="ingredientsList">
-                {cocktail.customIngredient1 && cocktail.customMeasure1 && (
-                  <li>{cocktail.customIngredient1} : {cocktail.customMeasure1}</li>
-                )}
-                {cocktail.customIngredient2 && cocktail.customMeasure2 && (
-                  <li>{cocktail.customIngredient2} : {cocktail.customMeasure2}</li>
-                )}
-                {cocktail.customIngredient3 && cocktail.customMeasure3 && (
-                  <li>{cocktail.customIngredient3} : {cocktail.customMeasure3}</li>
-                )}
-                {cocktail.customIngredient4 && cocktail.customMeasure4 && (
-                  <li>{cocktail.customIngredient4} : {cocktail.customMeasure4}</li>
-                )}
-                {cocktail.customIngredient5 && cocktail.customMeasure5 && (
-                  <li>{cocktail.customIngredient5} : {cocktail.customMeasure5}</li>
-                )}
-                {cocktail.customIngredient6 && cocktail.customMeasure6 && (
-                  <li>{cocktail.customIngredient6} : {cocktail.customMeasure6}</li>
-                )}
-                {cocktail.customIngredient7 && cocktail.customMeasure7 && (
-                  <li>{cocktail.customIngredient7} : {cocktail.customMeasure7}</li>
-                )}
-                {cocktail.customIngredient8 && cocktail.customMeasure8 && (
-                  <li>{cocktail.customIngredient8} : {cocktail.customMeasure8}</li>
-                )}
-                {cocktail.customIngredient9 && cocktail.customMeasure9 && (
-                  <li>{cocktail.customIngredient9} : {cocktail.customMeasure9}</li>
-                )}
-                {cocktail.customIngredient10 && cocktail.customMeasure10 && (
-                  <li>{cocktail.customIngredient10} : {cocktail.customMeasure10}</li>
-                )}
-                {cocktail.customIngredient11 && cocktail.customMeasure11 && (
-                  <li>{cocktail.customIngredient11} : {cocktail.customMeasure11}</li>
-                )}
-                {cocktail.customIngredient12 && cocktail.customMeasure12 && (
-                  <li>{cocktail.customIngredient12} : {cocktail.customMeasure12}</li>
-                )}
-                {cocktail.customIngredient13 && cocktail.customMeasure13 && (
-                  <li>{cocktail.customIngredient13} : {cocktail.customMeasure13}</li>
-                )}
-                {cocktail.customIngredient14 && cocktail.customMeasure14 && (
-                  <li>{cocktail.customIngredient14} : {cocktail.customMeasure14}</li>
-                )}
-                {cocktail.customIngredient15 && cocktail.customMeasure15 && (
-                  <li>{cocktail.customIngredient15} : {cocktail.customMeasure15}</li>
-                )}
+              {cocktail.customIngredient1 && cocktail.customMeasure1 && (
+                <li>{cocktail.customIngredient1} : {cocktail.customMeasure1}</li>
+              )}
+              {cocktail.customIngredient2 && cocktail.customMeasure2 && (
+                <li>{cocktail.customIngredient2} : {cocktail.customMeasure2}</li>
+              )}
+              {cocktail.customIngredient3 && cocktail.customMeasure3 && (
+                <li>{cocktail.customIngredient3} : {cocktail.customMeasure3}</li>
+              )}
+              {cocktail.customIngredient4 && cocktail.customMeasure4 && (
+                <li>{cocktail.customIngredient4} : {cocktail.customMeasure4}</li>
+              )}
+              {cocktail.customIngredient5 && cocktail.customMeasure5 && (
+                <li>{cocktail.customIngredient5} : {cocktail.customMeasure5}</li>
+              )}
+              {cocktail.customIngredient6 && cocktail.customMeasure6 && (
+                <li>{cocktail.customIngredient6} : {cocktail.customMeasure6}</li>
+              )}
+              {cocktail.customIngredient7 && cocktail.customMeasure7 && (
+                <li>{cocktail.customIngredient7} : {cocktail.customMeasure7}</li>
+              )}
+              {cocktail.customIngredient8 && cocktail.customMeasure8 && (
+                <li>{cocktail.customIngredient8} : {cocktail.customMeasure8}</li>
+              )}
+              {cocktail.customIngredient9 && cocktail.customMeasure9 && (
+                <li>{cocktail.customIngredient9} : {cocktail.customMeasure9}</li>
+              )}
+              {cocktail.customIngredient10 && cocktail.customMeasure10 && (
+                <li>{cocktail.customIngredient10} : {cocktail.customMeasure10}</li>
+              )}
+              {cocktail.customIngredient11 && cocktail.customMeasure11 && (
+                <li>{cocktail.customIngredient11} : {cocktail.customMeasure11}</li>
+              )}
+              {cocktail.customIngredient12 && cocktail.customMeasure12 && (
+                <li>{cocktail.customIngredient12} : {cocktail.customMeasure12}</li>
+              )}
+              {cocktail.customIngredient13 && cocktail.customMeasure13 && (
+                <li>{cocktail.customIngredient13} : {cocktail.customMeasure13}</li>
+              )}
+              {cocktail.customIngredient14 && cocktail.customMeasure14 && (
+                <li>{cocktail.customIngredient14} : {cocktail.customMeasure14}</li>
+              )}
+              {cocktail.customIngredient15 && cocktail.customMeasure15 && (
+                <li>{cocktail.customIngredient15} : {cocktail.customMeasure15}</li>
+              )}
             </ul>
             <h2 className="sectionTitle">이 칵테일을 추천합니다</h2>
             <p className="instructions">{cocktail.instructions}</p>
