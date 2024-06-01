@@ -12,7 +12,7 @@
 }
 
 .filter-dropdowns select {
-  z-index: 20;
+  z-index: 4;
   background-color: rgba(255, 255, 255, 0.7); /* 배경을 반투명하게 설정 */
   border: 1px solid #ccc; /* 드롭다운의 테두리 */
   padding: 10px 20px; /* 드롭다운의 내부 여백 */
