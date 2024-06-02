@@ -246,3 +246,46 @@
     width: 150px;
   }
 }
+
+.cocktail-eye {
+  display: flex;
+  position: absolute;
+  transform: translate(78%, -55%);
+  
+  color: #000000; /* 밝은 색으로 변경 */
+  padding: 5px;
+  margin: 0;
+  font-size: 1rem;
+  
+  
+
+  svg {
+    filter: drop-shadow(-1px 0 0 rgb(50, 50, 50)) drop-shadow(0 1px 0 rgb(50, 50, 50)) drop-shadow(1px 0 0 rgb(50, 50, 50)) drop-shadow(0 -1px 0 rgb(50, 50, 50));
+    transform: translate(0%, 15%);
+    padding: 2px;
+    margin: 0 5px;
+    fill: #ffffff;
+    opacity: 0.9;
+  }
+}
+
+.iconFathum {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.iconFathum .icon {
+  font-size: 24px;
+  color: white; /* 추천하지 않은 상태의 아이콘 색상 */
+}
+
+.iconFathum:active {
+  transform: scale(1.2); /* 클릭 시 아이콘 크기 확대 */
+}
+
+.iconFathum.recommended .icon {
+  color: rgba(236, 250, 46, 0.904); /* 추천한 상태의 아이콘 색상 */
+}
+

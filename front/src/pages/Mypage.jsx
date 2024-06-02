@@ -44,11 +44,6 @@ function MyPage() {
     fetchProfile();
   }, []);
 
-
-
-
-
-
   const handleNicknameChange = (e) => {
     setNickname(e.target.value);  // 별명 변경 처리
   };
@@ -62,7 +57,7 @@ function MyPage() {
   };
 
   const handleImageDelete = () => {
-    setProfileImage(null);  // 프로필 이미지 URL 초기화
+    setProfileImage(defaultProfile);  // 기본 프로필 이미지로 변경
     setFile(null);  // 파일 상태 초기화
   };
 
@@ -103,7 +98,7 @@ function MyPage() {
         <p>대표 프로필과 별명을 수정하실 수 있습니다.</p>
         <div className="profile-section">
           <div className="profile-picture">
-          <img src={profileImage || defaultProfile} alt="Profile" />
+            <img src={profileImage || defaultProfile} alt="Profile" />
             <div className="image-buttons">
               <input type="file" id="fileInput" style={{ display: 'none' }} onChange={(e) => {
                 const selectedFile = e.target.files[0];
@@ -111,7 +106,7 @@ function MyPage() {
                 setProfileImage(URL.createObjectURL(selectedFile));
               }} />
               <button onClick={() => document.getElementById('fileInput').click()}>변경</button>
-              <button onClick={() => { setProfileImage(null); setFile(null); }}>삭제</button>
+              <button onClick={handleImageDelete}>삭제</button> {/* 변경 */}
             </div>
           </div>
           <div className="nickname-section">
