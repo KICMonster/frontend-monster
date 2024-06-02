@@ -134,8 +134,4 @@
   margin-left: 190px; /* 이미지 간의 간격 추가 */
 }
 
-.image-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
