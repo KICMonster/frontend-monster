@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import BasicLayout from '../layouts/BasicLayout';
 import '../component/main/styles/MyPage.css';
 import { Link } from 'react-router-dom';
+import defaultProfile from "../img/default.png"
 
 function MyPage() {
   const [nickname, setNickname] = useState('');  // 초기값을 빈 문자열로 설정 : undefined가 변경되면 에러가 발생하기 때문
@@ -102,7 +103,7 @@ function MyPage() {
         <p>대표 프로필과 별명을 수정하실 수 있습니다.</p>
         <div className="profile-section">
           <div className="profile-picture">
-            <img src={profileImage || 'default-profile.png'} alt="Profile" />
+          <img src={profileImage || defaultProfile} alt="Profile" />
             <div className="image-buttons">
               <input type="file" id="fileInput" style={{ display: 'none' }} onChange={(e) => {
                 const selectedFile = e.target.files[0];
