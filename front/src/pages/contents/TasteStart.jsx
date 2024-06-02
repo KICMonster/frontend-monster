@@ -3,16 +3,18 @@ import { Link } from 'react-router-dom';
 import BasicLayout from "../../layouts/BasicLayout";
 import "../../component/main/styles/TasteStart.css";
 import "../../component/main/styles/Taste.css";
+import timer from "../../img/timer.jpg"
+import ck from "../../img/ck.png"
 
 function TasteStart() {
   return (
     <BasicLayout>
-      <div className="board" style={{marginRight:"17.5%"}}>
+      <div className="board" style={{ marginRight: "17.5%" }}>
         <div className="survey-container">
           <h1>내 취향의 칵테일 찾기</h1>
           <h2>당신만을 위한 추천 칵테일✨</h2>
           <div className="survey-instructions">
-          <div>
+            <div>
               <span>✌️</span>
               <p>질문은 8개, 2분이면 OK!</p>
             </div>
@@ -25,7 +27,11 @@ function TasteStart() {
               <p>테스트 후엔 취향 칵테일 추천!</p>
             </div>
           </div>
-          <span><img src="https://media.tenor.com/nE7CE32ElmMAAAAM/leonardo-di-caprio-cheers.gif" alt="survey-image" /></span>
+          <div className="image-container">
+            <img src={timer} alt="timer" className="timer" />
+            <img src="https://media.tenor.com/nE7CE32ElmMAAAAM/leonardo-di-caprio-cheers.gif" alt="survey-image-gif" className="survey-image-gif" />
+            <img src={ck} alt="ck" className="ck" />
+          </div>
           <div className="survey-start">
             <Link to="/taste">시작하기</Link>
           </div>
