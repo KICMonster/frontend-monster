@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import BasicLayout from "../../layouts/BasicLayout";
 import "../../component/main/styles/TasteStart.css";
 import "../../component/main/styles/Taste.css";
-import timer from "../../img/timer.jpg"
-import ck from "../../img/ck.png"
 
 function TasteStart() {
   return (
@@ -28,9 +26,7 @@ function TasteStart() {
             </div>
           </div>
           <div className="image-container">
-            <img src={timer} alt="timer" className="timer" />
             <img src="https://media.tenor.com/nE7CE32ElmMAAAAM/leonardo-di-caprio-cheers.gif" alt="survey-image-gif" className="survey-image-gif" />
-            <img src={ck} alt="ck" className="ck" />
           </div>
           <div className="survey-start">
             <Link to="/taste">시작하기</Link>

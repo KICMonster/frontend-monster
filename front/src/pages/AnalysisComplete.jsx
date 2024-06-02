@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import BasicLayout from '../layouts/BasicLayout';
 import Loading from './Loading';
-import '../component/main/styles/AnalysisCompletec.css'
+import '../component/main/styles/AnalysisComplete.css'
 
 function AnalysisComplete() {
   const location = useLocation();

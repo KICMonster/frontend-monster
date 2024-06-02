@@ -165,7 +165,7 @@ function CustomCocktail() {
               <div className="image-box">
               <img src={cocktail.imageUrl || 'default-image-url.jpg'} alt={cocktail.name} className="cocktail-image" style={{height: "208px"}}/>
               </div>
-              <h2 className="cocktail-name">{cocktail.customNm}</h2>
+              <h2 className="cocktail-name">{cocktail.name}</h2>
             </div>
           </Link>
         ))}

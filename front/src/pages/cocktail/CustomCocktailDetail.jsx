@@ -69,7 +69,7 @@ function CustomCocktailDetail() {
       <div className="container" style={{ paddingRight:'42px', marginTop:'150px' }}>
         <div className="leftColumn" style={{ gridColumn: '1 / 4' }}>
           <div className="imageBox">
-            <img src={cocktail.customImageUrl} alt={cocktail.customNm} className="cocktailImage" />
+            <img src={cocktail.customImageUrl} alt={cocktail.customNm} className="cocktailImage2" />
           </div>
         </div>
         <div className="rightColumn" style={{ gridColumn: '4 / span 3' }}>
