@@ -33,7 +33,7 @@ function CocktailDetail() {
 
       const appetizersResponse = await axiosInstance.get(appetizersEndpoint);
       // 처음 세 개의 안주만 가져오기
-      setAppetizers(appetizersResponse.data.slice(0, 3));
+      setAppetizers(appetizersResponse.data.slice(0, 4));
       // 칵테일 페이지 뷰를 서버에 기록하는 POST 요청 추가
      await axiosInstance.post(`/view/cocktails/${cocktailId}`, {
       timestamp: new Date().toISOString()
@@ -127,7 +127,7 @@ function CocktailDetail() {
             </ul>
             <h2 className="sectionTitle">칵테일 레시피</h2>
             <p className="instructions">{cocktail.instructions}</p>
-            <h2 className="sectionTitle">칵테일과 어울리는 안주</h2>
+            <h2 className="sectionTitle">칵테일과 어울리는 디저트</h2>
             <div className="appetizersContainer">
               {appetizers.map((appetizer, index) => {
                 const truncatedName = appetizer.name.length > 8 ? `${appetizer.name.substring(0, 8)}...` : appetizer.name;

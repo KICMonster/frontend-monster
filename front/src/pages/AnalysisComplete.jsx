@@ -29,13 +29,15 @@ function AnalysisComplete() {
   }
 
   return (
-    <div className="AT-container">
-      <Link to={`/cocktail/${currentCocktail.id}`} key={currentCocktail.id}>
-        <img src={currentCocktail.imageUrl} alt={currentCocktail.name} className="AT-cocktailImage" />
-      </Link>
-      <h1 className="AT-cocktailDescription">회원님에게 알맞는 칵테일은 <strong>{currentCocktail.name}</strong> 입니다!</h1>
-      <button onClick={selectRandomCocktail} className="AT-button">다른 칵테일 보기</button>
-    </div>
+    <BasicLayout>
+      <div className="AT-container">
+        <Link to={`/cocktail/${currentCocktail.id}`} key={currentCocktail.id}>
+          <img src={currentCocktail.imageUrl} alt={currentCocktail.name} className="AT-cocktailImage" />
+        </Link>
+        <h1 className="AT-cocktailDescription">회원님에게 알맞는 칵테일은 <strong>{currentCocktail.name}</strong> 입니다!</h1>
+        <button onClick={selectRandomCocktail} className="AT-button">다른 칵테일 보기</button>
+      </div>
+    </BasicLayout>
   );
 }
 
