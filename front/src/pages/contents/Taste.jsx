@@ -10,16 +10,16 @@ const Taste = ({ onSelectionComplete }) => {
   const [question, setQuestion] = useState("오늘은 불금! 술이 땡기는 당신, 어느곳에서 불금을 즐길건가요 ?");
   const [imageUrl, setImageUrl] = useState("https://skybory-bucket.s3.ap-northeast-2.amazonaws.com/monster/enquete/1.png");
 
-  // const navigate = useNavigate();
-  // useEffect(() => {
+  const navigate = useNavigate();
+  useEffect(() => {
     
-  //   const jwtToken = localStorage.getItem("jwt");
-  //   // JWT 토큰 확인
-  //   if (!jwtToken) {
-  //     alert("로그인 후 사용해 주세요.");
-  //     navigate("/login"); // navigate 사용
-  //   }
-  // }, [navigate]);
+    const jwtToken = localStorage.getItem("jwt");
+    // JWT 토큰 확인
+    if (!jwtToken) {
+      alert("로그인 후 사용해 주세요.");
+      navigate("/login"); // navigate 사용
+    }
+  }, [navigate]);
 
   useEffect(() => {
     const initialOptions = options.slice(0, 2);
