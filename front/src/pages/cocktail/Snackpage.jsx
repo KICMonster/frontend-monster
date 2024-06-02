@@ -75,7 +75,9 @@ function Snackpage() {
                                 <div key={index} className="appetizerBox">
                                     <Link to={`/cocktail/${item.id}`}>
                                         <img src={item.imageUrl} alt={item.name} className="appetizerImage" />
-                                        <h6>{item.name}</h6>
+                                        <h6>
+                                            {item.name.length > 7 ? item.name.slice(0, 7) + '...' : item.name}
+                                        </h6>
                                     </Link>
                                 </div>
                             ))}
