@@ -3,6 +3,13 @@ import BasicLayout from "../../layouts/BasicLayout";
 import { Link } from "react-router-dom";
 import "../../component/main/styles/ViewPage.css";
 import '../../component/main/styles/CocktailDetail.css';
+import axios from 'axios';
+
+
+const axiosInstance = axios.create({
+  baseURL: import.meta.env.VITE_API_URL
+});
+
 
 function ViewPage() {
   const [cocktails, setCocktails] = useState([]);
@@ -17,9 +24,9 @@ function ViewPage() {
 
   const fetchAllCocktails = async () => {
     try {
-      const endpoint = 'https://localhost:9092/api/cocktail';                  
-      const response = await fetch(endpoint);
-      const data = await response.json();
+      const endpoint = '/cocktail';                  
+      const response = await axiosInstance.get(endpoint);
+      const data = response.data;
       setCocktails(data);
 
       // 모든 고유한 리큐르 추출
@@ -103,24 +110,24 @@ function ViewPage() {
 
   return (
     <BasicLayout>
-                <div className="filter-dropdowns">
-            <select onChange={handleBaseFilterChange} value={baseFilter}>
-              <option value="">베이스</option>
-              {uniqueIngredients.map((ingredient, index) => (
-                <option key={index} value={ingredient}>{ingredient}</option>
-              ))}
-            </select>
-            <select onChange={handleGlassFilterChange} value={glassFilter}>
-              <option value="">글래스</option>
-              {uniqueGlasses.map((glass, index) => (
-                <option key={index} value={glass}>{glass}</option>
-              ))}
-            </select>
-            <select onChange={handleAlcoholFilterChange} value={alcoholFilter}>
-              <option value="">알콜 여부</option>
-              <option value="Alcoholic">알콜</option>
-              <option value="Non alcoholic">논알콜</option>
-            </select>
+      <div className="filter-dropdowns">
+        <select onChange={handleBaseFilterChange} value={baseFilter}>
+          <option value="">리큐르</option>
+          {uniqueIngredients.map((ingredient, index) => (
+            <option key={index} value={ingredient}>{ingredient}</option>
+          ))}
+        </select>
+        <select onChange={handleAlcoholFilterChange} value={alcoholFilter}>
+          <option value="">알코올 여부</option>
+          <option value="Alcoholic">알코올</option>
+          <option value="Non alcoholic">논알코올</option>
+        </select>
+        <select onChange={handleGlassFilterChange} value={glassFilter}>
+          <option value="">사용된 컵</option>
+          {uniqueGlasses.map((glass, index) => (
+            <option key={index} value={glass}>{glass}</option>
+          ))}
+        </select>
         <button onClick={handleResetFilter} className="btn-hover" style={{margin:"2px", marginLeft:"20px", padding:"0px 20px 0px", height: "39px"}}>Reset</button>
       </div>
       <div className="container" style={{ gridTemplateColumns: 'repeat(5, 1fr)' }}>

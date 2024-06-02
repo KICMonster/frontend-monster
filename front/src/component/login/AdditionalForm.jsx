@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { FaCheckCircle } from "react-icons/fa";
 import BasicLayout from "../../layouts/BasicLayout";
 import '../../component/main/styles/login.css'
-import  '../login/additionalForm.css';
+import  '../../component/main/styles/additionalForm.css';
+import axios from "axios";
+ 
 
 
 function AdditionalForm() {
@@ -106,7 +108,7 @@ function AdditionalForm() {
     };
 
     try {
-      const response = await fetch('https://localhost:9092/join/submit', {
+      const response = await fetch('https://luvcocktail.site/api/join/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

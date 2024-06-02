@@ -2,7 +2,15 @@ import React, { useState, useEffect } from "react";
 import BasicLayout from "../../layouts/BasicLayout";
 import '../../component/main/styles/CocktailDetail.css';
 import { Link } from "react-router-dom";
+import axios from 'axios';
+ 
 
+
+
+const axiosInstance = axios.create({
+    baseURL: import.meta.env.VITE_API_URL
+  });
+  
 function Snackpage() {
     // 스낵 데이터를 저장할 상태를 선언
     const [cocktail, setCocktail] = useState([]);
@@ -13,24 +21,25 @@ function Snackpage() {
     useEffect(() => {
         // 윈도우 주소에서 ID 추출
         const pathname = window.location.pathname;
-        const id = pathname.split('/').pop();
+        const id = pathname.split('/').pop();               // 시간 남으면 태연 고치기
 
         // 스낵 데이터를 비동기적으로 가져오는 함수 선언
         const fetchSnackData = async () => {
             try {
                 // API 엔드포인트 설정
-                const cocktailEndpoint = `https://localhost:9092/api/cocktail`;      // 칵테일 
-                const snackEndpoint = `https://localhost:9092/api/snack/${id}`; // 안주
+                const cocktailEndpoint = `/cocktail`;      // 칵테일 
+                const snackEndpoint = `/snack/${id}`; // 안주
 
                 // 칵테일 데이터 가져오기
-                const cocktailResponse = await fetch(cocktailEndpoint);
-                const cocktailData = await cocktailResponse.json();
-                setCocktail(cocktailData.slice(0, 3));
+                const cocktailResponse = await axiosInstance.get(cocktailEndpoint);
+                // const cocktailData = await cocktailResponse.json();
+                setCocktail(cocktailResponse.data.slice(0, 3));
+                // setCocktail(cocktailData.slice(0, 3));
 
                 // 스낵 데이터 가져오기
-                const snackResponse = await fetch(snackEndpoint);
-                const snackData = await snackResponse.json();
-                setSnack(snackData);
+                const snackResponse = await axiosInstance.get(snackEndpoint);
+                // const snackData = await snackResponse.json();
+                setSnack(snackResponse.data);
 
                 // 에러 상태 초기화
                 setError(null);

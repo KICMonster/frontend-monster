@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
 import BasicLayout from "../../layouts/BasicLayout";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 import "../../component/main/styles/ViewPage.css"; // CSS 파일을 import
 import '../../component/main/styles/CocktailDetail.css';
+const axiosInstance = axios.create({
+  // baseURL: process.env.REACT_APP_API_URL // 백엔드 주소
+  baseURL: import.meta.env.VITE_API_URL
+});
 
 function CustomCocktail() {
   const [cocktails, setCocktails] = useState([]);
@@ -18,9 +23,9 @@ function CustomCocktail() {
 
   const fetchAllCocktails = async () => {
     try {
-      const endpoint = 'https://localhost:9092/api/custom';
-      const response = await fetch(endpoint);
-      const data = await response.json();
+      const endpoint = '/custom';
+      const response = await axiosInstance.get(endpoint);
+      const data = response.data;
       const shuffledData = shuffleArray(data);
       setCocktails(shuffledData);
 
@@ -158,7 +163,7 @@ function CustomCocktail() {
           <Link key={cocktail.cocktailId} to={`/customcocktail/${cocktail.cocktailId}`} className="cocktail-link">
             <div className="cocktail-item">
               <div className="image-box">
-                <img src={cocktail.customImageUrl || 'default-image-url.jpg'} alt={cocktail.customNm} className="cocktail-image" style={{height: "208px"}} />
+              <img src={cocktail.imageUrl || 'default-image-url.jpg'} alt={cocktail.name} className="cocktail-image" style={{height: "208px"}}/>
               </div>
               <h2 className="cocktail-name">{cocktail.customNm}</h2>
             </div>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import  '../login/authCodeForm.css';
 
 const AuthCodeForm = ({ authCode, setAuthCode, onVerified }) => {
 

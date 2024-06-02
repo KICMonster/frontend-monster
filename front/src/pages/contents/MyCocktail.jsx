@@ -2,20 +2,19 @@ import React, { useEffect, useState } from "react";
 import BasicLayout from "../../layouts/BasicLayout";
 import '../../component/main/styles/mycocktail.css';
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 function MyCocktail() {
-
   const navigate = useNavigate();
 
   useEffect(() => {
     const jwtToken = localStorage.getItem("jwt");
     // JWT 토큰 확인
     if (!jwtToken) {
-      alert("로그인 후 사용해 주세요.");
+      alert("로그인 후 사용해주세요");
       navigate("/login"); // navigate 사용
     }
   }, [navigate]);
-
 
   // 상태 변수들 선언 및 초기화
   const [selectedFile, setSelectedFile] = useState(null);
@@ -63,12 +62,11 @@ function MyCocktail() {
       alert("최대 10개까지만 추가할 수 있습니다.");
     }
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // 재료 유효성 검사 및 값 변경 여부 확인
-
     if (ingredients.every(ingredient => !ingredient.name.trim() || !ingredient.amount.trim())) {
       alert("최소 4개의 재료의 이름과 양을 입력하세요.");
       return;
@@ -102,38 +100,20 @@ function MyCocktail() {
       formData.append('name', title);
       formData.append('image', selectedFile);  // 파일 데이터를 formData에 추가
       formData.append('description', description);
-      // formData.append('ingredient1', ingredient1);
-      // formData.append('ingredient2', ingredient2);
-      // formData.append('ingredient3', ingredient3);
-      // formData.append('ingredient4', ingredient4);
-      // formData.append('ingredient5', ingredient5);
-      // formData.append('ingredient6', ingredient6);
-      // formData.append('ingredient7', ingredient7);
-      // formData.append('ingredient8', ingredient8);
-      // formData.append('ingredient9', ingredient9);
-      // formData.append('measure1', measure1);
-      // formData.append('measure2', measure2);
-      // formData.append('measure3', measure3);
-      // formData.append('measure4', measure4);
-      // formData.append('measure5', measure5);
-      // formData.append('measure6', measure6);
-      // formData.append('measure7', measure7);
-      // formData.append('measure8', measure8);
-      // formData.append('measure9', measure9);
       filteredIngredients.forEach((ingredient, index) => {
         formData.append(`ingredient${index + 1}`, ingredient.name);
         formData.append(`measure${index + 1}`, ingredient.amount);
       });
       formData.append('alcoholic', isAlcoholic);
       formData.append('glass', glassType);
-  
+ 
       try {
-        const response = await axios.post('https://localhost:9092/api/custom', formData, {
+        const response = await axios.post('https://luvcocktail.site/api/custom', formData, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('jwt')}`
           }
         });
-  
+
         if (response.status === 200 && response.data) {
           alert('칵테일이 성공적으로 등록되었습니다.');
           // 여기에서 응답으로 받은 cocktailId를 사용하여 페이지 이동

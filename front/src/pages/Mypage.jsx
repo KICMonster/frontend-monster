@@ -11,36 +11,37 @@ function MyPage() {
   const [birth, setBirth] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
- // 사용자 정보 불러오기 추가 - 김태연
- useEffect(() => {
-  const fetchProfile = async () => {
-    const token = localStorage.getItem('jwt'); // 로컬스토리지에서 토큰 값을 읽기
-    try {
-      const response = await fetch('https://localhost:9092/api/myPage', {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${token}`, // Authorization 헤더에 토큰 추가
-          'Content-Type': 'application/json'
-        }
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setNickname(data.name); // 이름(별명) 상태 업데이트
-        setProfileImage(data.imageUrl); // 프로필 이미지 URL 업데이트
-        setGender(data.gender); // 성별 상태 업데이트
-        setBirth(data.birth); // 생년월일 상태 업데이트
-        setEmail(data.email); // 이메일 상태 업데이트
-        setPhone(data.phone); // 전화번호 상태 업데이트
-      } else {
-        throw new Error('프로필 정보를 불러오는 데 실패했습니다.');
-      }
-    } catch (error) {
-      alert('프로필 불러오기 에러: ' + error.message);
-    }
-  };
+  // 사용자 정보 불러오기 추가 - 김태연
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const token = localStorage.getItem('jwt'); // 로컬스토리지에서 토큰 값을 읽기
+      try {
+        const response = await fetch('https://luvcocktail.site/api/myPage', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`, // Authorization 헤더에 토큰 추가
+            'Content-Type': 'application/json'
+          }
+        });
 
-  fetchProfile();
-}, []);
+        if (response.ok) {
+          const data = await response.json();
+          setNickname(data.name); // 이름(별명) 상태 업데이트
+          setProfileImage(data.imageUrl); // 프로필 이미지 URL 업데이트
+          setGender(data.gender); // 성별 상태 업데이트
+          setBirth(data.birth); // 생년월일 상태 업데이트
+          setEmail(data.email); // 이메일 상태 업데이트
+          setPhone(data.phone); // 전화번호 상태 업데이트
+        } else {
+          throw new Error('프로필 정보를 불러오는 데 실패했습니다.');
+        }
+      } catch (error) {
+        alert('프로필 불러오기 에러: ' + error.message);
+      }
+    };
+
+    fetchProfile();
+  }, []);
 
 
 
@@ -63,7 +64,7 @@ function MyPage() {
     setProfileImage(null);  // 프로필 이미지 URL 초기화
     setFile(null);  // 파일 상태 초기화
   };
-  
+
   const handleApply = async () => {
     const token = localStorage.getItem('jwt');  // 로컬스토리지에서 토큰 값 읽기
 
@@ -73,7 +74,7 @@ function MyPage() {
       formData.append('introduction', nickname);
 
       try {
-        const response = await fetch('https://localhost:9092/api/myPage/profileImage', {
+        const response = await fetch('https://luvcocktail.site/api/myPage/profileImage', {
           method: 'PUT',
           body: formData,
           headers: {
@@ -96,44 +97,43 @@ function MyPage() {
 
   return (
     <BasicLayout>
-    <div className="myPage">
-      <h2>프로필 수정</h2>
-      <p>대표 프로필과 별명을 수정하실 수 있습니다.</p>
-      <div className="profile-section">
-        <div className="profile-picture">
-          <img src={profileImage || 'default-profile.png'} alt="Profile" />
-        </div>
-        <div className="nickname-section">
-          <label>별명</label>
-          <input type="text" value={nickname} onChange={(e) => setNickname(e.target.value)} />
-          <label>성별</label>
-          <input type="text" value={gender} onChange={(e) => setGender(e.target.value)} />
-          <label>생일</label>
-          <input type="text" value={birth} onChange={(e) => setBirth(e.target.value)} />
-          <label>이메일</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-          <label>전화번호</label>
-          <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} />
-
-          <div className="image-buttons">
-            <input type="file" id="fileInput" style={{ display: 'none' }} onChange={(e) => {
-              const selectedFile = e.target.files[0];
-              setFile(selectedFile);
-              setProfileImage(URL.createObjectURL(selectedFile));
-            }} />
-            <button onClick={() => document.getElementById('fileInput').click()}>사진 변경</button>
-            <button onClick={() => { setProfileImage(null); setFile(null); }}>삭제</button>
+      <div className="myPage">
+        <h2>프로필 수정</h2>
+        <p>대표 프로필과 별명을 수정하실 수 있습니다.</p>
+        <div className="profile-section">
+          <div className="profile-picture">
+            <img src={profileImage || 'default-profile.png'} alt="Profile" />
+            <div className="image-buttons">
+              <input type="file" id="fileInput" style={{ display: 'none' }} onChange={(e) => {
+                const selectedFile = e.target.files[0];
+                setFile(selectedFile);
+                setProfileImage(URL.createObjectURL(selectedFile));
+              }} />
+              <button onClick={() => document.getElementById('fileInput').click()}>변경</button>
+              <button onClick={() => { setProfileImage(null); setFile(null); }}>삭제</button>
+            </div>
+          </div>
+          <div className="nickname-section">
+            <label>별명</label>
+            <input type="text" value={nickname} onChange={(e) => setNickname(e.target.value)} />
+            <label>성별</label>
+            <input type="text" value={gender} onChange={(e) => setGender(e.target.value)} />
+            <label>생일</label>
+            <input type="text" value={birth} onChange={(e) => setBirth(e.target.value)} />
+            <label>이메일</label>
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <label>전화번호</label>
+            <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} />
           </div>
         </div>
+        <div className="buttons">
+          <Link to="/">
+            <button onClick={handleApply} className="apply">적용</button>
+          </Link>
+          <button className="cancel">취소</button>
+        </div>
       </div>
-      <div className="buttons">
-        <Link to="/">
-          <button onClick={handleApply} className="apply">적용</button>
-        </Link>
-        <button className="cancel">취소</button>
-      </div>
-    </div>
-  </BasicLayout>
+    </BasicLayout>
   );
 }
 

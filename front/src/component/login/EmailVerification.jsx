@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import AuthCodeForm from './AuthCodeForm';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+const axiosInstance = axios.create({
+  baseURL: import.meta.env.VITE_API_URL
+});
 
 const EmailForm = () => {
 
@@ -62,36 +67,26 @@ const isValidEmailFormat = (email) => {
     }
     let status;
     try {
-         
-        const response = await fetch('https://localhost:9092/join/emails/verification-requests', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email: fullEmail }),
-        });
-        status = response.status; // 응답으로부터 상태 코드 저장
-      
-        if (response.ok) {
-          // 응답이 성공적인 경우에만 실행되는 부분
-          alert('인증 코드가 전송되었습니다. 이메일을 확인해주세요.');
-          setIsCodeSent(true); // 여기에 코드를 추가하여 상태를 업데이트함
-        } else {
-            // 서버에서 에러 코드로 응답할 경우, 여기서 처리
-            const error = await response.json();
-            console.error('이메일 인증 실패:', error.message);
-            throw new Error(error.message); // 적절한 에러 메시지와 함께 예외를 던짐
-          }
-        } catch (error) {
-          if (status === 409) {
-            alert('이미 가입된 이메일입니다.');
-            navigate("/login");
-          } else {
-            // fetch 요청 실패 또는 서버에서 409 외 다른 에러 코드로 응답한 경우의 처리
-            console.error('Unexpected error:', error);
-            alert('예상치 못한 오류가 발생했습니다. 다시 시도해주세요. 계속해서발생할경우 고객센터에 문의해주세요.');
-          }
-        }
+      // Use axiosInstance to post data. Note that data should be passed directly, not inside a body property.
+      const response = await axiosInstance.post('/join/emails/verification-requests', { email: fullEmail });
+    
+      // Axios uses status codes, but does not have an 'ok' property. Instead, check if the status code is 200.
+      if (response.status === 200) {
+        alert('인증 코드가 전송되었습니다. 이메일을 확인해주세요.');
+        setIsCodeSent(true);
+      } else {
+        // Handle non-200 responses here
+        throw new Error('이메일 인증 실패');
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
+        alert('이미 가입된 이메일입니다.');
+        navigate("/login");
+      } else {
+        console.error('Unexpected error:', error);
+        alert('예상치 못한 오류가 발생했습니다. 다시 시도해주세요. 계속해서 발생할 경우 고객센터에 문의해주세요.');
+      }
+    }
     }
     const onVerified = async () => {
       setIsCodeSent(true); // 더 이상 인증 코드 폼을 보여줄 필요가 없음
@@ -99,28 +94,22 @@ const isValidEmailFormat = (email) => {
       const fullEmail = `${email}@${emailDomain}`;
     
       try {
-        const response = await fetch(`https://localhost:9092/join/emails/verifications?email=${encodeURIComponent(fullEmail)}&code=${authCode}`, {
-          method: 'GET',
-        });
+        // Use axiosInstance to get data. Axios automatically handles JSON parsing.
+        const response = await axiosInstance.get(`/join/emails/verifications?email=${encodeURIComponent(fullEmail)}&code=${authCode}`);
     
-        const data = await response.json(); // 응답 데이터를 JSON 형태로 파싱
-    
-        if (response.ok) {
+        if (response.status === 200) {
           setIsVerified(true);
           alert('이메일이 성공적으로 인증되었습니다.');
           isEmailVerifiednav(); // 이메일 인증 상태를 업데이트
         } else {
-          // HTTP 상태 코드가 200이 아닌 경우 예외를 발생시킴
-          const error = new Error(data.message || '인증에 실패했습니다.');
-          error.status = response.status;
-          throw error;
+          // Handle cases where the HTTP status code is not 200
+          throw new Error(response.data.message || '인증에 실패했습니다.');
         }
       } catch (error) {
-        if (error.status === 422) {
-          console.error('이메일 인증 실패:', error);
+        console.error('이메일 인증 실패:', error);
+        if (error.response && error.response.status === 422) {
           alert("인증코드가 일치하지 않습니다.");
         } else {
-          console.error('이메일 인증 실패:', error);
           alert("예상치 못한 문제가 발생하였습니다. 다시 시도해 주십시오.");
         }
       }

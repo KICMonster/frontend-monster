@@ -52,13 +52,14 @@ function LoginPage() {
       console.error('Unsupported service or missing authorization code', service);
     }
   }, []);
+ 
   const getAccessToken = async (authCode, service) => {
     let access_token_uri;
     let body;
-
+  
     switch (service) {
       case 'kakao':
-        access_token_uri = 'https://kauth.kakao.com/oauth/token';
+        access_token_uri = 'https://luvcocktail.site/token/kakao';
         body = new URLSearchParams({
           grant_type: 'authorization_code',
           client_id: socialConfig.kakaoKey,
@@ -78,7 +79,8 @@ function LoginPage() {
         });
         break;
       case 'naver':
-        access_token_uri = 'https://nid.naver.com/oauth2.0/token';
+        // 프록시를 통해 네이버 OAuth 요청을 처리하도록 수정
+        access_token_uri = 'https://luvcocktail.site/token/naver';
         body = new URLSearchParams({
           grant_type: 'authorization_code',
           client_id: socialConfig.naverKey,
@@ -92,34 +94,30 @@ function LoginPage() {
         console.error('Unsupported service');
         return;
     }
-
-
+  
     try {
       const response = await axios.post(access_token_uri, body, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
         }
       });
-
+  
       const accessToken = response.data.access_token;
       setAccessToken(accessToken);
-
-
+  
       console.log('발급된 Access Token:', accessToken);
-
-
-
+  
       // 액세스 토큰을 백엔드로 전송
       sendAccessTokenToBackend(accessToken, service);
     } catch (error) {
       console.error('Access Token 요청 중 오류 발생:', error);
     }
   };
-
+  
   const sendAccessTokenToBackend = async (accessToken, service) => {
     try {
       const response = await axios.post(
-        'https://localhost:9092/api/authenticate',
+        'https://luvcocktail.site/api/authenticate',
         {
           accessToken: accessToken,
           service: service
@@ -179,7 +177,7 @@ function LoginPage() {
       e.preventDefault();
     
       try {
-        const response = await axios.post('https://localhost:9092/api/login', {
+        const response = await axios.post('https://luvcocktail.site/api/login', {
           email: email,
           password: password
         });
