@@ -251,13 +251,14 @@
   display: flex;
   position: absolute;
   transform: translate(160%, -56%);
-  
-  color: #000000; /* 밝은 색으로 변경 */
+
+  color: #000000;
+  /* 밝은 색으로 변경 */
   padding: 5px;
   margin: 0;
   font-size: 1rem;
-  
-  
+
+
 
   svg {
     filter: drop-shadow(-1px 0 0 rgb(50, 50, 50)) drop-shadow(0 1px 0 rgb(50, 50, 50)) drop-shadow(1px 0 0 rgb(50, 50, 50)) drop-shadow(0 -1px 0 rgb(50, 50, 50));
@@ -270,28 +271,31 @@
 }
 
 .iconFathum {
+  position: fixed;
+  bottom: 230px;
+  left: 800px;
   background-color: transparent;
   border: none;
   cursor: pointer;
   transition: transform 0.3s, background-color 0.3s;
+  text-shadow: -1px 0 rgb(0, 0, 0), 0 1px rgb(0, 0, 0), 1px 0 rgb(0, 0, 0), 0 -1px rgb(0, 0, 0);
 }
 
 .iconFathum .icon {
   font-size: 24px;
-  color: white; /* 추천하지 않은 상태의 아이콘 색상 */
 }
 
 .iconFathum:active {
-  transform: scale(1.2); /* 클릭 시 아이콘 크기 확대 */
+  transform: scale(2.2);
+  /* 클릭 시 아이콘 크기 확대 */
 }
 
-.iconFathum.recommended .icon {
-  color: rgba(236, 250, 46, 0.904); /* 추천한 상태의 아이콘 색상 */
-}
+
 
 .edit-button,
 .delete-button {
-  background-color: #4CAF50; /* 수정 버튼 배경색 */
+  background-color: #4CAF50;
+  /* 수정 버튼 배경색 */
   border: none;
   color: white;
   padding: 15px 32px;
@@ -307,5 +311,6 @@
 
 .edit-button:hover,
 .delete-button:hover {
-  background-color: #45a049; /* 마우스 호버시 배경색 변화 */
+  background-color: #45a049;
+  /* 마우스 호버시 배경색 변화 */
 }

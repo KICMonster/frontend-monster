@@ -80,44 +80,41 @@ function CustomCocktailDetail() {
 
   return (
     <BasicLayout>
-      <div className="container" style={{ paddingRight:'42px', marginTop:'150px' }}>
+      <div className="container" style={{ paddingRight: '42px', marginTop: '150px' }}>
         <div className="leftColumn" style={{ gridColumn: '1 / 4' }}>
           <div className="imageBox">
             <img src={cocktail.customImageUrl} alt={cocktail.customNm} className="cocktailImage2" />
+            <button onClick={handleRecommendation} className="iconFathum" disabled={hasRecommended}>👍</button>
           </div>
         </div>
         <div className="rightColumn" style={{ gridColumn: '4 / span 3' }}>
           <div className="contentBox">
             <h1 className="cocktailName">{cocktail.customNm}</h1>
-            <p className="cocktailViews">Views: {cocktail.view}</p> {/* 조회수 추가 */}
-            <p className="cocktailRecommend">Recommendations: {cocktail.recommend}</p> {/* 추천수 추가 */}
+            <p className="cocktailViews">조회수 : {cocktail.view}</p> {/* 조회수 추가 */}
+            <p className="cocktailRecommend">추천수 : {cocktail.recommend}</p> {/* 추천수 추가 */}
             <hr className="divider" />
             <p className="cocktailDescription">{cocktail.description}</p>
-            <h2 className="sectionTitle">Ingredients:</h2>
+            <h2 className="sectionTitle">사용된 재료</h2>
             <ul className="ingredientsList">
-                {Array.from(Array(15).keys()).map(index => {
-                  const ingredientKey = `customIngredient${index + 1}`;
-                  const measureKey = `customMeasure${index + 1}`;
-                  return (
-                    cocktail[ingredientKey] && cocktail[measureKey] && (
-                      <li key={index}>{cocktail[ingredientKey]} : {cocktail[measureKey]}</li>
-                    )
-                  );
-                })}
+              {Array.from(Array(15).keys()).map(index => {
+                const ingredientKey = `customIngredient${index + 1}`;
+                const measureKey = `customMeasure${index + 1}`;
+                return (
+                  cocktail[ingredientKey] && cocktail[measureKey] && (
+                    <li key={index}>{cocktail[ingredientKey]} : {cocktail[measureKey]}</li>
+                  )
+                );
+              })}
             </ul>
+            <h2 className="sectionTitle">칵테일 레시피</h2>
             <p className="cocktailRecipe">{cocktail.customRcp}</p> {/* 제조법 추가 */}
-            <h2 className="sectionTitle">이 칵테일을 추천합니다</h2>
-            <span style={{ float: 'right' }}>
-                { /* 수정 가능한 페이지로 이동하는 링크 추가 */ }
-                <Link to={`/custom/${cocktailId}/edit`} className="edit-button">수정하기</Link>
-                <button onClick={handleDelete} className="delete-button">삭제하기</button>
-              </span>
             {/* <p className="instructions">{cocktail.instructions}</p> instructions 삭제. 이게 제조법임 (변수명 맞춰야함) */}
             <h2 className="sectionTitle"></h2>
-            <div>
-              <button onClick={handleRecommendation} disabled={hasRecommended}>👍</button>
-              <span>{recommendation}</span>
-            </div>
+            <span style={{ float: 'right' }}>
+              { /* 수정 가능한 페이지로 이동하는 링크 추가 */}
+              <Link to={`/cocktail/EditCocktail`} className="edit-button">수정하기</Link>
+              <button onClick={handleDelete} className="delete-button">삭제하기</button>
+            </span>
           </div>
         </div>
       </div>
