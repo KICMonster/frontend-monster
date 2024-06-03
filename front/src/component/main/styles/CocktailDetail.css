@@ -274,19 +274,23 @@
   position: fixed;
   transform: translate(700%, 1006%);
   background-color: transparent;
+  color: #f7fa5165; /* 추천하지 않았을 때 어두운 색 */
   border: none;
   cursor: pointer;
-  transition: transform 0.3s, background-color 0.3s;
-  text-shadow: -1px 0 rgb(0, 0, 0), 0 1px rgb(0, 0, 0), 1px 0 rgb(0, 0, 0), 0 -1px rgb(0, 0, 0);
+  transition: transform 0.3s, color 0.3s;
+  text-shadow: -1px 0 rgba(0, 0, 0, 0.397), 0 1px rgb(0, 0, 0), 1px 0 rgb(0, 0, 0), 0 -1px rgb(0, 0, 0);
+}
+
+.iconFathum.recommended {
+  color: #fbff00; /* 추천했을 때 밝은 색 */
+}
+
+.iconFathum:active {
+  transform: translate(700%, 1006%) scale(2.2); /* 클릭 효과: 아이콘 크기 증가 */
 }
 
 .iconFathum .icon {
   font-size: 24px;
-}
-
-.iconFathum:active {
-  transform: translate(700%, 1006%) scale(2.2);
-  /* 클릭 시 아이콘 크기 확대 */
 }
 
 

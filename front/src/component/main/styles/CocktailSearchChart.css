@@ -114,14 +114,12 @@
 }
 
 .button-group22 {
-
-
   transform: translate(70%, -100%);
-
   select {
     margin: 2px;
     padding: 5px;
     border-radius: 20px;
+    
   }
 
   button {
@@ -150,6 +148,13 @@
     /* 마우스 커서 포인터 모양 */
     border-radius: 50px;
     /* 테두리 반경 */
+  }
+  input{
+    width: 70px;
+    padding: 0 2px;
+    margin: 0 2px;
+    border-radius: 10px;
+    border: 1px solid black;
   }
 }
 

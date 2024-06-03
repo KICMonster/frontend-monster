@@ -45,11 +45,8 @@ function CustomCocktailDetail() {
 
   // 추천 기능
   const handleRecommendation = () => {
-    if (!hasRecommended) {
-      setRecommendation(recommendation + 1);
-      setHasRecommended(true);
-      // 여기에 추천 기능을 위한 API 호출 또는 데이터베이스 업데이트 로직을 추가하세요.
-    }
+    setHasRecommended(!hasRecommended); // 추천 상태 토글
+    setRecommendation(hasRecommended ? recommendation - 1 : recommendation + 1); // 새 상태에 따라 카운트 조정
   };
 
   // 삭제 함수
@@ -86,7 +83,9 @@ function CustomCocktailDetail() {
         <div className="leftColumn" style={{ gridColumn: '1 / 4' }}>
           <div className="imageBox">
             <img src={cocktail.customImageUrl} alt={cocktail.customNm} className="cocktailImage2" />
-            <button onClick={handleRecommendation} className="iconFathum" disabled={hasRecommended}>👍</button>
+            <button onClick={handleRecommendation} className={`iconFathum ${hasRecommended ? 'recommended' : ''}`} disabled={false}>
+              👍
+            </button>
           </div>
         </div>
         <div className="rightColumn" style={{ gridColumn: '4 / span 3' }}>
