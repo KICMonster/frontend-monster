@@ -182,15 +182,16 @@ const CocktailSearchChart = () => {
     const cocktailCounts = {};
 
     viewLogs.forEach(log => {
+      const cocktailId = log.cocktailId;
       const cocktailName = log.cocktailName || log.customCocktailName;
       if (cocktailCounts[cocktailName]) {
-        cocktailCounts[cocktailName]++;
+        cocktailCounts[cocktailName].count++;
       } else {
-        cocktailCounts[cocktailName] = 1;
+        cocktailCounts[cocktailName] = { count: 1, id: cocktailId };
       }
     });
 
-    const sortedCocktails = Object.entries(cocktailCounts).sort((a, b) => b[1] - a[1]);
+    const sortedCocktails = Object.entries(cocktailCounts).sort((a, b) => b[1].count - a[1].count);
 
     return sortedCocktails.slice(0, 10); // 최대 10개의 순위만 반환
   };
@@ -234,32 +235,32 @@ const CocktailSearchChart = () => {
         </div>
       </div>
       <div className="chart">
-          <Line data={chartData} options={options} />
-          </div>
-          {isDataEmpty && (
-            <div className="overlay-message">
-              <p>오늘은 아무도 검색을 하지 않았네요 ㅠㅠ</p>
-              <button onClick={() => setTimeRange('thisWeek')}>이번 주</button>
-              <button onClick={() => setTimeRange('thisMonth')}>이번 달</button>
-            </div>
+        <Line data={chartData} options={options} />
+      </div>
+      {isDataEmpty && (
+        <div className="overlay-message">
+          <p>오늘은 아무도 검색을 하지 않았네요 ㅠㅠ</p>
+          <button onClick={() => setTimeRange('thisWeek')}>이번 주</button>
+          <button onClick={() => setTimeRange('thisMonth')}>이번 달</button>
+        </div>
+      )}
+      {!isDataEmpty && (
+        <div className="ranking-container">
+          <h3>검색 순위</h3>
+          {selectedHour === null && (
+            <>
+              <div className="ranking-list">
+                {getSelectedRankings().map(([name, details], index) => (
+                  <Link to={`/cocktail/${details.id}`} className="ranking-item" key={details.id}>
+                    <span className="ranking-position">{index + 1}</span>
+                    <span className="ranking-name">{name}</span>
+                  </Link>
+                ))}
+              </div>
+            </>
           )}
-        {!isDataEmpty && (
-          <div className="ranking-container">
-            <h3>검색 순위</h3>
-            {selectedHour === null && (
-              <>
-                <div className="ranking-list">
-                  {getSelectedRankings().map(([name, count], index) => (
-                    <Link to={`cocktail/${index}`} className="ranking-item" key={index}>
-                      <span className="ranking-position">{index + 1}</span>
-                      <span className="ranking-name">{name}</span>
-                    </Link>
-                  ))}
-                </div>
-              </>
-            )}
-          </div>
-        )}
+        </div>
+      )}
     </BasicLayout>
   );
 };
