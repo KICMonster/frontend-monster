@@ -6,22 +6,13 @@ import axios from 'axios';
 
 function MyCocktail() {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const jwtToken = localStorage.getItem("jwt");
-    // JWT 토큰 확인
-    if (!jwtToken) {
-      alert("로그인 후 사용해주세요");
-      navigate("/login"); // navigate 사용
-    }
-  }, [navigate]);
-
-  // 상태 변수들 선언 및 초기화
+  
   const [selectedFile, setSelectedFile] = useState(null);
-  const [title, setTitle] = useState(""); // 제목 상태
-  const [description, setDescription] = useState(""); // 설명 상태
-  const [isAlcoholic, setIsAlcoholic] = useState(""); // 알콜 여부 상태
-  const [glassType, setGlassType] = useState(""); // 유리잔 타입 상태
+  const [previewUrl, setPreviewUrl] = useState(null);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [isAlcoholic, setIsAlcoholic] = useState("");
+  const [glassType, setGlassType] = useState("");
   const [ingredients, setIngredients] = useState([
     { id: 1, name: "", amount: "", volume: "" },
     { id: 2, name: "", amount: "", volume: "" },
@@ -31,10 +22,8 @@ function MyCocktail() {
   ]);
 
   const [error, setError] = useState(null);
-  const placeholders = ["베이스", "재료 1", "재료 2", "재료 3", "재료 4"]; // 재료 플레이스홀더
+  const placeholders = ["베이스", "재료 1", "재료 2", "재료 3", "재료 4"];
 
-
-  // 입력 필드 값이 변경될 때 실행되는 함수
   const handleInputChange = (id, field, value) => {
     setIngredients(prevIngredients =>
       prevIngredients.map(ingredient =>
@@ -43,7 +32,6 @@ function MyCocktail() {
     );
   };
 
-  // 재료 추가 함수
   const addIngredient = () => {
     if (ingredients.length < 10) {
       const newId = ingredients.length + 1;
@@ -66,26 +54,17 @@ function MyCocktail() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // 재료 유효성 검사 및 값 변경 여부 확인
     if (ingredients.every(ingredient => !ingredient.name.trim() || !ingredient.amount.trim())) {
       alert("최소 4개의 재료의 이름과 양을 입력하세요.");
       return;
     }
 
-    // 입력 필드 유효성 검사 : 제목, 설명, 이미지
     if (!title || !description || !selectedFile) {
       alert("입력 필드를 모두 채워주세요.");
       return;
     }
 
-    //이미지 필드 유효성 검사
-    if (!selectedFile) {
-      alert("이미지는 필수값입니다.");
-      return;
-    }
-
     try {
-      // 빈 값이나 널 값이 포함된 요소를 제거
       const filteredIngredients = ingredients.filter(ingredient => ingredient.name.trim() !== "" && ingredient.amount.trim() !== "");
 
       console.log("제목:", title, "내용:", description, "재료:", filteredIngredients, "알콜 여부:", isAlcoholic, "유리잔 타입:", glassType, "로 폼을 제출합니다.");
@@ -98,7 +77,7 @@ function MyCocktail() {
       const filteredIngredients = ingredients.filter(ingredient => ingredient.name.trim() !== "" && ingredient.amount.trim() !== "");
       const formData = new FormData();
       formData.append('name', title);
-      formData.append('image', selectedFile);  // 파일 데이터를 formData에 추가
+      formData.append('image', selectedFile);
       formData.append('description', description);
       filteredIngredients.forEach((ingredient, index) => {
         formData.append(`ingredient${index + 1}`, ingredient.name);
@@ -116,7 +95,6 @@ function MyCocktail() {
 
         if (response.status === 200 && response.data) {
           alert('칵테일이 성공적으로 등록되었습니다.');
-          // 여기에서 응답으로 받은 cocktailId를 사용하여 페이지 이동
           navigate(`/customcocktail/${response.data.cocktailId}`);
         } else {
           throw new Error('서버 에러');
@@ -127,16 +105,11 @@ function MyCocktail() {
     }
   };
 
- /////////////////////////// // 제출이 끝나는 위치/////////////////////////
-
-  // 파일 선택 시 실행되는 함수
   const handleFileChange = (e) => {
     const file = e.target.files[0];
 
-    // 파일이 선택되지 않은 경우 처리
     if (!file) return;
 
-    // 파일 크기 체크
     const fileSizeInMB = file.size / (1024 * 1024);
     if (fileSizeInMB > 5) {
       alert("파일 크기는 5MB 이하만 업로드 가능합니다.");
@@ -144,28 +117,28 @@ function MyCocktail() {
       return;
     }
 
-    // 허용되는 확장자 목록 확인
     const allowedExtensions = ["jpg", "jpeg", "png", "gif"];
-    // 파일 확장자 확인
     const fileExtension = file.name.split(".").pop().toLowerCase();
-    // 허용되지 않는 확장자인 경우 처리
     if (!allowedExtensions.includes(fileExtension)) {
       alert("jpg, png, gif 확장자만 업로드 가능합니다.");
       e.target.value = "";
       return;
     }
-    // 파일 상태 업데이트
+    
     setSelectedFile(file);
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPreviewUrl(reader.result);
+    };
+    reader.readAsDataURL(file);
   };
 
-  // 입력 최대 길이에 도달 시 알림 표시
   const handleMaxLengthAlert = (length, maxLength) => {
     if (length === maxLength) {
       alert(`최대 ${maxLength}자까지 입력할 수 있습니다.`);
     }
   };
 
-  // 볼륨 변경 핸들러
   const handleVolumeChange = (id, value) => {
     setIngredients(prevIngredients =>
       prevIngredients.map(ingredient =>
@@ -174,12 +147,50 @@ function MyCocktail() {
     );
   };
 
-
-
   return (
     <BasicLayout>
       <div className="MyBoard">
         <div className="MyContainer">
+        <div className="MyRight">
+            <form onSubmit={handleSubmit} className="MyForm">
+              <div className="MyFormGroup">
+                <h1>나만의 칵테일</h1>
+                <label className="MyLabel">이름</label>
+                <input
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  className="MyInput"
+                  maxLength="15"
+                  onKeyUp={() => handleMaxLengthAlert(title.length, 15)}
+                />
+              </div>
+              <div className="MyFormGroup">
+                <label className="MyLabel">레시피</label>
+                <textarea
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  className="MyTextarea"
+                  maxLength="500"
+                  onKeyUp={() => handleMaxLengthAlert(description.length, 500)}
+                />
+              </div>
+              <div className="MyFormGroup">
+                <label className="MyLabel">이미지 첨부</label>
+                {previewUrl && <img src={previewUrl} alt="미리보기" className="MyImagePreview" />}
+                <input type="file" className="MyFileInput" onChange={handleFileChange} />
+              </div>
+              <div className="MyButtonGroup">
+                <button type="submit" className="MySubmitButton" >
+                  등록
+                </button>
+                <button type="button" className="MyCancelButton">
+                  취소
+                </button>
+              </div>
+              {error && <p className="MyError">{error}</p>}
+            </form>
+          </div>
           <div className="MyLeft">
             <div className="MyIngredientSection">
               <h2>추가하실 재료</h2>
@@ -271,44 +282,6 @@ function MyCocktail() {
                 ))}
               </div>
             </div>
-          </div>
-          <div className="MyRight">
-            <form onSubmit={handleSubmit} className="MyForm">
-              <div className="MyFormGroup">
-                <label className="MyLabel">제목을 입력해주세요</label>
-                <input
-                  type="text"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  className="MyInput"
-                  maxLength="15"
-                  onKeyUp={() => handleMaxLengthAlert(title.length, 15)}
-                />
-              </div>
-              <div className="MyFormGroup">
-                <label className="MyLabel">내용</label>
-                <textarea
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  className="MyTextarea"
-                  maxLength="500"
-                  onKeyUp={() => handleMaxLengthAlert(description.length, 500)}
-                />
-              </div>
-              <div className="MyFormGroup">
-                <label className="MyLabel">이미지 첨부</label>
-                <input type="file" className="MyFileInput" onChange={handleFileChange} />
-              </div>
-              <div className="MyButtonGroup">
-                <button type="submit" className="MySubmitButton" >
-                  등록
-                </button>
-                <button type="button" className="MyCancelButton">
-                  취소
-                </button>
-              </div>
-              {error && <p className="MyError">{error}</p>}
-            </form>
           </div>
         </div>
       </div>
