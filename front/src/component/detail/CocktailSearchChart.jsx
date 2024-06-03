@@ -166,14 +166,15 @@ const CocktailSearchChart = () => {
       .filter(log => log.viewDate.getHours() === hour)
       .forEach(log => {
         const cocktailName = log.cocktailName || log.customCocktailName;
+        const cocktailCategory = log.cocktailName ? 'cocktail' : 'customCocktail';
         if (cocktailCounts[cocktailName]) {
-          cocktailCounts[cocktailName]++;
+          cocktailCounts[cocktailName].count++;
         } else {
-          cocktailCounts[cocktailName] = 1;
+          cocktailCounts[cocktailName] = { count: 1, id: log.cocktailId, category: cocktailCategory };
         }
       });
 
-    const sortedCocktails = Object.entries(cocktailCounts).sort((a, b) => b[1] - a[1]);
+    const sortedCocktails = Object.entries(cocktailCounts).sort((a, b) => b[1].count - a[1].count);
 
     return sortedCocktails.slice(0, 10); // 최대 10개의 순위만 반환
   };
@@ -184,10 +185,11 @@ const CocktailSearchChart = () => {
     viewLogs.forEach(log => {
       const cocktailId = log.cocktailId;
       const cocktailName = log.cocktailName || log.customCocktailName;
+      const cocktailCategory = log.cocktailName ? 'cocktail' : 'customCocktail';
       if (cocktailCounts[cocktailName]) {
         cocktailCounts[cocktailName].count++;
       } else {
-        cocktailCounts[cocktailName] = { count: 1, id: cocktailId };
+        cocktailCounts[cocktailName] = { count: 1, id: cocktailId, category: cocktailCategory };
       }
     });
 
@@ -251,7 +253,11 @@ const CocktailSearchChart = () => {
             <>
               <div className="ranking-list">
                 {getSelectedRankings().map(([name, details], index) => (
-                  <Link to={`/cocktail/${details.id}`} className="ranking-item" key={details.id}>
+                  <Link
+                    to={details.category === 'customCocktail' ? `/customcocktail/${details.id}` : `/cocktail/${details.id}`}
+                    className="ranking-item"
+                    key={index}
+                  >
                     <span className="ranking-position">{index + 1}</span>
                     <span className="ranking-name">{name}</span>
                   </Link>
