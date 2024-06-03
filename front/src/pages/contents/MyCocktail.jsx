@@ -7,6 +7,15 @@ import axios from 'axios';
 function MyCocktail() {
   const navigate = useNavigate();
   
+  useEffect(() => {
+    const jwtToken = localStorage.getItem("jwt");
+    // JWT 토큰 확인
+    if (!jwtToken) {
+      alert("로그인 후 사용해주세요");
+      navigate("/login"); // navigate 사용
+    }
+  }, [navigate]);
+
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [title, setTitle] = useState("");
