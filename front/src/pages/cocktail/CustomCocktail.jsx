@@ -168,7 +168,7 @@ function CustomCocktail() {
                 <img src={cocktail.imageUrl || 'default-image-url.jpg'} alt={cocktail.name} className="cocktail-image" style={{ height: "208px" }} />
               </div>
               <h2 className="cocktail-name">{cocktail.name}</h2>
-              <h2 className="cocktail-eye"><IoEyeSharp /> {cocktail.view} <FaThumbsUp /> {cocktail.recommend}</h2>
+              <h2 className="cocktail-eye"><IoEyeSharp /> {cocktail.view}👍{cocktail.recommend}</h2>
             </div>
           </Link>
         ))}

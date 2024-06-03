@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import BasicLayout from "../../layouts/BasicLayout";
 import Loading from "../Loading";
 import '../../component/main/styles/CocktailDetail.css'
+
 // axios 인스턴스 생성
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL
 });
+
 function CustomCocktailDetail() {
   const { cocktailId } = useParams();
   const [cocktail, setCocktail] = useState(null);
@@ -48,6 +50,18 @@ function CustomCocktailDetail() {
     }
   };
 
+  // 삭제 함수
+  const handleDelete = async () => {
+    try {
+      const token = localStorage.getItem('jwt') || '';
+      const headers = token ? { Authorization: `Bearer ${token}` } : {};
+      await axiosInstance.delete(`/custom/${cocktailId}`, { headers });
+      // 삭제 후 리다이렉트 또는 다른 작업을 수행할 수 있음
+    } catch (error) {
+      console.error('Error deleting cocktail:', error);
+    }
+  };
+
   if (error) {
     return (
       <BasicLayout>
@@ -81,55 +95,23 @@ function CustomCocktailDetail() {
             <p className="cocktailDescription">{cocktail.description}</p>
             <h2 className="sectionTitle">Ingredients:</h2>
             <ul className="ingredientsList">
-                {cocktail.customIngredient1 && cocktail.customMeasure1 && (
-                  <li>{cocktail.customIngredient1} : {cocktail.customMeasure1}</li>
-                )}
-                {cocktail.customIngredient2 && cocktail.customMeasure2 && (
-                  <li>{cocktail.customIngredient2} : {cocktail.customMeasure2}</li>
-                )}
-                {cocktail.customIngredient3 && cocktail.customMeasure3 && (
-                  <li>{cocktail.customIngredient3} : {cocktail.customMeasure3}</li>
-                )}
-                {cocktail.customIngredient4 && cocktail.customMeasure4 && (
-                  <li>{cocktail.customIngredient4} : {cocktail.customMeasure4}</li>
-                )}
-                {cocktail.customIngredient5 && cocktail.customMeasure5 && (
-                  <li>{cocktail.customIngredient5} : {cocktail.customMeasure5}</li>
-                )}
-                {cocktail.customIngredient6 && cocktail.customMeasure6 && (
-                  <li>{cocktail.customIngredient6} : {cocktail.customMeasure6}</li>
-                )}
-                {cocktail.customIngredient7 && cocktail.customMeasure7 && (
-                  <li>{cocktail.customIngredient7} : {cocktail.customMeasure7}</li>
-                )}
-                {cocktail.customIngredient8 && cocktail.customMeasure8 && (
-                  <li>{cocktail.customIngredient8} : {cocktail.customMeasure8}</li>
-                )}
-                {cocktail.customIngredient9 && cocktail.customMeasure9 && (
-                  <li>{cocktail.customIngredient9} : {cocktail.customMeasure9}</li>
-                )}
-                {cocktail.customIngredient10 && cocktail.customMeasure10 && (
-                  <li>{cocktail.customIngredient10} : {cocktail.customMeasure10}</li>
-                )}
-                {cocktail.customIngredient11 && cocktail.customMeasure11 && (
-                  <li>{cocktail.customIngredient11} : {cocktail.customMeasure11}</li>
-                )}
-                {cocktail.customIngredient12 && cocktail.customMeasure12 && (
-                  <li>{cocktail.customIngredient12} : {cocktail.customMeasure12}</li>
-                )}
-                {cocktail.customIngredient13 && cocktail.customMeasure13 && (
-                  <li>{cocktail.customIngredient13} : {cocktail.customMeasure13}</li>
-                )}
-                {cocktail.customIngredient14 && cocktail.customMeasure14 && (
-                  <li>{cocktail.customIngredient14} : {cocktail.customMeasure14}</li>
-                )}
-                {cocktail.customIngredient15 && cocktail.customMeasure15 && (
-                  <li>{cocktail.customIngredient15} : {cocktail.customMeasure15}</li>
-                )}
+                {Array.from(Array(15).keys()).map(index => {
+                  const ingredientKey = `customIngredient${index + 1}`;
+                  const measureKey = `customMeasure${index + 1}`;
+                  return (
+                    cocktail[ingredientKey] && cocktail[measureKey] && (
+                      <li key={index}>{cocktail[ingredientKey]} : {cocktail[measureKey]}</li>
+                    )
+                  );
+                })}
             </ul>
             <p className="cocktailRecipe">{cocktail.customRcp}</p> {/* 제조법 추가 */}
             <h2 className="sectionTitle">이 칵테일을 추천합니다</h2>
-
+            <span style={{ float: 'right' }}>
+                { /* 수정 가능한 페이지로 이동하는 링크 추가 */ }
+                <Link to={`/custom/${cocktailId}/edit`} className="edit-button">수정하기</Link>
+                <button onClick={handleDelete} className="delete-button">삭제하기</button>
+              </span>
             {/* <p className="instructions">{cocktail.instructions}</p> instructions 삭제. 이게 제조법임 (변수명 맞춰야함) */}
             <h2 className="sectionTitle"></h2>
             <div>
@@ -142,4 +124,5 @@ function CustomCocktailDetail() {
     </BasicLayout>
   );
 }
+
 export default CustomCocktailDetail;
