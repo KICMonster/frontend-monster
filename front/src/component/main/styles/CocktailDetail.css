@@ -272,8 +272,7 @@
 
 .iconFathum {
   position: fixed;
-  bottom: 230px;
-  left: 800px;
+  transform: translate(700%, 1006%);
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -286,7 +285,7 @@
 }
 
 .iconFathum:active {
-  transform: scale(2.2);
+  transform: translate(700%, 1006%) scale(2.2);
   /* 클릭 시 아이콘 크기 확대 */
 }
 

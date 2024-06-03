@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { useParams, Link } from "react-router-dom";
@@ -16,13 +17,14 @@ function CustomCocktailDetail() {
   const [error, setError] = useState(null);
   const [recommendation, setRecommendation] = useState(0);
   const [hasRecommended, setHasRecommended] = useState(false); // 사용자가 이미 추천을 눌렀는지 여부
+  const [isAuthor, setIsAuthor] = useState(false); // 작성자인지 여부
 
   const fetchCocktailDetail = async () => {
     try {
       const cocktailEndpoint = `/custom/${cocktailId}`;
       const cocktailResponse = await axiosInstance.get(cocktailEndpoint);
-      // const cocktailData = await cocktailResponse.json();
       setCocktail(cocktailResponse.data);
+      setIsAuthor(cocktailResponse.data.isAuthor); // response에서 isAuthor 값을 설정
 
       // 토큰 가져오기
       const token = localStorage.getItem('jwt') || '';
@@ -110,11 +112,13 @@ function CustomCocktailDetail() {
             <p className="cocktailRecipe">{cocktail.customRcp}</p> {/* 제조법 추가 */}
             {/* <p className="instructions">{cocktail.instructions}</p> instructions 삭제. 이게 제조법임 (변수명 맞춰야함) */}
             <h2 className="sectionTitle"></h2>
-            <span style={{ float: 'right' }}>
-              { /* 수정 가능한 페이지로 이동하는 링크 추가 */}
-              <Link to={`/cocktail/EditCocktail`} className="edit-button">수정하기</Link>
-              <button onClick={handleDelete} className="delete-button">삭제하기</button>
-            </span>
+            {isAuthor && (
+              <span style={{ float: 'right' }}>
+                {/* 수정 가능한 페이지로 이동하는 링크 추가 */}
+                <Link to={`/customcocktail/EditCocktail/${cocktailId}`} className="edit-button">수정하기</Link>
+                <button onClick={handleDelete} className="delete-button">삭제하기</button>
+              </span>
+            )}
           </div>
         </div>
       </div>
