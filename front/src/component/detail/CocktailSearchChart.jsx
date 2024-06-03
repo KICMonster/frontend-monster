@@ -217,8 +217,8 @@ const CocktailSearchChart = () => {
           </label>
           <label>
             성별:
-            <select value={gender} onChange={(e) => setGender(e.target.value)}>
-              <option value={null}>모두</option>
+            <select value={gender || ''} onChange={(e) => setGender(e.target.value || null)}>
+              <option value="">모두</option>
               <option value="M">남성</option>
               <option value="F">여성</option>
             </select>
@@ -227,8 +227,8 @@ const CocktailSearchChart = () => {
             출생 연도:
             <input
               type="number"
-              value={birth || ''}
-              onChange={(e) => setBirth(e.target.value ? parseInt(e.target.value) : null)}
+              value={birth ?? ''}
+              onChange={(e) => setBirth(e.target.value ? parseInt(e.target.value, 10) : null)}
               min="0"
               max="99"
               placeholder="예: 85"
