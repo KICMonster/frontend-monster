@@ -27,7 +27,6 @@ function MyCocktail() {
     { id: 2, name: "", amount: "", volume: "" },
     { id: 3, name: "", amount: "", volume: "" },
     { id: 4, name: "", amount: "", volume: "" },
-    { id: 5, name: "", amount: "", volume: "" }
   ]);
 
   const [error, setError] = useState(null);

@@ -25,7 +25,6 @@
 
 .MyIngredientSection {
   padding: 20px;
-  border-right: 1px solid #ccc;
   max-height: 500px;
   overflow-y: auto;
   display: flex;
