@@ -272,7 +272,8 @@
 
 .iconFathum {
   position: fixed;
-  transform: translate(700%, 1006%);
+  font-size: 40px;
+  transform: translate(350%, 406%);
   background-color: transparent;
   color: #f7fa5165; /* 추천하지 않았을 때 어두운 색 */
   border: none;
@@ -286,7 +287,7 @@
 }
 
 .iconFathum:active {
-  transform: translate(700%, 1006%) scale(2.2); /* 클릭 효과: 아이콘 크기 증가 */
+  transform: translate(350%, 406%) scale(2.2); /* 클릭 효과: 아이콘 크기 증가 */
 }
 
 .iconFathum .icon {
